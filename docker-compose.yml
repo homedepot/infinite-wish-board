@@ -1,0 +1,21 @@
+version: '3'
+services:
+  api:
+    build: ./api
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./api:/api
+  db:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+  ui:
+    build: ./ui
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./ui:/ui
+
+
