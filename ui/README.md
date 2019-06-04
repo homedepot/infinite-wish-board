@@ -8,7 +8,7 @@ Build:
 `docker build -t ui:dev .`
 
 Run:
-`docker run -v ${PWD}:/ui -v /ui/node_modules -p 3001:3000 --rm ui:dev`
+`docker run -v ${PWD}:/ui -v /ui/node_modules -p 3001:3001 --rm ui:dev`
 
 
 
