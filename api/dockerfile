@@ -7,5 +7,6 @@ ENV PATH /api/node_modules/.bin:$PATH
 COPY package.json /api/package.json
 
 RUN yarn install --silent
+RUN npm install -g nodemon@1.19.1 --silent
 
 CMD ["yarn", "start"]
