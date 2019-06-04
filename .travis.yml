@@ -6,7 +6,7 @@ node_js:
 cache: yarn
 
 install: 
-  - yarn global add jest
+  - yarn global add jest react-scripts@3.0.1 --silent
 
 matrix:
   include:
