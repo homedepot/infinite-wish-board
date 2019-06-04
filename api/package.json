@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon app.js",
-    "test": "echo This is an API Test"
+    "test": "echo This is an API Test",
+    "build": "echo prod build steps go here!"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
