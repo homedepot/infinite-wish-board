@@ -6,7 +6,7 @@ node_js:
 cache: yarn
 
 install: 
-  - yarn global add jest react-scripts@3.0.1 --silent
+  - yarn global add jest@24.7.1 react-scripts@3.0.1 --silent
 
 matrix:
   include:
@@ -17,5 +17,6 @@ matrix:
 
 script: 
   - cd $PACKAGE_LOCATION
+  - yarn install
   - yarn test
   - yarn build
