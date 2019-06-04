@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "./startup.sh",
-    "test": "echo This is an API Test, replace me.",
-    "build": "echo API does not have a build step, but I am here so that travis can run the same commends for API and UI."
+    "test": "jest",
+    "build": "echo prod build steps go here!"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -14,5 +14,10 @@
     "express": "~4.15.5",
     "morgan": "~1.9.0",
     "nodemon": "1.19.1"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "moxios": "^0.4.0",
+    "supertest": "^4.0.2"
   }
 }
