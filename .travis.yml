@@ -1,0 +1,21 @@
+language: node_js
+
+node_js:
+  - 12.4.0
+
+cache: yarn
+
+install: 
+  - yarn global add jest
+
+matrix:
+  include:
+    - name: API Pipeline
+      env: PACKAGE_LOCATION=api
+    - name: UI Pipeline
+      env: PACKAGE_LOCATION=ui
+
+script: 
+  - cd $PACKAGE_LOCATION
+  - yarn test
+  - yarn build
