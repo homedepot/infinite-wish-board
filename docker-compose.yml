@@ -6,6 +6,7 @@ services:
       - "3002:3002"
     volumes:
       - ./api:/api
+      - /api/node_modules
   db:
     container_name: mongo
     image: mongo
@@ -17,5 +18,6 @@ services:
       - "3001:3000"
     volumes:
       - ./ui:/ui
+      - /ui/node_modules
 
 
