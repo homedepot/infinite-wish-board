@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "echo This is an API Test",
-    "build": "echo prod build steps go here!"
+    "start": "./startup.sh",
+    "test": "echo This is an API Test, replace me.",
+    "build": "echo API does not have a build step, but I am here so that travis can run the same commends for API and UI."
   },
   "dependencies": {
     "body-parser": "~1.18.2",
