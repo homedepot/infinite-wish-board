@@ -18,6 +18,7 @@ script:
 - yarn install
 - yarn test
 - yarn build
+- ls -al
 deploy:
   provider: gae
   keyfile: gae.json
