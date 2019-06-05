@@ -3,7 +3,10 @@ language: node_js
 node_js:
   - 12.4.0
 
-cache: yarn
+cache: 
+  directories: 
+    - "$HOME/google-cloud-sdk/"
+    - "$HOME/.cache/yarn"
 
 install: 
   - yarn global add jest@24.7.1 react-scripts@3.0.1 --silent
@@ -20,3 +23,9 @@ script:
   - yarn install
   - yarn test
   - yarn build
+
+deploy: 
+  provider: script
+  script: bash deploy.sh
+  on: 
+    branch: master
