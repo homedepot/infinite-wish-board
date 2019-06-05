@@ -18,9 +18,9 @@ script:
 - yarn install
 - yarn test
 - yarn build
-- ls -al
 deploy:
   provider: gae
+  skip_cleanup: true
   keyfile: gae.json
   project: 'make-a-wish-hackathon'
 before_install:
