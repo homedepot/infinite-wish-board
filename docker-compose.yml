@@ -15,7 +15,9 @@ services:
     ports:
       - "27017:27017"
   ui:
-    build: ./ui
+    build:
+      context: ./ui
+      dockerfile: dockerfile.dev
     ports:
       - "3001:3001"
     volumes:
