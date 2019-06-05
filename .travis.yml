@@ -25,3 +25,5 @@ deploy:
 before_install:
 - openssl aes-256-cbc -K $encrypted_a12fea25db14_key -iv $encrypted_a12fea25db14_iv
   -in gae.json.enc -out gae.json -d
+- cp gae.json ./api
+- cp gae.json ./ui
