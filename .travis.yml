@@ -22,7 +22,7 @@ deploy:
   provider: gae
   skip_cleanup: true
   keyfile: gae.json
-  project: 'make-a-wish-hackathon'
+  project: wishhack-hackathon
   on:
     branch: master
 before_install:
