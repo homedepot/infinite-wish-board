@@ -1,9 +1,12 @@
-import React from 'react';
-import App from './App';
-import {shallow} from "enzyme"
+import React from 'react'
+import {shallow} from 'enzyme'
+import App from "./App"
+import {Route} from "react-router-dom"
 
-it('renders without crashing', () => {
-  const wrapper = shallow(<App/>)
+describe("Default routing behavior", () => {
+    it("renders the landing page by default", () => {
+        const wrapper = shallow(<App/>)
 
-  expect(wrapper.find('p').text()).toEqual("Edit src/app/App.js and save to reload.")
-});
+        expect(wrapper.find(Route).props().path).toEqual('/')
+    })
+})
