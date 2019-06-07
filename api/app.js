@@ -15,6 +15,7 @@ app.use(logger("dev"))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
+require("./db/bootstrap-mongoose")
 
 app.use("/", index)
 app.use("/users", users)
