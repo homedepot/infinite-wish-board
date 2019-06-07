@@ -40,5 +40,3 @@ is if you made changes to the package.json file in either ui or api.
 - Make sure CI=true is set for node_env in travis
 - Export code coverage on travis-ci
 - Set up cypress
-- Land on prettier config, enforce in CI/local
-
