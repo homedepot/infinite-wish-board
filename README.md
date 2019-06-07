@@ -37,7 +37,7 @@ is if you made changes to the package.json file in either ui or api.
 
 - Wire-up mongo, make sure everything is networked properly
 - Add auth, captcha 
-- Add Enzyme, React-router-dom
+- Make sure CI=true is set for node_env in travis
 - Export code coverage on travis-ci
 - Set up cypress
 - Land on prettier config, enforce in CI/local
