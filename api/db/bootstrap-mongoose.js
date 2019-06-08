@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const mongoDB = process.env.mongoUrl || "mongodb://127.0.0.1/my_database"
+const mongoDB = process.env.mongoUrl || "mongodb://mongo/my_database"
 
 mongoose.connect(mongoDB, { useNewUrlParser: true })
 
