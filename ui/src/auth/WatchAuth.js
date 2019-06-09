@@ -23,4 +23,5 @@ class WatchAuth extends Component {
   }
 }
 
+export { WatchAuth }
 export default withRouter(WatchAuth)
