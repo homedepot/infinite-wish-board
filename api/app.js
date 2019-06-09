@@ -19,7 +19,7 @@ app.use(compression())
 
 app.use(
   cors({
-    origin: 'http://localhost:3001',
+    origin: process.env.corsDomain || 'http://localhost:3001',
     credentials: true
   })
 )
@@ -28,7 +28,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use(session({ keys: ['secretkey1', 'secretkey2', '...'] }))
+app.use(session({ keys: [process.env.cookieSigningKey || 'secretkey1'] }))
 
 app.use(passport.initialize())
 app.use(passport.session())
