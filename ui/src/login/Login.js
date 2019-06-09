@@ -7,6 +7,8 @@ class Login extends Component {
   constructor(props) {
     super(props)
 
+    this.expressDomain = process.env.expressDomain || 'http://localhost:3002'
+
     this.state = {
       username: '',
       password: ''
@@ -19,7 +21,7 @@ class Login extends Component {
     const { username, password } = this.state
 
     try {
-      await axios.post('http://localhost:3002/auth/register', {
+      await axios.post(`${this.expressDomain}/auth/register`, {
         username,
         password
       })
@@ -39,7 +41,7 @@ class Login extends Component {
     try {
       await axios
         .create({ withCredentials: true })
-        .post('http://localhost:3002/auth/login', {
+        .post(`${this.expressDomain}/auth/login`, {
           username,
           password
         })
