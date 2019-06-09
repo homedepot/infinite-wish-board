@@ -1,14 +1,19 @@
-import React from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import "./App.css"
-import Landing from "../landing/Landing"
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import './App.css'
+import Login from '../login/Login'
+import Landing from '../landing/Landing'
+import WatchAuth from '../auth/WatchAuth'
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={Landing} />
-      </Switch>
+      <WatchAuth>
+        <Switch>
+          <Route exact path="/landing" component={Landing} />
+          <Route exact path="/" component={Login} />
+        </Switch>
+      </WatchAuth>
     </Router>
   )
 }
