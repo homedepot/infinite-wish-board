@@ -35,9 +35,7 @@ is if you made changes to the package.json file in either ui or api.
 
 ## TODOs
 
-- Add captcha 
-- Add Auth UI controls. 
-- Make sure CI=true is set for node_env in travis
-- Export code coverage on travis-ci
+- Add captcha: https://github.com/appleboy/react-recaptcha
 - Set up cypress
-- Make sure to set process.env.cookieSigningKey && process.env.mongoUrl
+- Make sure to set process.env.cookieSigningKey && process.env.mongoUrl && process.env.corsDomain in CI
+- Add codecov package to CI.
