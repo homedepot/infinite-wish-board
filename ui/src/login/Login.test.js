@@ -13,61 +13,128 @@ jest.mock('axios', () => {
 })
 
 describe('Registration', () => {
-  beforeEach(() => {
-    axios.post = () => Promise.resolve('success!')
+  describe('on success', () => {
+    beforeEach(() => {
+      axios.post = () => Promise.resolve('success!')
+    })
+
+    it('Returns 200 when successfully registering a new user', async () => {
+      const wrapper = shallow(<Login />)
+
+      wrapper
+        .find('[data-register-username]')
+        .simulate('change', { target: { value: 'good-username' } })
+
+      wrapper
+        .find('[data-register-password]')
+        .simulate('change', { target: { value: 'good-password' } })
+
+      let preventDefaultMock = jest.fn()
+      wrapper
+        .find('[data-register-form]')
+        .simulate('submit', { preventDefault: preventDefaultMock })
+
+      await axios.post()
+
+      expect(preventDefaultMock).toHaveBeenCalled()
+      expect(wrapper.state().username).toEqual('')
+      expect(wrapper.state().password).toEqual('')
+    })
   })
 
-  it('Returns 200 when successfully registering a new user', async () => {
-    const wrapper = shallow(<Login />)
+  describe('on failure', () => {
+    beforeEach(() => {
+      axios.post = () => Promise.reject('success!')
+    })
 
-    wrapper
-      .find('[data-register-username]')
-      .simulate('change', { target: { value: 'good-username' } })
+    it('Returns 200 when successfully registering a new user', async () => {
+      const wrapper = shallow(<Login />)
 
-    wrapper
-      .find('[data-register-password]')
-      .simulate('change', { target: { value: 'good-password' } })
+      wrapper
+        .find('[data-register-username]')
+        .simulate('change', { target: { value: 'good-username' } })
 
-    let preventDefaultMock = jest.fn()
-    wrapper
-      .find('[data-register-form]')
-      .simulate('submit', { preventDefault: preventDefaultMock })
+      wrapper
+        .find('[data-register-password]')
+        .simulate('change', { target: { value: 'good-password' } })
 
-    await axios.post()
+      let preventDefaultMock = jest.fn()
+      wrapper
+        .find('[data-register-form]')
+        .simulate('submit', { preventDefault: preventDefaultMock })
 
-    expect(preventDefaultMock).toHaveBeenCalled()
-    expect(wrapper.state().username).toEqual('')
-    expect(wrapper.state().password).toEqual('')
+      try {
+        await axios.post()
+      } catch (e) {}
+
+      expect(preventDefaultMock).toHaveBeenCalled()
+      //TODO: Show user message?
+    })
   })
 })
 
 describe('Login', () => {
-  beforeEach(() => {
-    axios.create = () => ({
-      post: () => Promise.resolve('success!')
+  describe('on success', () => {
+    beforeEach(() => {
+      axios.create = () => ({
+        post: () => Promise.resolve('success!')
+      })
+    })
+
+    it('Returns 200 when successfully registering a new user', async () => {
+      const fakeHistory = []
+      const wrapper = shallow(<Login history={fakeHistory} />)
+
+      wrapper
+        .find('[data-login-username]')
+        .simulate('change', { target: { value: 'good-username' } })
+
+      wrapper
+        .find('[data-login-password]')
+        .simulate('change', { target: { value: 'good-password' } })
+
+      let preventDefaultMock = jest.fn()
+      wrapper
+        .find('[data-login-form]')
+        .simulate('submit', { preventDefault: preventDefaultMock })
+
+      await axios.create().post()
+
+      expect(preventDefaultMock).toHaveBeenCalled()
+      expect(fakeHistory).toEqual(['/landing'])
     })
   })
 
-  it('Returns 200 when successfully registering a new user', async () => {
-    const fakeHistory = []
-    const wrapper = shallow(<Login history={fakeHistory} />)
+  describe('on failure', () => {
+    beforeEach(() => {
+      axios.create = () => ({
+        post: () => Promise.reject('failure!!')
+      })
+    })
 
-    wrapper
-      .find('[data-login-username]')
-      .simulate('change', { target: { value: 'good-username' } })
+    it('Returns 200 when successfully registering a new user', async () => {
+      const fakeHistory = []
+      const wrapper = shallow(<Login history={fakeHistory} />)
 
-    wrapper
-      .find('[data-login-password]')
-      .simulate('change', { target: { value: 'good-password' } })
+      wrapper
+        .find('[data-login-username]')
+        .simulate('change', { target: { value: 'good-username' } })
 
-    let preventDefaultMock = jest.fn()
-    wrapper
-      .find('[data-login-form]')
-      .simulate('submit', { preventDefault: preventDefaultMock })
+      wrapper
+        .find('[data-login-password]')
+        .simulate('change', { target: { value: 'good-password' } })
 
-    await axios.create().post()
+      let preventDefaultMock = jest.fn()
+      wrapper
+        .find('[data-login-form]')
+        .simulate('submit', { preventDefault: preventDefaultMock })
 
-    expect(preventDefaultMock).toHaveBeenCalled()
-    expect(fakeHistory).toEqual(['/landing'])
+      try {
+        await axios.create().post()
+      } catch (e) {}
+
+      expect(preventDefaultMock).toHaveBeenCalled()
+      //TODO: Show user message(?)
+    })
   })
 })

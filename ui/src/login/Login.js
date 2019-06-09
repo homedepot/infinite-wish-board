@@ -28,9 +28,7 @@ class Login extends Component {
         username: '',
         password: ''
       })
-    } catch (e) {
-      console.log(`response is: ${e}`)
-    }
+    } catch (e) {}
   }
 
   loginUser = async e => {
@@ -47,9 +45,7 @@ class Login extends Component {
         })
 
       this.props.history.push('/landing')
-    } catch (e) {
-      console.log(`response is: ${e}`)
-    }
+    } catch (e) {}
   }
 
   handleFormFieldChange = (key, { target: { value } }) => {
