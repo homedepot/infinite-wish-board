@@ -8,6 +8,7 @@
     "build": "echo prod build steps go here!"
   },
   "dependencies": {
+    "api-error-handler": "^1.0.0",
     "body-parser": "~1.18.2",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.3",

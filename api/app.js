@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser')
 const session = require('cookie-session')
 const bodyParser = require('body-parser')
 const compression = require('compression')
-
+const errorHandler = require('api-error-handler')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
@@ -53,15 +53,7 @@ app.use((req, res, next) => {
 })
 
 // error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-
-  // render the error page
-  res.status(err.status || 500)
-  res.render('error')
-})
+app.use(errorHandler())
 
 app.set('port', process.env.PORT || 3002)
 var server = app.listen(app.get('port'), function() {
