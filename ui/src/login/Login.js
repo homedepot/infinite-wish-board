@@ -24,7 +24,10 @@ class Login extends Component {
         password
       })
 
-      this.setState({ username: '', password: '' })
+      this.setState({
+        username: '',
+        password: ''
+      })
     } catch (e) {
       console.log(`response is: ${e}`)
     }
@@ -56,31 +59,35 @@ class Login extends Component {
   render() {
     return (
       <Fragment>
-        <form onSubmit={this.createUser}>
+        <form onSubmit={this.createUser} data-register-form>
           <h2>Register a user</h2>
           Username:{' '}
           <input
             type="text"
+            data-register-username
             onChange={event => this.handleFormFieldChange('username', event)}
           />
           Password:{' '}
           <input
             type="password"
+            data-register-password
             onChange={event => this.handleFormFieldChange('password', event)}
           />
           <input type="submit" value="Submit!" />
         </form>
 
-        <form onSubmit={this.loginUser}>
+        <form onSubmit={this.loginUser} data-login-form>
           <h2>Login</h2>
           Username:{' '}
           <input
             type="text"
+            data-login-username
             onChange={event => this.handleFormFieldChange('username', event)}
           />
           Password:{' '}
           <input
             type="password"
+            data-login-password
             onChange={event => this.handleFormFieldChange('password', event)}
           />
           <input type="submit" value="Submit!" />

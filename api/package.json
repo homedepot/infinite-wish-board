@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "./startup.sh",
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "echo prod build steps go here!"
   },
   "dependencies": {
