@@ -1,7 +1,10 @@
 # hackathon-starter
 create-react-app + expressjs + mongodb + docker-compose!!
 
+[![Node.JS Version](https://img.shields.io/badge/node.js-12.4.0-00ADD8.svg?style=flat)](https://nodejs.org/en/) 
+[![Code Coverage](https://img.shields.io/codecov/c/github/homedepot/hackathon-starter.svg?style=flat)](https://codecov.io/gh/homedepot/hackathon-starter)
 [![Build Status](https://travis-ci.org/homedepot/hackathon-starter.svg?branch=master)](https://travis-ci.org/homedepot/hackathon-starter)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](LICENSE)
 
 ## Quick Setup
 
