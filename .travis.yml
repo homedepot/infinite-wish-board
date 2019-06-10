@@ -7,6 +7,7 @@ cache:
   - "$HOME/.cache/yarn"
 install:
 - yarn global add jest@24.7.1 react-scripts@3.0.1 --silent
+- npm install -g codecov
 matrix:
   include:
   - name: API Pipeline
@@ -17,6 +18,7 @@ script:
 - cd $PACKAGE_LOCATION
 - yarn install
 - yarn test
+- codecov -c -F $PACKAGE_LOCATION
 - yarn build
 deploy:
   provider: gae
