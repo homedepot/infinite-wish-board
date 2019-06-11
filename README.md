@@ -40,6 +40,3 @@ is if you made changes to the package.json file in either ui or api.
 
 - Add captcha: https://github.com/appleboy/react-recaptcha
 - Set up cypress
-- Add ENV to CI for API:process.env.cookieSigningKey && process.env.mongoUrl && process.env.corsDomain
-- Add ENV (before build) for UI: process.env.expressDomain
-- Add codecov package to CI.
