@@ -12,3 +12,7 @@ resources:
 
 env_variables: 
   NODE_ENV: production
+  mongoUrl: {{MONGO_URL}}
+  corsDomain: {{CORS_DOMAIN}}
+  cookieSigningKey: {{COOKIE_SIGNING_KEY}}
+  recaptchaSecretKey: {{RECAPTCHA_SECRET_KEY}}
