@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const passport = require('passport')
-const Account = require('./../db/Account')
+const Account = require('../db/Account')
 
 router.post('/register', function(req, res, next) {
   console.log('registering user')

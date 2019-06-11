@@ -9,7 +9,7 @@ const errorHandler = require('api-error-handler')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
-const index = require('./routes/index')
+const index = require('./routes')
 const auth = require('./routes/auth')
 const cors = require('cors')
 

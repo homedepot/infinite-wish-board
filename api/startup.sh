@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $NODE_ENV = "production" ]; then
-  node app.js;
+  node src/app.js;
 else
-  nodemon app.js;
+  nodemon src/app.js;
 fi
