@@ -7,7 +7,7 @@ class Login extends Component {
   constructor(props) {
     super(props)
 
-    this.expressDomain = process.env.expressDomain || 'http://localhost:3002'
+    this.expressDomain = process.env.REACT_APP_expressDomain || 'http://localhost:3002'
 
     this.state = {
       username: '',
