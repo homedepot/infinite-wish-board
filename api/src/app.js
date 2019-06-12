@@ -16,21 +16,20 @@ const app = express()
 
 app.use(compression())
 
-if (process.env.NODE_ENV !== 'test') {
-  app.use(
-    cors({
-      origin: (reqOrigin, callback) => {
-        const whitelist = ['wishhack.xyz', 'localhost']
-        if (whitelist.filter(w => reqOrigin.includes(w))) {
-          callback(null, true)
-        } else {
-          callback(new Error('Now Allowed by CORS'))
-        }
-      },
-      credentials: true
-    })
-  )
-}
+app.use(
+  cors({
+    origin: (reqOrigin, callback) => {
+      const whitelist = ['wishhack.xyz', 'localhost']
+      if (whitelist.filter(w => reqOrigin && reqOrigin.includes(w))) {
+        callback(null, true)
+      } else {
+        callback(new Error('Now Allowed by CORS'))
+      }
+    },
+    credentials: true
+  })
+)
+
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
