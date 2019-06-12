@@ -36,6 +36,7 @@
       "!/coverage/",
       "!<rootDir>/node_modules/"
     ],
+    "testEnvironment": "node",
     "collectCoverage": true
   }
 }
