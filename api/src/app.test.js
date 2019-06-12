@@ -3,7 +3,7 @@ const request = require('supertest')
 describe('Sanity test express', () => {
   let server
   beforeEach(() => {
-    process.env.mongoUrl = 'mongodb://localhost:27017/test'
+    process.env.mongoUrl = process.env.mongoUrl || 'mongodb://localhost:27017/test'
     server = require('./app')
   })
 
