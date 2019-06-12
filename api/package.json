@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "./startup.sh",
-    "test": "NODE_ENV=test jest --coverage",
+    "test": "NODE_ENV=test jest --coverage --forceExit",
     "build": "sed -i.bak 's/{{MONGO_URL}}/'$prodMongoUrl'/g' app.yaml && sed -i.bak 's/{{CORS_DOMAIN}}/'$corsDomain'/g' app.yaml && sed -i.bak 's/{{COOKIE_SIGNING_KEY}}/'$cookieSigningKey'/g' app.yaml && sed -i.bak 's/{{RECAPTCHA_SECRET_KEY}}/'$recaptchaSecretKey'/g' app.yaml"
   },
   "dependencies": {

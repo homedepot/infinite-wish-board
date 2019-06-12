@@ -16,7 +16,7 @@ const app = express()
 
 app.use(compression())
 
-if (process.env.NODE_ENV === 'test') {
+if (process.env.NODE_ENV !== 'test') {
   app.use(
     cors({
       origin: (reqOrigin, callback) => {
@@ -63,9 +63,11 @@ app.use((req, res, next) => {
 // error handler
 app.use(errorHandler())
 
-app.set('port', process.env.PORT || 3002)
-const server = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + server.address().port)
-})
+if (process.env.NODE_ENV !== 'test') {
+  app.set('port', process.env.PORT || 3002)
+  const server = app.listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + server.address().port)
+  })
+}
 
-module.exports = server
+module.exports = app
