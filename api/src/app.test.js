@@ -7,19 +7,13 @@ describe('Sanity test express', () => {
     server = require('./app')
   })
 
-  afterEach(function() {
+  afterEach(() => {
     server.close()
   })
 
-  it('should boot up!', () => {
-    request(server)
-      .get('/')
-      .expect(200)
-      .end(function(err, res) {
-        if (err) {
-          console.log(res)
-          throw err
-        }
-      })
+  it('should boot up!', async () => {
+    const response = await request(server).get('/')
+
+    expect(response.statusCode).toEqual(200)
   })
 })
