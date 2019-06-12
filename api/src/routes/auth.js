@@ -4,8 +4,10 @@ const Account = require('../db/Account')
 
 router.post('/register', function(req, res, next) {
   console.log('registering user')
+  const { username, firstName, lastName } = req.body
+
   Account.register(
-    new Account({ username: req.body.username }),
+    new Account({ username, firstName, lastName }),
     req.body.password,
     function(err) {
       if (err) {
@@ -18,7 +20,9 @@ router.post('/register', function(req, res, next) {
 })
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-  res.sendStatus(200)
+  const { firstName, lastName, username } = req.user
+
+  res.json({ firstName, lastName, username })
 })
 
 router.get('/logout', function(req, res) {

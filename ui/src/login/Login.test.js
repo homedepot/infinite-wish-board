@@ -51,6 +51,14 @@ describe('Registration', () => {
       const wrapper = shallow(<Login />)
 
       wrapper
+        .find('[data-register-first-name]')
+        .simulate('change', { target: { value: 'Lupe' } })
+
+      wrapper
+        .find('[data-register-last-name]')
+        .simulate('change', { target: { value: 'Lupe' } })
+
+      wrapper
         .find('[data-register-username]')
         .simulate('change', { target: { value: 'good-username' } })
 
@@ -77,7 +85,8 @@ describe('Login', () => {
   describe('on success', () => {
     beforeEach(() => {
       axios.create = () => ({
-        post: () => Promise.resolve('success!')
+        post: () =>
+          Promise.resolve({ body: { firstName: 'Lupe', lastName: 'Fiasco' } })
       })
     })
 

@@ -40,12 +40,14 @@ class Login extends Component {
     const { username, password } = this.state
 
     try {
-      await axios
+      const response = await axios
         .create({ withCredentials: true })
         .post(`${this.expressDomain}/auth/login`, {
           username,
           password
         })
+
+      console.log(`User profile is: ${response.body}`)
 
       this.props.history.push('/landing')
     } catch (e) {}
@@ -67,7 +69,23 @@ class Login extends Component {
               onSubmit={this.createUser}
               data-register-form
             >
-              Username:{' '}
+              First Name:
+              <input
+                type="text"
+                data-register-first-name
+                onChange={event =>
+                  this.handleFormFieldChange('firstName', event)
+                }
+              />
+              Last Name:
+              <input
+                type="text"
+                data-register-last-name
+                onChange={event =>
+                  this.handleFormFieldChange('lastName', event)
+                }
+              />
+              Username:
               <input
                 type="text"
                 data-register-username
@@ -75,7 +93,7 @@ class Login extends Component {
                   this.handleFormFieldChange('username', event)
                 }
               />
-              Password:{' '}
+              Password:
               <input
                 type="password"
                 data-register-password

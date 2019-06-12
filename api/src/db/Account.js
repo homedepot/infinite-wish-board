@@ -4,7 +4,10 @@ const Schema = mongoose.Schema
 
 const passportLocalMongoose = require('passport-local-mongoose')
 
-const Account = new Schema({})
+const Account = new Schema({
+  firstName: String,
+  lastName: String
+})
 
 Account.plugin(passportLocalMongoose)
 

@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 export default class Landing extends Component {
-  componentDidMount() {
-    axios.get('http://localhost:3002/banana')
-  }
-
   render() {
-    return <div>LOGGED IN!!!</div>
+    return <h1>Welcome to the Hackathon Landing Page</h1>
   }
 }
