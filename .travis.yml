@@ -1,30 +1,30 @@
 language: node_js
 node_js:
-- 12.4.0
+  - 12.4.0
 services:
-- mongodb
+  - mongodb
 cache:
   directories:
-  - "$HOME/google-cloud-sdk/"
-  - "$HOME/.cache/yarn"
+    - "$HOME/google-cloud-sdk/"
+    - "$HOME/.cache/yarn"
 before_script:
-- sleep 15
-- mongo mydb_test --eval 'db.createUser({user: "travis",pwd:"test", roles:["readWrite"]})'
+  - sleep 15
+  - mongo mydb_test --eval 'db.createUser({user: "travis",pwd:"test", roles:["readWrite"]})'
 install:
-- yarn global add jest@24.7.1 react-scripts@3.0.1 --silent
-- npm install -g codecov
+  - yarn global add jest@24.7.1 react-scripts@3.0.1 --silent
+  - npm install -g codecov
 matrix:
   include:
-  - name: API Pipeline
-    env: PACKAGE_LOCATION=api
-  - name: UI Pipeline
-    env: PACKAGE_LOCATION=ui
+    - name: API Pipeline
+      env: PACKAGE_LOCATION=api
+    - name: UI Pipeline
+      env: PACKAGE_LOCATION=ui
 script:
-- cd $PACKAGE_LOCATION
-- yarn install
-- yarn test
-- codecov -F $PACKAGE_LOCATION
-- yarn build
+  - cd $PACKAGE_LOCATION
+  - yarn install
+  - yarn test
+  - codecov -F $PACKAGE_LOCATION
+  - yarn build
 deploy:
   provider: gae
   skip_cleanup: true
@@ -33,7 +33,7 @@ deploy:
   on:
     branch: master
 before_install:
-- openssl aes-256-cbc -K $encrypted_a12fea25db14_key -iv $encrypted_a12fea25db14_iv
-  -in gae.json.enc -out gae.json -d
-- cp gae.json ./api
-- cp gae.json ./ui
+  - openssl aes-256-cbc -K $encrypted_a12fea25db14_key -iv $encrypted_a12fea25db14_iv
+    -in gae.json.enc -out gae.json -d
+  - cp gae.json ./api
+  - cp gae.json ./ui
