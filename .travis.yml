@@ -9,7 +9,7 @@ cache:
     - "$HOME/.cache/yarn"
 before_script:
   - sleep 15
-  - mongo mydb_test --eval 'db.createUser({user: "travis",pwd:"test", roles:["readWrite"]})'
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]})'
 install:
   - yarn global add jest@24.7.1 react-scripts@3.0.1 --silent
   - npm install -g codecov
