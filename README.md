@@ -39,4 +39,3 @@ is if you made changes to the package.json file in either ui or api.
 ## TODOs
 
 - Add captcha: https://github.com/appleboy/react-recaptcha
-- Set up cypress

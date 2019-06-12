@@ -1,0 +1,24 @@
+.login-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.registration-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.registration-form > input{
+    margin-bottom: 10px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login-form > input{
+    margin-bottom: 10px;
+}

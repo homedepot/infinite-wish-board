@@ -7,7 +7,8 @@ class Login extends Component {
   constructor(props) {
     super(props)
 
-    this.expressDomain = process.env.REACT_APP_expressDomain || 'http://localhost:3002'
+    this.expressDomain =
+      process.env.REACT_APP_expressDomain || 'http://localhost:3002'
 
     this.state = {
       username: '',
@@ -56,41 +57,64 @@ class Login extends Component {
 
   render() {
     return (
-      <Fragment>
-        <form onSubmit={this.createUser} data-register-form>
-          <h2>Register a user</h2>
-          Username:{' '}
-          <input
-            type="text"
-            data-register-username
-            onChange={event => this.handleFormFieldChange('username', event)}
-          />
-          Password:{' '}
-          <input
-            type="password"
-            data-register-password
-            onChange={event => this.handleFormFieldChange('password', event)}
-          />
-          <input type="submit" value="Submit!" />
-        </form>
+      <div>
+        <h1>Welcome to the Make-A-Wish Hackathon starter!!</h1>
+        <div className={'login-container'}>
+          <div>
+            <h2>Register</h2>
+            <form
+              className="registration-form"
+              onSubmit={this.createUser}
+              data-register-form
+            >
+              Username:{' '}
+              <input
+                type="text"
+                data-register-username
+                onChange={event =>
+                  this.handleFormFieldChange('username', event)
+                }
+              />
+              Password:{' '}
+              <input
+                type="password"
+                data-register-password
+                onChange={event =>
+                  this.handleFormFieldChange('password', event)
+                }
+              />
+              <input type="submit" value="Submit!" />
+            </form>
+          </div>
 
-        <form onSubmit={this.loginUser} data-login-form>
-          <h2>Login</h2>
-          Username:{' '}
-          <input
-            type="text"
-            data-login-username
-            onChange={event => this.handleFormFieldChange('username', event)}
-          />
-          Password:{' '}
-          <input
-            type="password"
-            data-login-password
-            onChange={event => this.handleFormFieldChange('password', event)}
-          />
-          <input type="submit" value="Submit!" />
-        </form>
-      </Fragment>
+          <div>
+            <h2>Login</h2>
+            <form
+              className="login-form"
+              onSubmit={this.loginUser}
+              data-login-form
+            >
+              Username:{' '}
+              <input
+                type="text"
+                data-login-username
+                onChange={event =>
+                  this.handleFormFieldChange('username', event)
+                }
+              />
+              Password:{' '}
+              <input
+                type="password"
+                data-login-password
+                onChange={event =>
+                  this.handleFormFieldChange('password', event)
+                }
+              />
+              <input type="submit" value="Submit!" />
+            </form>
+          </div>
+        </div>
+      </div>
     )
   }
 }
