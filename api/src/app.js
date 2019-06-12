@@ -19,9 +19,10 @@ app.use(compression())
 
 app.use(
   cors({
-    origin: (origin, callback) => {
+    origin: (reqOrigin, callback) => {
+        console.log(`ORIGIN IS: ${reqOrigin}`)
         const whitelist = ['wishhack.xyz', 'localhost']
-        if(whitelist.filter(w => origin.contains(w))){
+        if(whitelist.filter(w => reqOrigin.includes(w))){
             callback(null, true)
         }else{
             callack(new Error("Now Allowed by CORS"))
