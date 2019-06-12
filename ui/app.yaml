@@ -1,4 +1,4 @@
-service: starter-ui
+service: purple-parrots-ui
 runtime: custom
 env: flex
 
