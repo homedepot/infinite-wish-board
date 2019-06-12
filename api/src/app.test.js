@@ -1,5 +1,7 @@
-describe('Our very first test!', () => {
-  it('should pass!', () => {
-    expect(1).toEqual(1)
+const app = require("./app")
+
+describe('Sanity test express', () => {
+  it('should boot up!', () => {
+    expect(app).toBeTruthy()
   })
 })

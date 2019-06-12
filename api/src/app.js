@@ -1,6 +1,5 @@
 const express = require('express')
 const logger = require('morgan')
-const debug = require('debug')('app')
 const cookieParser = require('cookie-parser')
 const session = require('cookie-session')
 const bodyParser = require('body-parser')
@@ -20,12 +19,11 @@ app.use(compression())
 app.use(
   cors({
     origin: (reqOrigin, callback) => {
-        console.log(`ORIGIN IS: ${reqOrigin}`)
         const whitelist = ['wishhack.xyz', 'localhost']
         if(whitelist.filter(w => reqOrigin.includes(w))){
             callback(null, true)
         }else{
-            callack(new Error("Now Allowed by CORS"))
+            callback(new Error("Now Allowed by CORS"))
         }
     },
     credentials: true
