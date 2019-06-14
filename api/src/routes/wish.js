@@ -12,3 +12,5 @@ wishRouter.route('/:wishId').get((req, res) => {
     res.json(Wish)
   })
 })
+
+export default wishRouter;
