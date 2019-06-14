@@ -9,7 +9,10 @@ export default class ChildInfo extends Component {
       this.state = {
         step: 0,
         name: '',
-        age: 0
+        age: '',
+        homeTown: '',
+        illness: '',
+        details: ''
       }
     }
 
@@ -24,23 +27,28 @@ export default class ChildInfo extends Component {
           input: 'age'
         },
         2: {
-
+          text: 'Where are you from?',
+          input: 'homeTown'
+        },
+        3: {
+          text: 'Tell us about your condition',
+          input: 'illness'
+        },
+        4: {
+          text: 'Tell us more about your wish!',
+          input: 'details'
         }
       }
     }
 
     nextStep = () => {
       let stepMap = this.stepMapFunction();
-      console.log("next")
-      console.log(Object.keys(stepMap).length);
-      console.log(this.state.name);
       let { step } = { ...this.state };
       if (step < Object.keys(stepMap).length - 1) {
         window.scrollTo({
           top: 1000,
           behavior: 'smooth'
         });
-        console.log("increment")
         this.setState({
           step: step + 1
         }, () => {
@@ -75,13 +83,14 @@ export default class ChildInfo extends Component {
     }
 
     render() {
+      let inputValue = this.state[this.getInputType()]
       return (
         <div className='childInfo containerVertical'>
-            <p>{this.getTextField()}</p>
+            <p className="text-name">{this.getTextField()}</p>
             <form>
-              <input type="text" onChange={this.updateInputField}/>
+              <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField}/>
             </form>
-            <button onClick={this.nextStep}>NEXT</button>
+            <button className='next-button' onClick={this.nextStep}>NEXT</button>
 
         </div>
       )
