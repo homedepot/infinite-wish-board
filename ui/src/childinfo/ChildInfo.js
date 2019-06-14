@@ -17,6 +17,7 @@ export default class ChildInfo extends Component {
         rocketRotation: 20,
         rocketWidth: 170,
         rocketContainerHeight: 350,
+        isBlastOff: false
       }
     }
 
@@ -107,6 +108,10 @@ export default class ChildInfo extends Component {
     // Rocket blast off rotation animation
     blastOffTime = 20;
     rocketBlastOff = () => {
+      this.setState({
+        isBlastOff: true
+      })
+
       setTimeout(() => {
         this.blastOffTime--;
         if(this.blastOffTime > -45) { 
@@ -131,21 +136,21 @@ export default class ChildInfo extends Component {
           })
           this.rocketSizeGrow()
         } else {
-          this.blashOff()
+          this.blastOff()
         }
       }, 10)
     }
 
     // Blast off rocket container
     rocketContainerHeight = 350
-    blashOff = () => {
+    blastOff = () => {
       setTimeout(() => {
         this.rocketContainerHeight--;
         if(this.rocketContainerHeight > 0) {
           this.setState({
             rocketContainerHeight: this.rocketContainerHeight
           })
-          this.blashOff()
+          this.blastOff()
         }
       }, 10)
     }
@@ -155,7 +160,7 @@ export default class ChildInfo extends Component {
       let { showConfirmation } = this.state;
 
       return (
-        !showConfirmation ?
+        showConfirmation ?
           <div className='childInfo containerVertical'>
               <p className="text-name">{this.getTextField()}</p>
               <form>
@@ -167,7 +172,7 @@ export default class ChildInfo extends Component {
             <div className='rocket-image-container' style={this.getRocketContainerStyle()}>
               <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
             </div>
-            <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Blast Off</button>
+            {!this.state.isBlastOff && <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Blast Off</button>}
           </div>
       )
     }
