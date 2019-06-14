@@ -9,8 +9,7 @@ describe('Wish route', () => {
   const wishType = 'go'
   const firstWish = {
     child: {
-      firstName: 'patrick',
-      lastName: 'star',
+      name: 'patrick',
       hometown: 'marietta',
       illness: 'crecent',
       age: '12'
@@ -25,8 +24,7 @@ describe('Wish route', () => {
   }
   const secondWish = {
     child: {
-      firstName: 'patrick sdfasdf',
-      lastName: 'star',
+      name: 'spongebob',
       hometown: 'marietta',
       illness: 'crecent',
       age: '12'
