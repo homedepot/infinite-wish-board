@@ -36,12 +36,12 @@
     input {
       border: 2px solid $medium-blue;
       border-radius: 3px;
-      padding: 10px;
-      font-size: 0.9em;
+      padding: .8em;
+      font-size: .9em;
     }
 
     input::placeholder {
-      color: $pink;
+      color: $rose;
       font-weight: bold;
     }
 
