@@ -13,7 +13,7 @@ export default class WishHeader extends Component {
                 </div>
                 <div className="user-details">
                     <span>Mary</span> | 
-                    <a href="#">Sign Out</a>
+                    <a href="/logout">Sign Out</a>
                 </div>
             </div>
         )

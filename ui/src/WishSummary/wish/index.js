@@ -6,10 +6,6 @@ import sponsorImg from '../../assets/icn_To_Be_Astronaut_130x130.png'
 import ImgPlaceholder from '../imgPlaceholder';
 
 export default class Wish extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="wish">
@@ -25,7 +21,7 @@ export default class Wish extends Component {
                         Maggie wishes to go to Disney land
                     </span>
                 </div>
-                {false ? <img src={sponsorImg} alt="Sponsor" className="sponsor" /> : <a href="#">Add Sponsor</a>}
+                {false ? <img src={sponsorImg} alt="Sponsor" className="sponsor" /> : <a href="/review">Add Sponsor</a>}
                 <img src={chevronRight} alt="click to view wish details" className="chevron"/>
             </div>
         )
