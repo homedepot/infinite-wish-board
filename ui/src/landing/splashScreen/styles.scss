@@ -1,0 +1,23 @@
+@import "../../styles/colors";
+
+#SplashScreen {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: $light-blue;
+  color: $dark-blue;
+  font-family: 'Lato', sans-serif;
+
+  img.header-make-a-wish-logo {
+    max-height: 3em;
+  }
+
+  img.header-galaxy-logo {
+    max-height: 3em;
+  }
+
+  span.header-title {
+    align-self: center;
+    font-size: 2.5em;
+  }
+}
