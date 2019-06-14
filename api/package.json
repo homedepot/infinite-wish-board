@@ -5,6 +5,7 @@
   "scripts": {
     "start": "./startup.sh",
     "test": "NODE_ENV=test jest --coverage --forceExit",
+    "test:watch": "NODE_ENV=test jest --watch",
     "build": "sed -i.bak 's/{{MONGO_URL}}/'$prodMongoUrl'/g' app.yaml && sed -i.bak 's/{{CORS_DOMAIN}}/'$corsDomain'/g' app.yaml && sed -i.bak 's/{{COOKIE_SIGNING_KEY}}/'$cookieSigningKey'/g' app.yaml && sed -i.bak 's/{{RECAPTCHA_SECRET_KEY}}/'$recaptchaSecretKey'/g' app.yaml"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "passport-local-mongoose": "^5.0.1"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.0.1",
     "jest": "^24.8.0",
     "moxios": "^0.4.0",
     "prettier": "1.18.2",
