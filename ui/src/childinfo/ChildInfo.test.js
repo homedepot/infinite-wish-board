@@ -12,11 +12,10 @@ describe('Initial Render', () => {
   })
 
   it('renders!', () => {
-
     expect(childInfo.exists('.childInfo'));
     expect(childInfo.find('p').text()).toEqual('Hi what is your name?');
     expect(childInfo.instance().state.name).toEqual("");
-
+    expect(childInfo.instance().state.rocketRotation).toEqual(20);
   })
 
   it('Should update `step` in state', () => {
@@ -44,6 +43,16 @@ describe('Initial Render', () => {
       nextButton.simulate('click');
       expect(childInfo.find('.text-name').length).toEqual(0);
       expect(childInfo.instance().state.showConfirmation).toBeTruthy();
+    })
+  })
+
+  describe('When user on confirmation page and click blast off the rocket', () => {
+
+    it('Should update the `rocketRotation` in state', () => {
+      childInfo.find('.rocket-blast-off-button').simulate('click')
+      setTimeout(() => {
+        expect(childInfo.instance().state.rocketRotation).toEqual(-45)
+      }, 5000);
     })
   })
 })

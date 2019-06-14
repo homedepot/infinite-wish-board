@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import rocketImage from '../../src/assets/icn_To_Go_Rocket_White_Inside_130x130.png';
 import './ChildInfo.css';
 
 export default class ChildInfo extends Component {
@@ -13,7 +14,8 @@ export default class ChildInfo extends Component {
         homeTown: '',
         illness: '',
         details: '',
-        showConfirmation: false
+        showConfirmation: false,
+        rocketRotation: 30
       }
     }
 
@@ -45,7 +47,6 @@ export default class ChildInfo extends Component {
     nextStep = () => {
       let stepMap = this.stepMapFunction();
       let { step } = { ...this.state };
-      console.log(step);
       if (step < Object.keys(stepMap).length - 1) {
         window.scrollTo({
           top: 1000,
@@ -57,7 +58,6 @@ export default class ChildInfo extends Component {
           this.scrollToTop();
         });
       } else {
-        console.log("showing Confrimation")
         this.setState({
           showConfirmation: true
         })
@@ -90,13 +90,30 @@ export default class ChildInfo extends Component {
     }
 
 
+    getRocketStyle = () => {
+      return {
+        transform: `rotate(${this.state.rocketRotation}deg)`,
+        width: '200px'
+      }
+    }
 
+    rocketBlastOff = () => {
+
+      for(let i = this.state.rocketRotation; i > -45; i--) {
+        setTimeout(
+          this.setState({
+            rocketRotation: this.state.rocketRotation--
+          })
+        , 30)
+      }
+    }
 
     render() {
       let inputValue = this.state[this.getInputType()];
       let { showConfirmation } = this.state;
+
       return (
-        !showConfirmation ?
+        showConfirmation ?
           <div className='childInfo containerVertical'>
               <p className="text-name">{this.getTextField()}</p>
               <form>
@@ -105,6 +122,8 @@ export default class ChildInfo extends Component {
               <button className='next-button' onClick={this.nextStep}>NEXT</button>
           </div> :
           <div>
+            <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
+            <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}/>
           </div>
       )
     }
