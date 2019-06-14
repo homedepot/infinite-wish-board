@@ -1,0 +1,8 @@
+@import "../../styles/colors";
+
+#WishList {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-around;
+}

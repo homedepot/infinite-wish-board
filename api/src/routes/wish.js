@@ -49,17 +49,21 @@ wishRouter.route('/')
     res.status(201).send(wish) 
   })
 
-wishRouter.route('/:id').get((req, res) => {
-  Wish.findById(req.params.id, (err, Wish) => {
-    res.send(Wish)
-  })
-})
-
-wishRouter.route('/')
-    .post((req, res) => {
-        let wish = new Wish({});
-        wish.save();
-        res.status(201).send(wish) 
+wishRouter.route('/:id')
+  .get((req, res) => {
+    Wish.findById(req.params.id, (err, wish) => {
+      res.send(wish)
     })
+  })
+  .delete((req, res) => {
+    Wish.findByIdAndRemove(req.params.id, (err, wish) => {
+      if (err) return res.status(500).send(err)
+      const response = {
+        message: "Wish successfully deleted",
+        id: wish._id
+      }
+      return res.status(200).send(response)
+    })
+  })
 
-module.exports = wishRouter;
+module.exports = wishRouter
