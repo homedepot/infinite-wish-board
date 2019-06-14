@@ -12,7 +12,8 @@ export default class ChildInfo extends Component {
         age: '',
         homeTown: '',
         illness: '',
-        details: ''
+        details: '',
+        showConfirmation: false
       }
     }
 
@@ -44,6 +45,7 @@ export default class ChildInfo extends Component {
     nextStep = () => {
       let stepMap = this.stepMapFunction();
       let { step } = { ...this.state };
+      console.log(step);
       if (step < Object.keys(stepMap).length - 1) {
         window.scrollTo({
           top: 1000,
@@ -54,6 +56,11 @@ export default class ChildInfo extends Component {
         }, () => {
           this.scrollToTop();
         });
+      } else {
+        console.log("showing Confrimation")
+        this.setState({
+          showConfirmation: true
+        })
       }
       ;
   }
@@ -82,17 +89,23 @@ export default class ChildInfo extends Component {
       });
     }
 
-    render() {
-      let inputValue = this.state[this.getInputType()]
-      return (
-        <div className='childInfo containerVertical'>
-            <p className="text-name">{this.getTextField()}</p>
-            <form>
-              <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField}/>
-            </form>
-            <button className='next-button' onClick={this.nextStep}>NEXT</button>
 
-        </div>
+
+
+    render() {
+      let inputValue = this.state[this.getInputType()];
+      let { showConfirmation } = this.state;
+      return (
+        !showConfirmation ?
+          <div className='childInfo containerVertical'>
+              <p className="text-name">{this.getTextField()}</p>
+              <form>
+                <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField}/>
+              </form>
+              <button className='next-button' onClick={this.nextStep}>NEXT</button>
+          </div> :
+          <div>
+          </div>
       )
     }
 }
