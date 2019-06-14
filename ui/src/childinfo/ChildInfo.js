@@ -160,7 +160,7 @@ export default class ChildInfo extends Component {
       let { showConfirmation } = this.state;
 
       return (
-        showConfirmation ?
+        !showConfirmation ?
           <div className='childInfo containerVertical'>
               <p className="text-name">{this.getTextField()}</p>
               <form>
