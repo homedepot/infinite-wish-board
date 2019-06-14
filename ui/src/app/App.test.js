@@ -2,9 +2,9 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import App from './App'
 import { Route } from 'react-router-dom'
-import Landing from '../landing/Landing'
 import Login from '../login/Login'
 import ChildInfo from '../childinfo/ChildInfo'
+import CreateWish from '../landing/CreateWish'
 
 describe('Default routing behavior', () => {
   it('renders the login page by default', () => {
@@ -23,8 +23,9 @@ describe('Default routing behavior', () => {
       .at(1)
       .props()
 
+    
     expect(landingRoute.path).toEqual('/landing')
-    expect(landingRoute.component).toEqual(Landing)
+    expect(landingRoute.component).toEqual(CreateWish)
 
     let childInfoRoute = wrapper
       .find(Route)
