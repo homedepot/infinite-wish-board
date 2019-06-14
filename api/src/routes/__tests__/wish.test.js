@@ -20,7 +20,7 @@ describe("GET / ", () => {
 
     const response = await request(app).get("/wishes");
     expect(response.statusCode).toBe(200);
-    console.log('response.body', response.body)
-    expect(response.body).toBe({})
+    expect(response.body.length).toBe(1)
+    expect(response.body[0].type).toBe(wishType)
   });
 });

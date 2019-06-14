@@ -2,8 +2,8 @@ const wishRouter = require('express').Router()
 const Wish = require('../db/Wish')
 
 wishRouter.route('/').get((req, res) => {
-  Wish.find({}, (err, Wishes) => {
-    res.send(Wishes)
+  Wish.find({}, (err, wishes) => {
+    res.send(wishes)
   })
 })
 
