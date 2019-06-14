@@ -70,16 +70,16 @@ describe('auth', () => {
   })
 
   describe('a wish', () => {
-    it('should be added', async () => {
+    it('should be added and retrieved', async () => {
+      const wishType = 'go'
       const wish = new Wish()
-      wish.type = 'go'
+      wish.type = wishType
       await wish.save()
 
-      const oldWish = await Wish.find({})
+      const wishList = await Wish.find({})
 
-      console.log('loo')
-      console.)og(oldsk here look oldWish)
+      expect(wishList.length).toBe(1)
+      expect(wishList[0].type).toBe(wishType)
     })
-
   })
 })
