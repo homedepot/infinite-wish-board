@@ -8,8 +8,8 @@ const Account = require('./db/Account')
 const Wish = require('./db/Wish')
 
 beforeEach(async () => {
-  await Account.remove({})
-  await Wish.remove({})
+  await Account.deleteMany({})
+  await Wish.deleteMany({})
 })
 
 describe('Sanity test express', () => {
