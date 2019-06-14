@@ -6,7 +6,7 @@ const wishSchema = new Schema({
   child: {
     firstName: String,
     lastName: String,
-    homeTown: String,
+    hometown: String,
     illness: String,
     age: Number,
   },
