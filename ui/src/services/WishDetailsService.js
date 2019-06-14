@@ -6,7 +6,7 @@ const getWishDetails = async(id) => {
   return axios
     .get(`${expressDomain}/wishes/${id}`)
     .then(response => {
-      return response
+      return response.data
     })
 }
 
