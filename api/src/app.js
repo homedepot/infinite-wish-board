@@ -52,7 +52,7 @@ require('./db/bootstrap-mongoose')
 
 app.use('/', index)
 app.use('/auth', auth)
-app.use('/wish', wish)
+app.use('/wishes', wish)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
