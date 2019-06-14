@@ -46,8 +46,7 @@ describe("Wish route", () => {
   })
   
   test("It should respond with an array of wishes", async () => {
-    const newWish = new Wish()
-    newWish.type = wishType
+    const newWish = new Wish(firstWish)
     await newWish.save()
 
     const response = await request(app).get("/wishes")
@@ -88,11 +87,12 @@ describe("Wish route", () => {
   })
 
   it('should be able to delete a wish', async() => {
-    const postResponse = await request(app).post("/wishes").send(firstWish)
+    const newWish = new Wish(firstWish)
+    await newWish.save()
 
-    expect(postResponse.statusCode).toBe(201)
+    const id = newWish._id
 
-    const id = postResponse._id
+    console.log('postResponse._id :', newWish._id);
 
     const putResponse = await request(app).delete(`/wishes/${id}`)
   })

@@ -13,17 +13,18 @@ wishRouter.route('/')
     res.status(201).send(wish) 
   })
 
-wishRouter.route('/:id').get((req, res) => {
-  Wish.findById(req.params.id, (err, Wish) => {
-    res.send(Wish)
-  })
-})
-
-wishRouter.route('/')
-    .post((req, res) => {
-        let wish = new Wish({});
-        wish.save();
-        res.status(201).send(wish) 
+wishRouter.route('/:id')
+  .get((req, res) => {
+    Wish.findById(req.params.id, (err, wish) => {
+      res.send(wish)
     })
+  })
+  .delete((req, res) => {
+    Wish.findById(req.params.id, (err, wish) => {
+      console.log('wish :', wish);
+      wish.remove()
+      res.status(204).end()
+    })
+  })
 
-module.exports = wishRouter;
+module.exports = wishRouter
