@@ -2,8 +2,8 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import App from './App'
 import { Route } from 'react-router-dom'
-import Landing from '../landing/Landing'
 import Login from '../login/Login'
+import CreateWish from '../landing/CreateWish'
 
 describe('Default routing behavior', () => {
   it('renders the login page by default', () => {
@@ -23,6 +23,6 @@ describe('Default routing behavior', () => {
       .props()
 
     expect(landingRoute.path).toEqual('/landing')
-    expect(landingRoute.component).toEqual(Landing)
+    expect(landingRoute.component).toEqual(CreateWish)
   })
 })

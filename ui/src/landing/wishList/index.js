@@ -14,16 +14,16 @@ export const WishList = ({ selectWishType }) => {
     <Fragment>
       <h1>I wish to:</h1>
       <ul id="WishList" className="wish-type-select">
-        <li onClick={() => selectWishType(GO)}>
+        <li data-test="wishcard-rocket" onClick={() => selectWishType(GO)}>
           <WishCard altText="Rocket" imgSrc={Rocket} title={GO} subtitle="Somewhere!" />
         </li>
-        <li onClick={() => selectWishType(MEET)}>
+        <li data-test="wishcard-alien" onClick={() => selectWishType(MEET)}>
           <WishCard altText="Alien" imgSrc={Alien} title={MEET} subtitle="Someone!" />
         </li>
-        <li onClick={() => selectWishType(BE)}>
+        <li data-test="wishcard-astronaut" onClick={() => selectWishType(BE)}>
           <WishCard altText="Astronaut" imgSrc={Astronaut} title={BE} subtitle="Someone!" />
         </li>
-        <li onClick={() => selectWishType(SEE)}>
+        <li data-test="wishcard-telescope" onClick={() => selectWishType(SEE)}>
           <WishCard altText="Telescope" imgSrc={Telescope} title={SEE} subtitle="Something!" />
         </li>
       </ul>
