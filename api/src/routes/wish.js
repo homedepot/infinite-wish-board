@@ -3,13 +3,13 @@ const Wish = require('../db/Wish')
 
 wishRouter.route('/').get((req, res) => {
   Wish.find({}, (err, Wishes) => {
-    res.json(Wishs)
+    res.send(Wishes)
   })
 })
 
 wishRouter.route('/:wishId').get((req, res) => {
   Wish.findById(req.params.wishId, (err, Wish) => {
-    res.json(Wish)
+    res.send(Wish)
   })
 })
 
