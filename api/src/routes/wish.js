@@ -20,10 +20,13 @@ wishRouter.route('/:id')
     })
   })
   .delete((req, res) => {
-    Wish.findById(req.params.id, (err, wish) => {
-      console.log('wish :', wish);
-      wish.remove()
-      res.status(204).end()
+    Wish.findByIdAndRemove(req.params.id, (err, wish) => {
+      if (err) return res.status(500).send(err)
+      const response = {
+        message: "Wish successfully deleted",
+        id: wish._id
+      }
+      return res.status(200).send(response)
     })
   })
 
