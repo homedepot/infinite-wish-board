@@ -30,7 +30,7 @@ deploy:
   keyfile: gae.json
   project: wishhack-hackathon
   on:
-    branch: master
+    branch: release
 before_install:
 - openssl aes-256-cbc -K $encrypted_eee3672b67b8_key -iv $encrypted_eee3672b67b8_iv
   -in gae.json.enc -out gae.json -d
