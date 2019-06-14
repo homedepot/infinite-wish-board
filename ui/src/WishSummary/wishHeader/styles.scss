@@ -1,0 +1,23 @@
+#wishHeader {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    padding: 0.8em;
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+
+        .galaxyLogo {
+            height: 5em;
+        }
+        
+        .makeAWishLogo {
+            height: 2em;
+        }
+    }
+
+    .user-details {
+        display: flex;
+    }
+}
