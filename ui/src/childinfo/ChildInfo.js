@@ -30,24 +30,35 @@ export default class ChildInfo extends Component {
     }
 
     nextStep = () => {
-      // window.scrollTo({
-      //   top: 1000,
-      //   behavior: 'smooth'
-      // });
-      
       let stepMap = this.stepMapFunction();
       console.log("next")
       console.log(Object.keys(stepMap).length);
       console.log(this.state.name);
       let { step } = { ...this.state };
       if (step < Object.keys(stepMap).length - 1) {
+        window.scrollTo({
+          top: 1000,
+          behavior: 'smooth'
+        });
         console.log("increment")
         this.setState({
           step: step + 1
-
+        }, () => {
+          this.scrollToTop();
         });
       }
+      ;
   }
+
+    scrollToTop = () => {
+        setTimeout(() =>
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+          }),
+          300
+        )
+    }
 
     getTextField = () => {
       return this.stepMapFunction()[this.state.step].text;
