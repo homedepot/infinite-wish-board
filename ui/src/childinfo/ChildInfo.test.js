@@ -42,7 +42,8 @@ describe('Initial Render', () => {
       nextButton.simulate('click');
       expect(childInfo.find('.text-name').text()).toEqual('Tell us more about your wish!');
       nextButton.simulate('click');
-      expect(childInfo.find('.text-name').text()).toEqual('Tell us more about your wish!');
+      expect(childInfo.find('.text-name').length).toEqual(0);
+      expect(childInfo.instance().state.showConfirmation).toBeTruthy();
     })
   })
 })
