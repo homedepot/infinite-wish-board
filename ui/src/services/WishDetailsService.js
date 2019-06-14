@@ -10,6 +10,15 @@ const getWishDetails = async(id) => {
     })
 }
 
+const makeAWish = async(wish) => {
+  return axios
+    .post(`${expressDomain}/wishes`, wish)
+    .then(response => {
+      return response.data
+    })
+}
+
 export default {
-  getWishDetails
+  getWishDetails,
+  makeAWish
 }
