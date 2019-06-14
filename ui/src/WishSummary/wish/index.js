@@ -11,7 +11,7 @@ export default class Wish extends Component {
             <div className="wish">
                 <div className="date">
                 </div>
-                {false ? <img src={kidImg} alt="kid's image" /> :<ImgPlaceholder text="Add Image" />}
+                {false ? <img src={kidImg} alt="child" /> :<ImgPlaceholder text="Add Image" />}
                 
                 <div>
                     <p>
