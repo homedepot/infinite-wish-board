@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
-import rocketImage from '../../src/assets/icn_To_Go_Rocket_White_Inside_130x130.png';
+// import rocketImage from '../../src/assets/icn_To_Go_Rocket_White_Inside_130x130.png';
+import rocketImage from '../../src/assets/Rocket-PNG-File.png';
 import './ChildInfo.css';
 
 export default class ChildInfo extends Component {
@@ -161,19 +162,24 @@ export default class ChildInfo extends Component {
 
       return (
         !showConfirmation ?
-          <div className='childInfo containerVertical'>
+          <body>
+          <div className='childInfo containerVertical spotlight inner'>
               <p className="text-name">{this.getTextField()}</p>
               <form>
                 <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField}/>
+
               </form>
-              <button className='next-button' onClick={this.nextStep}>NEXT</button>
-          </div> :
-          <div>
+      <button className='next-button' onClick={this.nextStep}>NEXT</button>
+
+          </div> </body>:
+          <body>
+          <div class = 'rocket'>
             <div className='rocket-image-container' style={this.getRocketContainerStyle()}>
               <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
             </div>
             {!this.state.isBlastOff && <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Blast Off</button>}
           </div>
+              </body>
       )
     }
 }
