@@ -6,7 +6,6 @@ import './ChildInfo.css';
 export default class ChildInfo extends Component {
   constructor(props){
       super();
-      // this.props;
       this.state = {
         step: 0,
         name: '',
@@ -15,7 +14,8 @@ export default class ChildInfo extends Component {
         illness: '',
         details: '',
         showConfirmation: false,
-        rocketRotation: 30
+        rocketRotation: 20,
+        rocketWidth: 170,
       }
     }
 
@@ -93,19 +93,39 @@ export default class ChildInfo extends Component {
     getRocketStyle = () => {
       return {
         transform: `rotate(${this.state.rocketRotation}deg)`,
-        width: '200px'
+        width: `${this.state.rocketWidth}px`
       }
     }
 
+    // Rocket blast off rotation animation
+    blastOffTime = 20;
     rocketBlastOff = () => {
-
-      for(let i = this.state.rocketRotation; i > -45; i--) {
-        setTimeout(
+      setTimeout(() => {
+        this.blastOffTime--;
+        if(this.blastOffTime > -45) { 
           this.setState({
-            rocketRotation: this.state.rocketRotation--
+            rocketRotation: this.blastOffTime,
           })
-        , 30)
-      }
+          this.rocketBlastOff()
+        } else {
+          this.rocketSizeGrow()
+        }
+      }, 15)
+    }
+
+    // Rocket blast off grow animation
+    rocketSize = 170;
+    rocketSizeGrow = () => {
+      setTimeout(() => {
+        this.rocketSize++;
+        if(this.rocketSize < 300) {
+          console.log(this.rocketSize)
+          this.setState({
+            rocketWidth: this.rocketSize,
+          })
+          this.rocketSizeGrow()
+        }
+      }, 10)
     }
 
     render() {
@@ -113,7 +133,7 @@ export default class ChildInfo extends Component {
       let { showConfirmation } = this.state;
 
       return (
-        showConfirmation ?
+        !showConfirmation ?
           <div className='childInfo containerVertical'>
               <p className="text-name">{this.getTextField()}</p>
               <form>
@@ -123,7 +143,7 @@ export default class ChildInfo extends Component {
           </div> :
           <div>
             <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
-            <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}/>
+            <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Blast Off</button>
           </div>
       )
     }

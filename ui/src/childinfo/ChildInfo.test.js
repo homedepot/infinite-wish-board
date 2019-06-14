@@ -16,6 +16,7 @@ describe('Initial Render', () => {
     expect(childInfo.find('p').text()).toEqual('Hi what is your name?');
     expect(childInfo.instance().state.name).toEqual("");
     expect(childInfo.instance().state.rocketRotation).toEqual(20);
+    expect(childInfo.instance().state.rocketWidth).toEqual(170);
   })
 
   it('Should update `step` in state', () => {
@@ -48,11 +49,18 @@ describe('Initial Render', () => {
 
   describe('When user on confirmation page and click blast off the rocket', () => {
 
-    it('Should update the `rocketRotation` in state', () => {
+    beforeEach(() => {
+      childInfo.instance().setState({
+        showConfirmation: true
+      })
+    })
+
+    it('Should update the `rocketRotation` and `rocketWidth` in state', () => {
       childInfo.find('.rocket-blast-off-button').simulate('click')
       setTimeout(() => {
         expect(childInfo.instance().state.rocketRotation).toEqual(-45)
-      }, 5000);
+        expect(childInfo.instance().state.rocketWidth).toEqual(300)
+      }, 500);
     })
   })
 })
