@@ -13,4 +13,4 @@ wishRouter.route('/:wishId').get((req, res) => {
   })
 })
 
-export default wishRouter;
+module.exports = wishRouter;

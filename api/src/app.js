@@ -10,6 +10,7 @@ const LocalStrategy = require('passport-local').Strategy
 
 const index = require('./routes')
 const auth = require('./routes/auth')
+const wish = require('./routes/wish')
 const cors = require('cors')
 
 const app = express()

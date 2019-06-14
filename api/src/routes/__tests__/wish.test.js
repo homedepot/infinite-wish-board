@@ -1,5 +1,5 @@
 const request = require("supertest")
-const app = require("./app")
+const wish = require("../wish")
 
 describe("GET / ", () => {
   beforeAll(() => {
@@ -20,7 +20,7 @@ describe("GET / ", () => {
   })
   
   test("It should respond with an array of wishes", async () => {
-    const response = await request(app).get("/");
+    const response = await request(wish).get("/");
     expect(response.statusCode).toBe(200);
   });
 });
