@@ -16,6 +16,7 @@ export default class ChildInfo extends Component {
         showConfirmation: false,
         rocketRotation: 20,
         rocketWidth: 170,
+        rocketContainerHeight: 350,
       }
     }
 
@@ -97,6 +98,12 @@ export default class ChildInfo extends Component {
       }
     }
 
+    getRocketContainerStyle = () => {
+      return {
+        height: `${this.state.rocketContainerHeight}px`
+      }
+    }
+
     // Rocket blast off rotation animation
     blastOffTime = 20;
     rocketBlastOff = () => {
@@ -118,12 +125,27 @@ export default class ChildInfo extends Component {
     rocketSizeGrow = () => {
       setTimeout(() => {
         this.rocketSize++;
-        if(this.rocketSize < 300) {
-          console.log(this.rocketSize)
+        if(this.rocketSize <= 250) {
           this.setState({
             rocketWidth: this.rocketSize,
           })
           this.rocketSizeGrow()
+        } else {
+          this.blashOff()
+        }
+      }, 10)
+    }
+
+    // Blast off rocket container
+    rocketContainerHeight = 350
+    blashOff = () => {
+      setTimeout(() => {
+        this.rocketContainerHeight--;
+        if(this.rocketContainerHeight > 0) {
+          this.setState({
+            rocketContainerHeight: this.rocketContainerHeight
+          })
+          this.blashOff()
         }
       }, 10)
     }
@@ -142,7 +164,9 @@ export default class ChildInfo extends Component {
               <button className='next-button' onClick={this.nextStep}>NEXT</button>
           </div> :
           <div>
-            <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
+            <div className='rocket-image-container' style={this.getRocketContainerStyle()}>
+              <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
+            </div>
             <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Blast Off</button>
           </div>
       )

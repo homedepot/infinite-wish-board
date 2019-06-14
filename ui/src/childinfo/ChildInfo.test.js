@@ -59,7 +59,7 @@ describe('Initial Render', () => {
       childInfo.find('.rocket-blast-off-button').simulate('click')
       setTimeout(() => {
         expect(childInfo.instance().state.rocketRotation).toEqual(-45)
-        expect(childInfo.instance().state.rocketWidth).toEqual(300)
+        expect(childInfo.instance().state.rocketWidth).toEqual(250)
       }, 500);
     })
   })

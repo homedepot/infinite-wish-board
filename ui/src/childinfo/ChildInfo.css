@@ -2,6 +2,17 @@
     height: 5000px;
 }
 
-.rocket-image {
+.rocket-image-container {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center 
+}
+
+.rocket-blast-off-button {
 
 }
