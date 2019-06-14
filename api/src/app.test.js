@@ -68,18 +68,18 @@ describe('auth', () => {
       expect(badRegisterResponse.statusCode).toEqual(500)
     })
   })
+})
 
-  describe('a wish', () => {
-    it('should be added and retrieved', async () => {
-      const wishType = 'go'
-      const wish = new Wish()
-      wish.type = wishType
-      await wish.save()
+describe('a wish', () => {
+  it('should be added and retrieved', async () => {
+    const wishType = 'go'
+    const wish = new Wish()
+    wish.type = wishType
+    await wish.save()
 
-      const wishList = await Wish.find({})
+    const wishList = await Wish.find({})
 
-      expect(wishList.length).toBe(1)
-      expect(wishList[0].type).toBe(wishType)
-    })
+    expect(wishList.length).toBe(1)
+    expect(wishList[0].type).toBe(wishType)
   })
 })
