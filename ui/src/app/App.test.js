@@ -3,6 +3,7 @@ import { shallow } from 'enzyme'
 import App from './App'
 import { Route } from 'react-router-dom'
 import Login from '../login/Login'
+import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
 
 describe('Default routing behavior', () => {
@@ -11,7 +12,7 @@ describe('Default routing behavior', () => {
 
     let loginRoute = wrapper
       .find(Route)
-      .at(1)
+      .at(2)
       .props()
 
     expect(loginRoute.path).toEqual('/')
@@ -19,10 +20,22 @@ describe('Default routing behavior', () => {
 
     let landingRoute = wrapper
       .find(Route)
+      .at(1)
+      .props()
+
+    
+    expect(landingRoute.path).toEqual('/landing')
+    expect(landingRoute.component).toEqual(CreateWish)
+
+    let childInfoRoute = wrapper
+      .find(Route)
       .at(0)
       .props()
 
-    expect(landingRoute.path).toEqual('/landing')
-    expect(landingRoute.component).toEqual(CreateWish)
+    expect(childInfoRoute.path).toEqual('/child-info')
+    expect(childInfoRoute.component).toEqual(ChildInfo)
   })
+
+
+
 })
