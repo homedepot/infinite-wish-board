@@ -11,8 +11,10 @@ export default class ChildInfo extends Component {
         name: '',
         age: 0
       }
+    }
 
-      this.stepMap = {
+    stepMapFunction = () => {
+      return {
         0: {
           text: 'Hi what is your name?',
           input: 'name'
@@ -20,27 +22,39 @@ export default class ChildInfo extends Component {
         1: {
           text: `Hi ${this.state.name}, how old are you?`,
           input: 'age'
+        },
+        2: {
+
         }
       }
     }
 
     nextStep = () => {
-
+      // window.scrollTo({
+      //   top: 1000,
+      //   behavior: 'smooth'
+      // });
+      
+      let stepMap = this.stepMapFunction();
       console.log("next")
+      console.log(Object.keys(stepMap).length);
+      console.log(this.state.name);
       let { step } = { ...this.state };
-      if (step < this.stepMap.length - 1) {
+      if (step < Object.keys(stepMap).length - 1) {
+        console.log("increment")
         this.setState({
           step: step + 1
-        })
+
+        });
       }
-    }
+  }
 
     getTextField = () => {
-      return this.stepMap[0].text;
+      return this.stepMapFunction()[this.state.step].text;
     }
 
     getInputType = () => {
-      return this.stepMap[0].input;
+      return this.stepMapFunction()[this.state.step].input;
     }
 
     updateInputField = evt => {
@@ -55,9 +69,9 @@ export default class ChildInfo extends Component {
             <p>{this.getTextField()}</p>
             <form>
               <input type="text" onChange={this.updateInputField}/>
-              <button onClick={this.nextStep}>NEXT</button>
             </form>
-            <div>TEST</div>
+            <button onClick={this.nextStep}>NEXT</button>
+
         </div>
       )
     }
