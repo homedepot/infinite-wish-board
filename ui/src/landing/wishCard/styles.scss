@@ -11,4 +11,16 @@
     border-bottom: 1em solid $medium-blue;
     border-right: 1em solid $medium-blue;
   }
+
+  .card-title {
+    display: block;
+    font-size: 2.5em;
+    margin: .25em 0;
+    font-weight: bold;
+  }
+
+  .card-subtitle {
+    font-weight: bold;
+    font-size: 1.8em;
+  }
 }

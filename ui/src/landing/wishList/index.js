@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { WishType } from '../wishType'
 import Rocket from '../../assets/icn_To_Go_Rocket_White_Inside_130x130.png'
 import Alien from '../../assets/icn_To_Meet_Alien_White_Inside_130x130.png'
@@ -11,19 +11,22 @@ export const WishList = ({ selectWishType }) => {
   const { GO, MEET, BE, SEE } = WishType
 
   return (
-    <ul id="WishList" className="wish-type-select">
-      <li onClick={() => selectWishType(GO)}>
-        <WishCard altText="Rocket" imgSrc={Rocket} title={GO} subtitle="Somewhere!" />
-      </li>
-      <li onClick={() => selectWishType(MEET)}>
-        <WishCard altText="Alien" imgSrc={Alien} title={MEET} subtitle="Someone!" />
-      </li>
-      <li onClick={() => selectWishType(BE)}>
-        <WishCard altText="Astronaut" imgSrc={Astronaut} title={BE} subtitle="Someone!" />
-      </li>
-      <li onClick={() => selectWishType(SEE)}>
-        <WishCard altText="Telescope" imgSrc={Telescope} title={SEE} subtitle="Something!" />
-      </li>
-    </ul>
+    <Fragment>
+      <h1>I wish to:</h1>
+      <ul id="WishList" className="wish-type-select">
+        <li onClick={() => selectWishType(GO)}>
+          <WishCard altText="Rocket" imgSrc={Rocket} title={GO} subtitle="Somewhere!" />
+        </li>
+        <li onClick={() => selectWishType(MEET)}>
+          <WishCard altText="Alien" imgSrc={Alien} title={MEET} subtitle="Someone!" />
+        </li>
+        <li onClick={() => selectWishType(BE)}>
+          <WishCard altText="Astronaut" imgSrc={Astronaut} title={BE} subtitle="Someone!" />
+        </li>
+        <li onClick={() => selectWishType(SEE)}>
+          <WishCard altText="Telescope" imgSrc={Telescope} title={SEE} subtitle="Something!" />
+        </li>
+      </ul>
+    </Fragment>
   )
 }

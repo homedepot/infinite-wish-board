@@ -12,11 +12,11 @@ export const Landing = ({ name, age, updateField, selectWishType }) => {
     <div id="SplashScreen">
       <Header />
       <div className="wish-input">
-        <span>My name is</span>
+        <span>My name is </span>
         <input placeholder="enter your name" type="text" onChange={(e) => updateField(nameField, e.target.value)} value={name}/>
-        <span>and I am</span>
+        <span> and I am </span>
         <input placeholder="your age" type="number" onChange={(e) => updateField(ageField, e.target.value)} value={age}/>
-        <span>years old!</span>
+        <span> years old!</span>
       </div>
       <WishList selectWishType={selectWishType}/>
     </div>
