@@ -1,0 +1,25 @@
+.containerHorizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.containerVertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.rightAlign {
+    align-items: flex-end;
+}
+
+.leftAlign {
+    align-items: flex-start;
+}
+
+.evenSpacing {
+    justify-content: space-between;
+}
+
+.centered {
+    justify-content: center;
+}
