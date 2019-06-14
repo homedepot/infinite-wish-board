@@ -12,7 +12,7 @@ describe("Wish route", () => {
     child: {
       firstName: 'patrick',
       lastName: 'star',
-      homeTown: 'marietta',
+      hometown: 'marietta',
       illness: 'crecent',
       age: '12',
     },
@@ -28,7 +28,7 @@ describe("Wish route", () => {
     child: {
       firstName: 'patrick sdfasdf',
       lastName: 'star',
-      homeTown: 'marietta',
+      hometown: 'marietta',
       illness: 'crecent',
       age: '12',
     },
