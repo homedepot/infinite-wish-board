@@ -85,17 +85,19 @@ describe('Wish route', () => {
   })
 
   it('should be able to update (put) a wish', async () => {
-    const postResponse = await request(app)
-      .post('/wishes')
-      .send(firstWish)
+    const newWish = new Wish(firstWish)
+    await newWish.save()
 
-    expect(postResponse.statusCode).toBe(201)
-
-    const id = postResponse._id
+    Wish.count({}, (err, count) => {
+      expect(count).toBe(1)
+    })
 
     const putResponse = await request(app)
-      .post(`/wishes/${id}`)
+      .post(`/wishes/${newWish._id}`)
       .send(secondWish)
+
+    expect(putResponse.status).toBe(200)
+    expect(putResponse.body.child.firstName).toBe(secondWish.child.firstName)
   })
 
   describe('DEL /wishes/:id', () => {
