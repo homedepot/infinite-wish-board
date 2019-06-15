@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropsType from 'prop-types'
+import PropsType from 'prop-types';
 import WishDetailsService from '../services/WishDetailsService'
 import Rocket from '../assets/icn_To_Go_Rocket_White_Inside_130x130.png'
 import Alien from '../assets/icn_To_Meet_Alien_White_Inside_130x130.png'
@@ -35,7 +35,7 @@ export default class WishDetails extends Component {
   async componentDidMount() {
     const wishDetails = await WishDetailsService.getWishDetails(this.props.childId)
     this.setState({
-      // wishDetails: wishDetails
+      wishDetails: wishDetails
     })
   }
 

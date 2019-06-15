@@ -9,7 +9,7 @@ import Telescope from '../assets/icn_To_See_Telescope_White_Inside_130x130.png'
 describe('Initial Render', () => {
   let wishInfo;
   beforeEach(() => {
-    wishInfo = shallow(<WishDetails/>);
+    wishInfo = shallow(<WishDetails childId={'a child id string'}/>);
     wishInfo.instance().setState({
       id: '',
       wishDetails: {
