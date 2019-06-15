@@ -22,7 +22,7 @@ wishRouter.route('/:id')
   .put((req, res) => {
     Wish.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, wish) => {
       if (err) return res.status(500).send(err);
-      return res.send(wish);
+      return res.status(200).send(wish);
     })
   })
   .delete((req, res) => {

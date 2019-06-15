@@ -1,4 +1,5 @@
 const request = require('supertest')
+const util = require('../../util/util')
 
 process.env.mongoUrl = process.env.mongoUrl || 'mongodb://localhost:27017/test'
 
@@ -48,13 +49,13 @@ describe('Wish route', () => {
     const newWish = new Wish(firstWish)
     await newWish.save()
 
-    Wish.count({}, (err, count) => {
-      expect(count).toBe(1)
-    })
-    const response = await request(app).get('/wishes')
-    expect(response.statusCode).toBe(200)
-    expect(response.body.length).toBe(1)
-    expect(response.body[0].type).toBe(wishType)
+    const action = async () => {
+      const response = await request(app).get('/wishes')
+      expect(response.statusCode).toBe(200)
+      expect(response.body.length).toBe(1)
+      expect(response.body[0].type).toBe(wishType)
+    }
+    await util.retry(action, 5, 500)
   })
 
   it('should be able to post a wish', async () => {
@@ -62,9 +63,12 @@ describe('Wish route', () => {
       .post('/wishes')
       .send(firstWish)
 
-    expect(response.statusCode).toBe(201)
-    expect(response.body.type).toBe(wishType)
-    expect(response.body._id).toBeTruthy()
+    const action = async () => {
+      expect(response.statusCode).toBe(201)
+      expect(response.body.type).toBe(wishType)
+      expect(response.body._id).toBeTruthy()
+    }
+    await util.retry(action, 5, 500)
   })
 
   it('should be able to get a single wish by ID', async () => {
@@ -88,16 +92,30 @@ describe('Wish route', () => {
     const newWish = new Wish(firstWish)
     await newWish.save()
 
-    Wish.count({}, (err, count) => {
-      expect(count).toBe(1)
-    })
-
     const putResponse = await request(app)
-      .post(`/wishes/${newWish._id}`)
+      .put(`/wishes/${newWish._id}`)
       .send(secondWish)
 
-    expect(putResponse.status).toBe(200)
-    expect(putResponse.body.child.firstName).toBe(secondWish.child.firstName)
+    const action = async () => {
+      expect(putResponse.status).toBe(200)
+      expect(putResponse.body.child.firstName).toBe(secondWish.child.firstName)
+    }
+
+    util.retry(action, 5, 500)
+  })
+
+  // this may not be desired behavior; fix later(?)
+  it('should return 200 if the existing wish is not found while update (put) a wish', async () => {
+    const putResponse = await request(app)
+      .put(`/wishes/blahblahblah`)
+      .send(secondWish)
+
+    const action = async () => {
+      expect(putResponse.status).toBe(200)
+      expect(putResponse.body).toStrictEqual({})
+    }
+
+    await util.retry(action, 5, 500)
   })
 
   describe('DEL /wishes/:id', () => {
