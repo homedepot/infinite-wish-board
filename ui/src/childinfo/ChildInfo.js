@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import WishDetailsService from '../services/WishDetailsService';
 import rocketImage from '../../src/assets/icn_To_Go_Rocket_White_Inside_130x130.png';
 import './ChildInfo.css';
 
@@ -60,6 +61,20 @@ export default class ChildInfo extends Component {
           this.scrollToTop();
         });
       } else {
+
+        const wish = {
+          child: {
+            name: this.state.name,
+            age: this.state.age,
+            hometown: this.state.homeTown,
+            illness: this.state.illness
+          },
+          type: "go",
+          details: this.state.details
+        }
+
+        WishDetailsService.makeAWish(wish)
+
         this.setState({
           showConfirmation: true
         })
