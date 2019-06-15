@@ -6,10 +6,9 @@ import './ChildInfo.css';
 export default class ChildInfo extends Component {
   constructor(props){
       super();
+      this.props = props;
       this.state = {
         step: 0,
-        name: '',
-        age: '',
         homeTown: '',
         illness: '',
         details: '',
@@ -19,27 +18,24 @@ export default class ChildInfo extends Component {
         rocketContainerHeight: 350,
         isBlastOff: false
       }
+      this.numSteps = Object.keys(this.stepMapFunction()).length
     }
 
     stepMapFunction = () => {
       return {
         0: {
-          text: 'Hi what is your name?',
+          text: `Hi${this.props.name ? ` ${this.props.name}` : ''}, I have a few questions for you before we can make your wish come true!`,
           input: 'name'
         },
         1: {
-          text: `Hi ${this.state.name}, how old are you?`,
-          input: 'age'
-        },
-        2: {
           text: 'Where are you from?',
           input: 'homeTown'
         },
-        3: {
+        2: {
           text: 'Tell us about your condition',
           input: 'illness'
         },
-        4: {
+        3: {
           text: 'Tell us more about your wish!',
           input: 'details'
         }
@@ -155,12 +151,12 @@ export default class ChildInfo extends Component {
 
     render() {
       let inputValue = this.state[this.getInputType()];
-      let { showConfirmation } = this.state;
-
+      let { showConfirmation, step } = this.state;
       return (
         !showConfirmation ?
           <div className='childInfo containerVertical'>
-              <p className="text-name">{this.getTextField()}</p>
+            <p className='progress'>{step + 1} of {this.numSteps}</p>
+            <p className="text-name">{this.getTextField()}</p>
               <form>
                 <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField}/>
               </form>
