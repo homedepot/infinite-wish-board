@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import WishDetailsService from '../services/WishDetailsService'
-import rocketImage from '../../src/assets/icn_To_Go_Rocket_White_Inside_130x130.png';
+import Rocket from '../assets/icn_To_Go_Rocket_White_Inside_130x130.png'
+import Alien from '../assets/icn_To_Meet_Alien_White_Inside_130x130.png'
+import Astronaut from '../assets/icn_To_Be_Astronaut_White_Inside_130x130.png'
+import Telescope from '../assets/icn_To_See_Telescope_White_Inside_130x130.png'
 
 export default class WishDetails extends Component {
   constructor(props) {
@@ -10,21 +13,21 @@ export default class WishDetails extends Component {
       wishDetails: {
         id: '',
         child: {
-          firstName: "",
-          lastName: " ",
-          hometown: "",
-          illness: "",
-          age: ""
+          firstName: '',
+          lastName: ' ',
+          hometown: '',
+          illness: '',
+          age: ''
         },
-        type: "",
-        details: "",
+        type: '',
+        details: '',
         sponsor: {
-          name: "",
-          logo: "",
+          name: '',
+          logo: '',
           links: []
         },
-        createdAt: "",
-        updatedAt: ""
+        createdAt: '',
+        updatedAt: ''
       }
     }
   }
@@ -36,9 +39,30 @@ export default class WishDetails extends Component {
     })
   }
 
-  render() {
-    const { child, details, sponsor } = this.state.wishDetails
+  getImageByType = () => {
+    let type = this.state.wishDetails.type.toUpperCase();
+    let image = '';
+    switch (type) {
+      case 'GO':
+        image = Rocket;
+        break;
+      case 'MEET':
+        image = Alien;
+        break;
+      case 'BE':
+        image = Astronaut;
+        break;
+      case 'SEE':
+        image = Telescope;
+        break;
+      default:
+        break;
+    }
+    return image;
+  }
 
+  render() {
+    const { child, details, sponsor } = { ...this.state.wishDetails }
     return (
       <div className='wishDetails containerVertical'>
 
@@ -65,10 +89,10 @@ export default class WishDetails extends Component {
 
         <div className='containerHorizontal'>
           <div className='wish-type containerVertical'>
-            <img src={rocketImage} alt={rocketImage} />
+            <img src={this.getImageByType()} alt={Rocket} />
           </div>
           <div className='wish-details containerVertical'>
-            <h3>Wish Detials</h3>
+            <h3>Wish Details</h3>
             <p>{details}</p>
           </div>
         </div>
