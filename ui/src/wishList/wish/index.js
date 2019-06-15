@@ -8,23 +8,24 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 export default class Wish extends Component {
   render() {
+    const {child, details} = this.props.wish;
+
     return (
-      <div className="wish">
+      <li className="wish">
         <div className="date">
         </div>
         {false ? <img src={kidImg} alt="child" /> : <ImgPlaceholder text="Add Image" />}
-
         <div>
           <p>
-            <strong>Maggie</strong> - Age 6 from Smyrna
+            <strong>Maria</strong> - Age {child.age} from {child.hometown}
           </p>
           <span className="summary">
-                        Maggie wishes to go to Disney land
+                        {details}
                     </span>
         </div>
         {false ? <img src={sponsorImg} alt="Sponsor" className="sponsor" /> : <a href="/review">Add Sponsor</a>}
         <FontAwesomeIcon icon={faChevronRight} className="wish-chevron" />
-      </div>
+      </li>
     )
   }
 }

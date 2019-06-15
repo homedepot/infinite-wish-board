@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import './styles.scss'
 
-const WishFilter = () => (
+const WishFilter = ({onChangeSearch}) => (
   <div className="wish-filter">
     <div className="wish-search-container">
-      <input className="wish-search" placeholder="Search by Name, Sponsor, Location and/or Date" />
+      <input className="wish-search" placeholder="Search by Name, Sponsor, Location and/or Date" onChange={onChangeSearch} />
       <FontAwesomeIcon className="calendar-icon" icon={faCalendarAlt} />
     </div>
     <div className="">
@@ -14,11 +14,11 @@ const WishFilter = () => (
       <input type="checkbox" id="toGo" name="toGo" />
       <label htmlFor="toGo">To Go</label>
       <input type="checkbox" id="toMeet" name="toMeet" />
-      <label htmlFor="toGo">To Meet</label>
+      <label htmlFor="toMeet">To Meet</label>
       <input type="checkbox" id="toBe" name="toBe" />
-      <label htmlFor="toGo">To Be</label>
+      <label htmlFor="toBe">To Be</label>
       <input type="checkbox" id="toSee" name="toSee" />
-      <label htmlFor="toGo">To See</label>
+      <label htmlFor="toSee">To See</label>
     </div>
   </div>
 )
