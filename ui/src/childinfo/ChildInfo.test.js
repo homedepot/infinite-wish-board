@@ -7,8 +7,9 @@ describe('Initial Render', () => {
   window.scrollTo = jest.fn(() => {});
 
   let childInfo;
+  let childId = 'some id string'
   beforeEach(() => {
-    childInfo = shallow(<ChildInfo />);
+    childInfo = shallow(<ChildInfo childId={childId} />);
   })
 
   it('renders!', () => {
@@ -47,42 +48,36 @@ describe('Initial Render', () => {
     })
   })
 
+  describe('When `showWishDetails` in state is true', () => {
+    beforeEach(() => {
+      childInfo = shallow(<ChildInfo childId={childId} />);
+      childInfo.instance().setState({
+        showWishDetails: true
+      })
+    })
+
+    it('Should show WishDetails component', () => {
+      expect(childInfo.find('WishDetails').length).toEqual(1)
+    })
+  })
+
   describe('When user on confirmation page and click blast off the rocket', () => {
 
     beforeEach(() => {
-      childInfo = shallow(<ChildInfo />);
+      childInfo = shallow(<ChildInfo childId={childId} />);
       childInfo.instance().setState({
         showConfirmation: true,
         isBlastOff: false
       })
     })
 
-    it('Should update the `rocketRotation` and `rocketWidth` in state', () => {
+    it('Should update the `rocketRotation` and `rocketWidth` in state', (done) => {
       childInfo.find('button').simulate('click')
       setTimeout(() => {
         expect(childInfo.instance().state.rocketRotation).toEqual(-45)
         expect(childInfo.instance().state.rocketWidth).toEqual(250)
-      }, 500);
-    })
-
-    let childInfo
-    beforeEach( () => {
-      childInfo = shallow(<ChildInfo />)
-    })
-
-    it('renders!', () => {
-
-      expect(childInfo.exists('.childInfo'));
-      expect(childInfo.find('p').text()).toEqual('Hi what is your name?');
-      expect(childInfo.instance().state.name).toEqual("");
-
-    })
-
-    it('stepUpdate!', () => {
-      expect(childInfo.instance().state.step).toEqual(0);
-      childInfo.instance().nextStep();
-      expect(childInfo.instance().state.step).toEqual(1);
-
+        done()
+      }, 3000);
     })
   });
 });
