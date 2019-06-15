@@ -5,7 +5,7 @@ import './ChildInfo.css';
 
 export default class ChildInfo extends Component {
   constructor(props){
-      super();
+      super(props);
       this.props = props;
       this.state = {
         step: 0,
@@ -22,9 +22,10 @@ export default class ChildInfo extends Component {
     }
 
     stepMapFunction = () => {
+      let { name } = this.props
       return {
         0: {
-          text: `Hi${this.props.name ? ` ${this.props.name}` : ''}, I have a few questions for you before we can make your wish come true!`,
+          text: `Hi${name ? ` ${name}` : ''}, I have a few questions for you before we can make your wish come true!`,
           input: ''
         },
         1: {
@@ -44,7 +45,7 @@ export default class ChildInfo extends Component {
 
     nextStep = () => {
       let stepMap = this.stepMapFunction();
-      let { step } = { ...this.state };
+      let { step } = this.state ;
       if (step < Object.keys(stepMap).length - 1) {
         window.scrollTo({
           top: 1000,
