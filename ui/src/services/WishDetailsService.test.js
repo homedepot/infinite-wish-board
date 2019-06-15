@@ -34,7 +34,7 @@ describe('Wish details service', () => {
     await WishDetailsService.getWishDetails(wishId);
     expect(axios.get).toHaveBeenCalledWith(`${expressDomain}/wishes/${wishId}`);
   })
-
+  
   it('should make a wish when required', async () => {
     const wish = {
       "child": {
