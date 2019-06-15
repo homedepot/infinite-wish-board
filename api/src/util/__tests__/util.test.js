@@ -30,4 +30,14 @@ describe('util.retry', () => {
     }
     expect(await util.retry(action, 5, 0)).toBe(8)
   })
+
+  it('should throw original error if maximum retries has been reached', async() => {
+    const failure = '¡FAIL!'
+    try {
+      await util.retry(() => { throw failure }, 10, 0)
+      throw 'expecting a different error to be thrown'
+    } catch (error) {
+      expect(error).toBe(failure)
+    }
+  })
 })
