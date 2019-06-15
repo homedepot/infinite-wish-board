@@ -25,7 +25,7 @@ export default class ChildInfo extends Component {
       return {
         0: {
           text: `Hi${this.props.name ? ` ${this.props.name}` : ''}, I have a few questions for you before we can make your wish come true!`,
-          input: 'name'
+          input: ''
         },
         1: {
           text: 'Where are you from?',
@@ -81,9 +81,12 @@ export default class ChildInfo extends Component {
     }
 
     updateInputField = evt => {
-      this.setState({
-        [this.getInputType()]: evt.target.value
-      });
+      let inputType = this.getInputType();
+      if (inputType != '') {
+        this.setState({
+          [inputType]: evt.target.value
+        });
+      }
     }
 
     getRocketStyle = () => {
