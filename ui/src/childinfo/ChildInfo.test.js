@@ -4,7 +4,7 @@ import { shallow } from 'enzyme'
 
 // noinspection JSAnnotator
 describe('Initial Render', () => {
-  window.scrollTo = jest.fn(() => {});
+  window.scrollTo = jest.fn(() => { });
   const testName = 'John'
   const age = 5;
   let childInfo;
@@ -48,7 +48,7 @@ describe('Initial Render', () => {
 
   describe('When user click next button', () => {
     beforeEach(() => {
-      childInfo = shallow(<ChildInfo name={testName} age={age}/>);
+      childInfo = shallow(<ChildInfo name={testName} age={age} />);
     })
 
     it('Should update text on button click', () => {
