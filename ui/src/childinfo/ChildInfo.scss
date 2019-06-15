@@ -1,11 +1,19 @@
+:root{
+    --light-blue: #87cacf;
+    --medium-blue: #2e6fb3;
+    --dark-blue: #2d348d;
+    --yellow: #f8e94d;
+    --pink: #d9318a;
 
-
+}
 .childInfo {
     height: 5000px;
 }
 
 body{
-    background-color: #0156B8;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-blue);
 }
 .rocket-image-container {
     margin-top: 50px;
@@ -19,12 +27,14 @@ body{
 }
 
 .spotlight {
+    box-shadow: darkblue 12px 7px;
     border-radius: 10px;
-    background-color: #ffffff;
-    color: #0156B8;
+    background-color: white;
+    color: var(--dark-blue);
     position: relative;
 
     height: 10em;
+    width: 4em;
     position: absolute;
 
     margin: 0;
@@ -38,15 +48,16 @@ body{
 
 .text-name{
     font-style: italic;
-    font-size: 2rem;
-    color: #0156B8;
+    font-size: 1.5rem;
+    color: var(--dark-blue);
 }
 .input-value{
 
-    height: 20px;
+    box-shadow: var(--dark-blue) 5px 3px;
+    height: 2rem;
     -moz-border-radius-bottomleft: 20px;
     -moz-border-radius-topleft: 5px;
-    width: 200px;
+    width: 300px;
     color: #0156B8;
     border-color: #ffffff;
     border-radius: 20px 20px 0px 0px;
@@ -54,11 +65,12 @@ body{
 
 
 .next-button{
-    background-color: #51CCA8 !important;
-    color: #0156B8 !important;
+    box-shadow: var(--dark-blue) 5px 3px;
+    background-color: var(--light-blue) !important;
+    color: var(--dark-blue) !important;
     border-color: #67cfc9;
-    height: 26px;
-    width: 205px;
+    height: 2rem;
+    width: 305px;
     border-radius: 0px 0px 20px 20px;
 
 }
@@ -89,10 +101,12 @@ body{
     margin-left: auto;
     margin-right: auto;
 
+    font-size: 35px;
+    box-shadow: var(--dark-blue) 8px 6px;
     background-color: #ffffff !important;
     color: #0156B8 !important;
     border-color: #67cfc9;
-    height: 26px;
-    width: 205px;
+    height: 70px;
+    width: 400px;
     border-radius: 20px;
 }

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 // import rocketImage from '../../src/assets/icn_To_Go_Rocket_White_Inside_130x130.png';
 import rocketImage from '../../src/assets/Rocket-PNG-File.png';
-import './ChildInfo.css';
+import './ChildInfo.scss';
 
 export default class ChildInfo extends Component {
   constructor(props){
