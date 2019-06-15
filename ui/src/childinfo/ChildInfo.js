@@ -82,7 +82,7 @@ export default class ChildInfo extends Component {
 
     updateInputField = evt => {
       let inputType = this.getInputType();
-      if (inputType != '') {
+      if (inputType !== '') {
         this.setState({
           [inputType]: evt.target.value
         });
