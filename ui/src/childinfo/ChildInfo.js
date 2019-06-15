@@ -43,8 +43,8 @@ export default class ChildInfo extends Component {
           text: 'Tell us more about your wish!',
           input: 'details'
         }
-      }
     }
+  }
 
     nextStep = () => {
       let stepMap = this.stepMapFunction();
@@ -83,6 +83,12 @@ export default class ChildInfo extends Component {
 
     getInputType = () => {
       return this.stepMapFunction()[this.state.step].input;
+      let { step } = { ...this.state };
+      if (step < this.stepMap.length - 1) {
+        this.setState({
+          step: step + 1
+        })
+      }
     }
 
     updateInputField = evt => {
@@ -90,7 +96,6 @@ export default class ChildInfo extends Component {
         [this.getInputType()]: evt.target.value
       });
     }
-
 
     getRocketStyle = () => {
       return {
