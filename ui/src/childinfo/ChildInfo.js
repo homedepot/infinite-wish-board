@@ -5,11 +5,10 @@ import './ChildInfo.css';
 
 export default class ChildInfo extends Component {
   constructor(props){
-      super();
+      super(props);
+      this.props = props;
       this.state = {
         step: 0,
-        name: '',
-        age: '',
         homeTown: '',
         illness: '',
         details: '',
@@ -19,27 +18,25 @@ export default class ChildInfo extends Component {
         rocketContainerHeight: 350,
         isBlastOff: false
       }
+      this.numSteps = Object.keys(this.stepMapFunction()).length
     }
 
     stepMapFunction = () => {
+      let { name } = this.props
       return {
         0: {
-          text: 'Hi what is your name?',
-          input: 'name'
+          text: `Hi${name ? ` ${name}` : ''}, I have a few questions for you before we can make your wish come true!`,
+          input: ''
         },
         1: {
-          text: `Hi ${this.state.name}, how old are you?`,
-          input: 'age'
-        },
-        2: {
           text: 'Where are you from?',
           input: 'homeTown'
         },
-        3: {
+        2: {
           text: 'Tell us about your condition',
           input: 'illness'
         },
-        4: {
+        3: {
           text: 'Tell us more about your wish!',
           input: 'details'
         }
@@ -48,7 +45,7 @@ export default class ChildInfo extends Component {
 
     nextStep = () => {
       let stepMap = this.stepMapFunction();
-      let { step } = { ...this.state };
+      let { step } = this.state ;
       if (step < Object.keys(stepMap).length - 1) {
         window.scrollTo({
           top: 1000,
@@ -85,9 +82,12 @@ export default class ChildInfo extends Component {
     }
 
     updateInputField = evt => {
-      this.setState({
-        [this.getInputType()]: evt.target.value
-      });
+      let inputType = this.getInputType();
+      if (inputType !== '') {
+        this.setState({
+          [inputType]: evt.target.value
+        });
+      }
     }
 
     getRocketStyle = () => {
@@ -155,12 +155,12 @@ export default class ChildInfo extends Component {
 
     render() {
       let inputValue = this.state[this.getInputType()];
-      let { showConfirmation } = this.state;
-
+      let { showConfirmation, step } = this.state;
       return (
         !showConfirmation ?
           <div className='childInfo containerVertical'>
-              <p className="text-name">{this.getTextField()}</p>
+            <p className='progress'>{step + 1} of {this.numSteps}</p>
+            <p className="text-name">{this.getTextField()}</p>
               <form>
                 <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField}/>
               </form>
