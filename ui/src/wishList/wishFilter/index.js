@@ -12,13 +12,13 @@ const WishFilter = () => (
     <div className="">
       <p>Filter by Wish Type</p>
       <input type="checkbox" id="toGo" name="toGo" />
-      <label for="toGo">To Go</label>
+      <label htmlFor="toGo">To Go</label>
       <input type="checkbox" id="toMeet" name="toMeet" />
-      <label for="toGo">To Meet</label>
+      <label htmlFor="toGo">To Meet</label>
       <input type="checkbox" id="toBe" name="toBe" />
-      <label for="toGo">To Be</label>
+      <label htmlFor="toGo">To Be</label>
       <input type="checkbox" id="toSee" name="toSee" />
-      <label for="toGo">To See</label>
+      <label htmlFor="toGo">To See</label>
     </div>
   </div>
 )

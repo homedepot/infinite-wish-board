@@ -5,7 +5,7 @@ import WishFilter from './wishFilter'
 import './styles.scss'
 import { getWishes } from '../services/WishDetailsService'
 
-export default class WishSummary extends Component {
+export default class WishList extends Component {
 
   constructor(props) {
     super(props)
@@ -22,7 +22,7 @@ export default class WishSummary extends Component {
 
   render() {
     return (
-      <div id="WishSummary">
+      <div id="wishList">
         <WishHeader />
         <WishFilter />
         <Wish />

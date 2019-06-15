@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import WishDetailsService from '../services/WishDetailsService';
 import WishDetails from '../wishDetails/WishDetails';
-import rocketImage from '../../src/assets/icn_To_Go_Rocket_White_Inside_130x130.png';
+import rocketImage from '../../src/assets/images/icn_To_Go_Rocket_White_Inside_130x130.png';
 import './ChildInfo.css';
 
 export default class ChildInfo extends Component {

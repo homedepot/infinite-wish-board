@@ -1,6 +1,6 @@
 import React from 'react'
-import makeAWishLogo from '../../assets/Logo_MakeWish.png'
-import galaxyLogo from '../../assets/Logo_Galaxy.png'
+import makeAWishLogo from '../../assets/images/Logo_MakeWish.png'
+import galaxyLogo from '../../assets/images/Logo_Galaxy.png'
 import './styles.scss'
 
 const WishHeader = () => (

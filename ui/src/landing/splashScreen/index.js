@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header } from '../../header'
 import './styles.scss'
-import { WishList } from '../wishList'
+import { WishTypeList } from '../wishTypeList'
 
 export const Landing = ({ name, age, updateField, selectWishType }) => {
   const nameField = 'name'
@@ -17,7 +17,7 @@ export const Landing = ({ name, age, updateField, selectWishType }) => {
         <input data-test="age-input" placeholder="your age" type="number" onChange={(e) => updateField(ageField, e.target.value)} value={age}/>
         <span> years old!</span>
       </div>
-      <WishList selectWishType={selectWishType}/>
+      <WishTypeList selectWishType={selectWishType}/>
     </div>
   )
 }
