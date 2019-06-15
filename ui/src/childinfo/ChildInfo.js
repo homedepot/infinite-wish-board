@@ -43,8 +43,8 @@ export default class ChildInfo extends Component {
           text: 'Tell us more about your wish!',
           input: 'details'
         }
-      }
     }
+  }
 
     nextStep = () => {
       let stepMap = this.stepMapFunction();
@@ -64,7 +64,6 @@ export default class ChildInfo extends Component {
           showConfirmation: true
         })
       }
-      ;
   }
 
     scrollToTop = () => {
@@ -90,7 +89,6 @@ export default class ChildInfo extends Component {
         [this.getInputType()]: evt.target.value
       });
     }
-
 
     getRocketStyle = () => {
       return {
