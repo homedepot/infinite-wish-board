@@ -13,8 +13,7 @@ export default class WishDetails extends Component {
       wishDetails: {
         id: '',
         child: {
-          firstName: '',
-          lastName: ' ',
+          name: '',
           hometown: '',
           illness: '',
           age: ''
@@ -62,7 +61,7 @@ export default class WishDetails extends Component {
   }
 
   render() {
-    const { child, details, sponsor } = { ...this.state.wishDetails }
+    const { child, details, sponsor } = this.state.wishDetails;
     return (
       <div className='wishDetails containerVertical'>
 
