@@ -64,7 +64,6 @@ export default class ChildInfo extends Component {
           showConfirmation: true
         })
       }
-      ;
   }
 
     scrollToTop = () => {
@@ -83,12 +82,6 @@ export default class ChildInfo extends Component {
 
     getInputType = () => {
       return this.stepMapFunction()[this.state.step].input;
-      let { step } = { ...this.state };
-      if (step < this.stepMap.length - 1) {
-        this.setState({
-          step: step + 1
-        })
-      }
     }
 
     updateInputField = evt => {
