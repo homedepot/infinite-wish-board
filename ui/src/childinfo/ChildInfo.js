@@ -165,8 +165,7 @@ export default class ChildInfo extends Component {
               <form>
                 <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField}/>
               </form>
-            : <div>
-              </div>
+            : ''
             }
               <button className='next-button' onClick={this.nextStep}>NEXT</button>
           </div> :
