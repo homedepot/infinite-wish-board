@@ -69,7 +69,7 @@ export default class ChildInfo extends Component {
           hometown: this.state.homeTown,
           illness: this.state.illness
         },
-        type: "go",
+        type: this.props.type,
         details: this.state.details
       }
 
