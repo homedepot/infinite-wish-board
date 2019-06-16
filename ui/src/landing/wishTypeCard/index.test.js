@@ -1,10 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { WishCard } from './index'
+import { WishTypeCard } from './index'
 
 describe('WishCard tests', () => {
   it('snapshot', () => {
-    const wrapper = shallow(<WishCard />)
+    const wrapper = shallow(<WishTypeCard />)
     expect(wrapper).toMatchSnapshot()
   })
 })

@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropsType from 'prop-types'
 import WishDetailsService from '../services/WishDetailsService'
-import Rocket from '../assets/icn_To_Go_Rocket_White_Inside_130x130.png'
-import Alien from '../assets/icn_To_Meet_Alien_White_Inside_130x130.png'
-import Astronaut from '../assets/icn_To_Be_Astronaut_White_Inside_130x130.png'
-import Telescope from '../assets/icn_To_See_Telescope_White_Inside_130x130.png'
+import Rocket from '../assets/images/icn_To_Go_Rocket_White_Inside_130x130.png'
+import Alien from '../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
+import Astronaut from '../assets/images/icn_To_Be_Astronaut_White_Inside_130x130.png'
+import Telescope from '../assets/images/icn_To_See_Telescope_White_Inside_130x130.png'
 
 export default class WishDetails extends Component {
   constructor(props) {
-    super();
+    super(props)
     this.state = {
       id: '',
       wishDetails: {
@@ -32,36 +33,36 @@ export default class WishDetails extends Component {
   }
 
   async componentDidMount() {
-    const wishDetails = await WishDetailsService.getWishDetails(this.state.id)
-    this.setState({
+    const wishDetails = await WishDetailsService.getWishDetails(this.props.childId)
+    wishDetails && wishDetails !== '' && this.setState({
       wishDetails: wishDetails
     })
   }
 
   getImageByType = () => {
-    let type = this.state.wishDetails.type.toUpperCase();
-    let image = '';
+    let type = this.state.wishDetails.type.toUpperCase()
+    let image = ''
     switch (type) {
       case 'GO':
-        image = Rocket;
-        break;
+        image = Rocket
+        break
       case 'MEET':
-        image = Alien;
-        break;
+        image = Alien
+        break
       case 'BE':
-        image = Astronaut;
-        break;
+        image = Astronaut
+        break
       case 'SEE':
-        image = Telescope;
-        break;
+        image = Telescope
+        break
       default:
-        break;
+        break
     }
-    return image;
+    return image
   }
 
   render() {
-    const { child, details, sponsor } = this.state.wishDetails;
+    const { child, details, sponsor } = this.state.wishDetails
     return (
       <div className='wishDetails containerVertical'>
 
@@ -98,4 +99,8 @@ export default class WishDetails extends Component {
       </div>
     )
   }
+}
+
+WishDetails.propTypes = {
+  childId: PropsType.string.isRequired
 }
