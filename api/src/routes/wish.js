@@ -1,6 +1,11 @@
 const wishRouter = require('express').Router()
 const Wish = require('../db/Wish')
 
+wishRouter.MEET = 'meet'
+wishRouter.GO = 'go'
+wishRouter.SEE = 'see'
+wishRouter.BE = 'be'
+
 wishRouter.today = () => {
   return new Date()
 }
