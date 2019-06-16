@@ -15,7 +15,7 @@ body{
 
     margin: 0;
     padding: 0;
-    background-image: url('../../src/assets/space-background.jpeg');
+    background: url('../../src/assets/space-background.jpeg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -122,12 +122,11 @@ body{
     margin-right: auto;
 
     opacity: 0.93;
-    font-size: 35px;
     box-shadow: var(--yellow) 8px 6px;
     background-color: black !important;
     color: var(--yellow) !important;
     border-color: black;
-    height: 6rem;
+    height: 30%;
     width: 20%;
     border-radius: 20px;
 }
