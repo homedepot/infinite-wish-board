@@ -82,16 +82,16 @@ describe('Initial Render', () => {
       childInfo = shallow(<ChildInfo name={testName} age={age} />);
     })
 
-    it('Should update text on button click', () => {
+    it('Should update text on button click', async () => {
       let nextButton = childInfo.find('.next-button');
       expect(childInfo.find('.text-name').text()).toEqual(`Hi ${testName}, I have a few questions for you before we can make your wish come true!`);
-      nextButton.simulate('click');
+      await nextButton.simulate('click');
       expect(childInfo.find('.text-name').text()).toEqual('Where are you from?');
-      nextButton.simulate('click');
+      await nextButton.simulate('click');
       expect(childInfo.find('.text-name').text()).toEqual('Tell us about your condition');
-      nextButton.simulate('click');
+      await nextButton.simulate('click');
       expect(childInfo.find('.text-name').text()).toEqual('Tell us more about your wish!');
-      nextButton.simulate('click');
+      await nextButton.simulate('click');
 
       console.log(childInfo.find('.text-name').debug())
       expect(childInfo.find('.text-name').length).toEqual(0);

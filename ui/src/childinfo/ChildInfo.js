@@ -47,7 +47,7 @@ export default class ChildInfo extends Component {
     }
   }
 
-  nextStep = () => {
+  nextStep = async () => {
     let stepMap = this.stepMapFunction();
     let { step } = this.state;
     if (step < Object.keys(stepMap).length - 1) {
@@ -72,11 +72,13 @@ export default class ChildInfo extends Component {
           hometown: homeTown,
           illness: illness
         },
-        type: type,
+        type: type ? type : '',
         details: details
       }
 
-      const response = WishDetailsService.makeAWish(wish)
+      const response = await WishDetailsService.makeAWish(wish)
+
+      debugger
 
       this.setState({
         showConfirmation: true,
@@ -176,7 +178,7 @@ export default class ChildInfo extends Component {
           showWishDetails: true
         })
       }
-    }, 10)
+    }, 1)
   }
 
   render() {

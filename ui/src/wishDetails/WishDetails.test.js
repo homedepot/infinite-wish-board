@@ -6,6 +6,29 @@ import Alien from '../assets/icn_To_Meet_Alien_White_Inside_130x130.png'
 import Astronaut from '../assets/icn_To_Be_Astronaut_White_Inside_130x130.png'
 import Telescope from '../assets/icn_To_See_Telescope_White_Inside_130x130.png'
 
+jest.mock('../services/WishDetailsService', () => ({
+  getWishDetails: jest.fn(() => {
+    return ({
+      id: '',
+      child: {
+        name: 'child name',
+        hometown: '',
+        illness: '',
+        age: ''
+      },
+      type: '',
+      details: '',
+      sponsor: {
+        name: '',
+        logo: '',
+        links: []
+      },
+      createdAt: '',
+      updatedAt: ''
+    })
+  })
+}));
+
 describe('Initial Render', () => {
   let wishInfo;
   beforeEach(() => {
@@ -36,6 +59,7 @@ describe('Initial Render', () => {
 
   it('renders!', () => {
     expect(wishInfo.exists('.wishInfo'));
+    expect(wishInfo.instance().state.wishDetails.child.name).toEqual('child name');
   })
 
   describe('Getting image for wish type', () => {
