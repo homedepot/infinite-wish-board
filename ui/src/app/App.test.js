@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom'
 import Login from '../login/Login'
 import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
-import WishSummary from '../WishSummary'
+import WishList from '../wishList'
 
 describe('Default routing behavior', () => {
   it('renders the login page by default', () => {
@@ -25,7 +25,7 @@ describe('Default routing behavior', () => {
       .props()
 
     expect(wishCurationRoute.path).toEqual('/wish-summary')
-    expect(wishCurationRoute.component).toEqual(WishSummary)
+    expect(wishCurationRoute.component).toEqual(WishList)
 
     let landingRoute = wrapper
       .find(Route)
