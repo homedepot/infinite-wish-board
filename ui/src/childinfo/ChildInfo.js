@@ -181,6 +181,7 @@ export default class ChildInfo extends Component {
     }, 1)
   }
 
+<<<<<<< HEAD
   render() {
     let inputValue = this.state[this.getInputType()];
     let { showConfirmation, showWishDetails, childId, isBlastOff, step } = this.state;
@@ -211,4 +212,30 @@ export default class ChildInfo extends Component {
         childId && <WishDetails childId={childId} />
     )
   }
+=======
+    render() {
+      let inputValue = this.state[this.getInputType()];
+      let { showConfirmation, step } = this.state;
+      return (
+        !showConfirmation ?
+          <div className='childInfo containerVertical'>
+            <p className='progress'>{step + 1} of {this.numSteps}</p>
+            <p className="text-name">{this.getTextField()}</p>
+            { step ? //first step should not have any input
+              <form>
+                <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField}/>
+              </form>
+            : ''
+            }
+              <button className='next-button' onClick={this.nextStep}>NEXT</button>
+          </div> :
+          <div>
+            <div className='rocket-image-container' style={this.getRocketContainerStyle()}>
+              <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
+            </div>
+            {!this.state.isBlastOff && <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Ready for blast off?</button>}
+          </div>
+      )
+    }
+>>>>>>> master
 }
