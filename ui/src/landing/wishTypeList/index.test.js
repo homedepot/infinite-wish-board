@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme'
-import { WishList } from './index'
+import { WishTypeList } from './index'
 import React from 'react'
 import { WishType } from '../wishType'
 
@@ -11,7 +11,7 @@ describe('WishList tests', () => {
   })
 
   it('should call selectWishType with selected wish when wish is clicked', () => {
-    const wrapper = shallow(<WishList selectWishType={selectWishType}/>)
+    const wrapper = shallow(<WishTypeList selectWishType={selectWishType}/>)
     const { GO, MEET, BE, SEE } = WishType
 
     const wishCardRocket = wrapper.find('[data-test="wishcard-rocket"]');

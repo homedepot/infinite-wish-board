@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom'
 import Login from '../login/Login'
 import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
+import WishList from '../wishList'
 
 describe('Default routing behavior', () => {
   it('renders the login page by default', () => {
@@ -12,18 +13,25 @@ describe('Default routing behavior', () => {
 
     let loginRoute = wrapper
       .find(Route)
-      .at(2)
+      .at(3)
       .props()
 
     expect(loginRoute.path).toEqual('/')
     expect(loginRoute.component).toEqual(Login)
+
+    let wishCurationRoute = wrapper
+      .find(Route)
+      .at(2)
+      .props()
+
+    expect(wishCurationRoute.path).toEqual('/wish-summary')
+    expect(wishCurationRoute.component).toEqual(WishList)
 
     let landingRoute = wrapper
       .find(Route)
       .at(1)
       .props()
 
-    
     expect(landingRoute.path).toEqual('/landing')
     expect(landingRoute.component).toEqual(CreateWish)
 
@@ -35,7 +43,4 @@ describe('Default routing behavior', () => {
     expect(childInfoRoute.path).toEqual('/child-info')
     expect(childInfoRoute.component).toEqual(ChildInfo)
   })
-
-
-
 })
