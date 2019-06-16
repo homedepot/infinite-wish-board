@@ -1,10 +1,10 @@
 import React from 'react'
 import WishDetails from './WishDetails';
 import { shallow } from 'enzyme';
-import Rocket from '../assets/icn_To_Go_Rocket_White_Inside_130x130.png'
-import Alien from '../assets/icn_To_Meet_Alien_White_Inside_130x130.png'
-import Astronaut from '../assets/icn_To_Be_Astronaut_White_Inside_130x130.png'
-import Telescope from '../assets/icn_To_See_Telescope_White_Inside_130x130.png'
+import Rocket from '../assets/images/icn_To_Go_Rocket_White_Inside_130x130.png'
+import Alien from '../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
+import Astronaut from '../assets/images/icn_To_Be_Astronaut_White_Inside_130x130.png'
+import Telescope from '../assets/images/icn_To_See_Telescope_White_Inside_130x130.png'
 
 jest.mock('../services/WishDetailsService', () => ({
   getWishDetails: jest.fn(() => {

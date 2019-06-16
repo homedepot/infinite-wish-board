@@ -113,6 +113,8 @@ describe('Initial Render', () => {
   })
 
   describe('When user on confirmation page and click blast off the rocket', () => {
+    const play = jest.fn()
+    const pause = jest.fn()
 
     beforeEach(() => {
       childInfo = shallow(<ChildInfo name={testName} age={age} />);
@@ -120,6 +122,16 @@ describe('Initial Render', () => {
         showConfirmation: true,
         isBlastOff: false
       })
+
+      childInfo.instance().soundEffect = {
+        play,
+        pause
+      }
+    })
+
+    afterEach(() => {
+      play.mockClear()
+      pause.mockClear()
     })
 
     it('Should disapear', () => {
@@ -133,6 +145,15 @@ describe('Initial Render', () => {
       setTimeout(() => {
         expect(childInfo.instance().state.rocketRotation).toEqual(-45)
         expect(childInfo.instance().state.rocketWidth).toEqual(250)
+        done()
+      }, 3000);
+    })
+
+    it('Should click play and pause sound effect', (done) => {      
+      childInfo.find('.rocket-blast-off-button').simulate('click')
+      setTimeout(() => {
+        expect(play.mock.calls.length).toEqual(1)
+        expect(pause.mock.calls.length).toEqual(1)
         done()
       }, 3000);
     })

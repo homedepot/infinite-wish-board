@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const expressDomain = process.env.REACT_APP_expressDomain || 'http://localhost:3002'
 
@@ -21,6 +21,12 @@ const makeAWish = async(wish) => {
     return 'error';
   }
 
+}
+
+export const getWishes = async () => {
+  // TODO query param options
+  const { data } = await axios.get(`${expressDomain}/wishes`)
+  return data
 }
 
 export default {
