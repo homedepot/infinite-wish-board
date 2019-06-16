@@ -181,7 +181,7 @@ describe('Wish route', () => {
     await util.retry(action, 5, 500)
   })
 
-  fit('should be able to select between time range and wish type (internal only)', async () => {
+  it('should be able to select between time range and wish type (internal only)', async () => {
     await (new Wish(firstWish).save())   // 2019-06-14, go
     await (new Wish(secondWish).save())  // 2018-07-10, see
     await (new Wish(thirdWish).save())   // 2019-05-14, meet
