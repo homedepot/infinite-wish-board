@@ -47,13 +47,13 @@ describe('Wish route', () => {
   const thirdWishType = 'meet'
   const thirdWish = {
     type: thirdWishType,
-    createdAt: '2010-06-14T18:08:56.374Z',
-    updatedAt: '2019-05-14T18:08:56.374Z',    
+    createdAt: '2019-05-14T18:08:56.374Z',
+    updatedAt: '2019-05-14T18:08:56.374Z',
   }
   const fourthWishType = 'be'
   const fourthWish = {
     type: fourthWishType,
-    createdAt: '2017-08-14T18:08:56.374Z',
+    createdAt: '2018-08-14T18:08:56.374Z',    
     updatedAt: '2018-08-14T18:08:56.374Z',    
   }
 
@@ -137,20 +137,21 @@ describe('Wish route', () => {
   })
 
   describe('DEL /wishes/:id', () => {
-    xit('should be able to delete a wish', async () => {
+    it('should be able to delete a wish', async () => {
       const newWish = new Wish(firstWish)
       await newWish.save()
 
-      Wish.count({}, (err, count) => {
-        expect(count).toBe(1)
-      })
       const id = newWish._id
 
-      const delResponse = await request(app).delete(`/wishes/${id}`)
-      Wish.count({}, (err, count) => {
-        expect(count).toBe(0)
-      })
-      expect(delResponse.status).toBe(200)
+      const action = async () => {
+        const delResponse = await request(app).delete(`/wishes/${id}`)
+        Wish.count({}, (err, count) => {
+          expect(count).toBe(0)
+        })
+        expect(delResponse.status).toBe(200)
+      }
+
+      await util.retry(action, 5, 500)
     })
 
     it('should return 404 if record not found', async () => {
@@ -165,15 +166,19 @@ describe('Wish route', () => {
     await (new Wish(thirdWish).save())
     await (new Wish(fourthWish).save())
 
-    // we just want this one: '2019-06-14T18:08:56.374Z'
-    const foundWish = await Wish.find({
-      '$and': [
-        { updatedAt: { '$gt': '2019-06-14T18:08:55.374Z' } },
-        { updatedAt: { '$lte': '2019-06-14T18:08:57.374Z' } },
-      ]
-    })
+    const action = async () => {
+      // we just want this one: '2019-06-14T18:08:56.374Z'
+      const foundWish = await Wish.find({
+        '$and': [
+          { updatedAt: { '$gt': '2019-06-14T18:08:55.374Z' } },
+          { updatedAt: { '$lte': '2019-06-14T18:08:57.374Z' } },
+        ]
+      })
+  
+      expect(foundWish.length).toBe(1)
+    }
 
-    expect(foundWish.length).toBe(1)
+    await util.retry(action, 5, 500)
   })
 
   it('should be able to select between time range', async () => {
@@ -182,14 +187,18 @@ describe('Wish route', () => {
     await request(app).post("/wishes").send(thirdWish)
     await request(app).post("/wishes").send(fourthWish)
 
-    const postResponse = await request(app)
-      .get("/wishes")
-      .query({
-        beginDate: '2019-06-14T18:08:55.374Z',
-        endDate: '2019-06-14T18:08:57.374Z',
-      })
+    const action = async () => {
+      const getResponse = await request(app)
+        .get("/wishes")
+        .query({
+          beginDate: '2019-06-14T18:08:55.374Z',
+          endDate: '2019-06-14T18:08:57.374Z',
+        })
+  
+        expect(getResponse.body.length).toBe(1)
+    }
 
-    expect(postResponse.body.length).toBe(1)
+    await util.retry(action, 5, 500)
   })
 
   it('should return a date range that includes current year if current date is between Feb and Dec, 2019', () => {
@@ -222,10 +231,15 @@ describe('Wish route', () => {
     await request(app).post("/wishes").send(thirdWish) // updatedAt: '2010-06-14T18:08:56.374Z'
     await request(app).post("/wishes").send(fourthWish) // updatedAt: '2018-08-14T18:08:56.374Z'
 
-    jest.spyOn(wishRouter, 'today').mockImplementation(() => new Date('2019-03-03T12:34:56Z'))
-    const postResponse = await request(app)
-      .get("/wishes")
+    jest.spyOn(wishRouter, 'today').mockImplementation(() => new Date('2018-03-03T12:34:56Z'))
 
-    expect(postResponse.body.length).toBe(1)
+    const action = async () => {
+      const getResponse = await request(app)
+        .get("/wishes")
+
+      expect(getResponse.body.length).toBe(2)
+    }
+
+    await util.retry(action, 5, 500)
   })
 })
