@@ -78,8 +78,6 @@ export default class ChildInfo extends Component {
 
       const response = await WishDetailsService.makeAWish(wish)
 
-      debugger
-
       this.setState({
         showConfirmation: true,
         childId: response._id

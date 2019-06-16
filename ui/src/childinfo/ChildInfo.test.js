@@ -93,7 +93,6 @@ describe('Initial Render', () => {
       expect(childInfo.find('.text-name').text()).toEqual('Tell us more about your wish!');
       await nextButton.simulate('click');
 
-      console.log(childInfo.find('.text-name').debug())
       expect(childInfo.find('.text-name').length).toEqual(0);
       expect(childInfo.instance().state.showConfirmation).toBeTruthy();
     })
