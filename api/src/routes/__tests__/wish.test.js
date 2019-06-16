@@ -5,9 +5,10 @@ process.env.mongoUrl = process.env.mongoUrl || 'mongodb://localhost:27017/test'
 
 const app = require('../../app')
 const Wish = require('../../db/Wish')
+const wishRouter = require('../../routes/wish')
 
 describe('Wish route', () => {
-  const wishType = 'go'
+  const firstWishType = 'go'
   const firstWish = {
     child: {
       name: 'patrick',
@@ -15,28 +16,45 @@ describe('Wish route', () => {
       illness: 'crecent',
       age: '12'
     },
-    type: wishType,
+    type: firstWishType,
     details: 'i want to be a real star',
     sponsor: {
       name: 'krabs',
       logo: 'K',
       links: []
+    },
+    createdAt: '2019-06-14T18:08:56.374Z',
+    updatedAt: '2019-06-14T18:08:56.374Z',    
     }
-  }
+  const secondWishType = 'see'
   const secondWish = {
     child: {
       name: 'spongebob',
       hometown: 'marietta',
-      illness: 'crecent',
+      illness: 'loss of absorbency',
       age: '12'
     },
-    type: wishType,
+    type: secondWishType,
     details: 'i am a goofy goober',
     sponsor: {
       name: 'krabs',
       logo: 'K',
       links: []
-    }
+    },
+    "createdAt": "2018-07-10T18:08:56.374Z",
+    "updatedAt": "2018-07-10T18:08:56.374Z",
+  }
+  const thirdWishType = 'meet'
+  const thirdWish = {
+    type: thirdWishType,
+    createdAt: '2019-05-14T18:08:56.374Z',
+    updatedAt: '2019-05-14T18:08:56.374Z',
+  }
+  const fourthWishType = 'be'
+  const fourthWish = {
+    type: fourthWishType,
+    createdAt: '2018-08-14T18:08:56.374Z',    
+    updatedAt: '2018-08-14T18:08:56.374Z',    
   }
 
   beforeEach(async () => {
@@ -47,11 +65,13 @@ describe('Wish route', () => {
     const newWish = new Wish(firstWish)
     await newWish.save()
 
+    jest.spyOn(wishRouter, 'today').mockImplementation(() => new Date('2019-03-03T12:34:56Z'))
+
     const action = async () => {
       const response = await request(app).get('/wishes')
       expect(response.statusCode).toBe(200)
       expect(response.body.length).toBe(1)
-      expect(response.body[0].type).toBe(wishType)
+      expect(response.body[0].type).toBe(firstWishType)
     }
     await util.retry(action, 5, 500)
   })
@@ -63,7 +83,7 @@ describe('Wish route', () => {
 
     const action = async () => {
       expect(response.statusCode).toBe(201)
-      expect(response.body.type).toBe(wishType)
+      expect(response.body.type).toBe(firstWishType)
       expect(response.body._id).toBeTruthy()
     }
     await util.retry(action, 5, 500)
@@ -82,7 +102,7 @@ describe('Wish route', () => {
       .get(`/wishes/${id}`)
       .send(firstWish)
 
-    expect(getResponse.body.type).toBe(wishType)
+    expect(getResponse.body.type).toBe(firstWishType)
     expect(getResponse.body._id).toBeTruthy()
   })
 
@@ -121,21 +141,105 @@ describe('Wish route', () => {
       const newWish = new Wish(firstWish)
       await newWish.save()
 
-      Wish.count({}, (err, count) => {
-        expect(count).toBe(1)
-      })
       const id = newWish._id
 
-      const delResponse = await request(app).delete(`/wishes/${id}`)
-      Wish.count({}, (err, count) => {
-        expect(count).toBe(0)
-      })
-      expect(delResponse.status).toBe(200)
+      const action = async () => {
+        const delResponse = await request(app).delete(`/wishes/${id}`)
+        Wish.count({}, (err, count) => {
+          expect(count).toBe(0)
+        })
+        expect(delResponse.status).toBe(200)
+      }
+
+      await util.retry(action, 5, 500)
     })
 
     it('should return 404 if record not found', async () => {
       const delResponse = await request(app).delete("/wishes/123")
       expect(delResponse.status).toBe(500)
     })
+  })
+
+  it('should be able to select between time range (internal only)', async () => {
+    await (new Wish(firstWish).save())
+    await (new Wish(secondWish).save())
+    await (new Wish(thirdWish).save())
+    await (new Wish(fourthWish).save())
+
+    const action = async () => {
+      // we just want this one: '2019-06-14T18:08:56.374Z'
+      const foundWish = await Wish.find({
+        '$and': [
+          { updatedAt: { '$gt': '2019-06-14T18:08:55.374Z' } },
+          { updatedAt: { '$lte': '2019-06-14T18:08:57.374Z' } },
+        ]
+      })
+  
+      expect(foundWish.length).toBe(1)
+    }
+
+    await util.retry(action, 5, 500)
+  })
+
+  it('should be able to select between time range', async () => {
+    await request(app).post("/wishes").send(firstWish)
+    await request(app).post("/wishes").send(secondWish)
+    await request(app).post("/wishes").send(thirdWish)
+    await request(app).post("/wishes").send(fourthWish)
+
+    const action = async () => {
+      const getResponse = await request(app)
+        .get("/wishes")
+        .query({
+          beginDate: '2019-06-14T18:08:55.374Z',
+          endDate: '2019-06-14T18:08:57.374Z',
+        })
+  
+        expect(getResponse.body.length).toBe(1)
+    }
+
+    await util.retry(action, 5, 500)
+  })
+
+  it('should return a date range that includes current year if current date is between Feb and Dec, 2019', () => {
+    const dateRange = wishRouter.getDefaultDateRange(new Date('2019-05-03T12:34:56Z'));
+
+    expect(dateRange.length).toBe(2)
+    expect(dateRange[0]).toBe('2019-01-01T00:00:00Z')
+    expect(dateRange[1]).toBe('2019-12-31T23:59:59Z')
+  })
+
+  it('should return a date range that includes current year if current date is between Feb and Dec, 2020', () => {
+    const dateRange = wishRouter.getDefaultDateRange(new Date('2020-02-15T12:34:56Z'));
+
+    expect(dateRange.length).toBe(2)
+    expect(dateRange[0]).toBe('2020-01-01T00:00:00Z')
+    expect(dateRange[1]).toBe('2020-12-31T23:59:59Z')
+  })
+
+  it('should return a date range that includes current year if current date is in Jan', () => {
+    const dateRange = wishRouter.getDefaultDateRange(new Date('2019-01-03T12:34:56Z'));
+
+    expect(dateRange.length).toBe(2)
+    expect(dateRange[0]).toBe('2018-01-01T00:00:00Z')
+    expect(dateRange[1]).toBe('2018-12-31T23:59:59Z')
+  })
+
+  it('should return wishes from the current year because today is not in Jan', async () => {
+    await request(app).post("/wishes").send(firstWish) // updatedAt: '2019-06-14T18:08:56.374Z',
+    await request(app).post("/wishes").send(secondWish) // "updatedAt": "2018-07-10T18:08:56.374Z"
+    await request(app).post("/wishes").send(thirdWish) // updatedAt: '2010-06-14T18:08:56.374Z'
+    await request(app).post("/wishes").send(fourthWish) // updatedAt: '2018-08-14T18:08:56.374Z'
+
+    jest.spyOn(wishRouter, 'today').mockImplementation(() => new Date('2018-03-03T12:34:56Z'))
+
+    const action = async () => {
+      const getResponse = await request(app)
+        .get("/wishes")
+
+      expect(getResponse.body.length).toBe(2)
+    }
+
+    await util.retry(action, 5, 500)
   })
 })

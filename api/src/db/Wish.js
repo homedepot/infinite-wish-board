@@ -15,7 +15,11 @@ const wishSchema = new Schema({
     name: String,
     logo: String,
     links: [String]
-  }
-})
+  },
+},
+{
+  timestamps: true
+},
+)
 
 module.exports = mongoose.model('wish', wishSchema)

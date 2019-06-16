@@ -1,6 +1,6 @@
 import React from 'react'
-import MakeAWishLogo from '../assets/Logo_MakeWish_Dark_Blue.png'
-import GalaxyLogo from '../assets/Logo_Galaxy_Colour_Dark_Blue.png'
+import MakeAWishLogo from '../assets/images/Logo_MakeWish_Dark_Blue.png'
+import GalaxyLogo from '../assets/images/Logo_Galaxy_Colour_Dark_Blue.png'
 import './styles.scss'
 
 export const Header = () => (
