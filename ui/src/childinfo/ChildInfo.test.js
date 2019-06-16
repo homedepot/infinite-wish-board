@@ -2,6 +2,35 @@ import React from 'react'
 import ChildInfo from './ChildInfo'
 import { shallow } from 'enzyme'
 
+jest.mock('../services/WishDetailsService', () => ({
+  makeAWish: jest.fn(() => {
+    return ({
+      _id: 'mock child id'
+    })
+  }),
+  getWishDetails: jest.fn(() => {
+    return ({
+      id: '',
+      child: {
+        firstName: '',
+        lastName: ' ',
+        hometown: '',
+        illness: '',
+        age: ''
+      },
+      type: '',
+      details: '',
+      sponsor: {
+        name: '',
+        logo: '',
+        links: []
+      },
+      createdAt: '',
+      updatedAt: ''
+    })
+  })
+}));
+
 // noinspection JSAnnotator
 describe('Initial Render', () => {
   window.scrollTo = jest.fn(() => { });
@@ -61,6 +90,8 @@ describe('Initial Render', () => {
       nextButton.simulate('click');
       expect(childInfo.find('.text-name').text()).toEqual('Tell us more about your wish!');
       nextButton.simulate('click');
+
+      console.log(childInfo.find('.text-name').debug())
       expect(childInfo.find('.text-name').length).toEqual(0);
       expect(childInfo.instance().state.showConfirmation).toBeTruthy();
     })
@@ -68,7 +99,7 @@ describe('Initial Render', () => {
 
   describe('When `showWishDetails` in state is true', () => {
     beforeEach(() => {
-      childInfo = shallow(<ChildInfo childId={childId} />);
+      childInfo = shallow(<ChildInfo />);
       childInfo.instance().setState({
         showWishDetails: true
       })
@@ -82,7 +113,7 @@ describe('Initial Render', () => {
   describe('When user on confirmation page and click blast off the rocket', () => {
 
     beforeEach(() => {
-      childInfo = shallow(<ChildInfo name={testName} age={age} childId={childId} />);
+      childInfo = shallow(<ChildInfo name={testName} age={age} />);
       childInfo.instance().setState({
         showConfirmation: true,
         isBlastOff: false

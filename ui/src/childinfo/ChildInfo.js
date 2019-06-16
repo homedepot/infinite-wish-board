@@ -19,7 +19,8 @@ export default class ChildInfo extends Component {
       rocketRotation: 20,
       rocketWidth: 170,
       rocketContainerHeight: 350,
-      isBlastOff: false
+      isBlastOff: false,
+      childId: undefined
     }
     this.numSteps = Object.keys(this.stepMapFunction()).length
   }
@@ -72,10 +73,11 @@ export default class ChildInfo extends Component {
         details: this.state.details
       }
 
-      WishDetailsService.makeAWish(wish)
+      const response = WishDetailsService.makeAWish(wish)
 
       this.setState({
-        showConfirmation: true
+        showConfirmation: true,
+        childId: response._id
       })
     }
   }
@@ -198,7 +200,7 @@ export default class ChildInfo extends Component {
               </div>
           }
         </React.Fragment> :
-        <WishDetails childId='something' />
+        <WishDetails childId={this.state.childId ? this.state.childId: ''} />
     )
   }
 }
