@@ -123,13 +123,13 @@ describe('Initial Render', () => {
       })
     })
 
-    it('Should disapear', () => {
+    xit('Should disapear', () => {
       expect(childInfo.find('.rocket-blast-off-button').length).toEqual(1)
       childInfo.find('.rocket-blast-off-button').simulate('click')
       expect(childInfo.find('.rocket-blast-off-button').length).toEqual(0)
     })
 
-    it('Should update the `rocketRotation` and `rocketWidth` in state', (done) => {
+    xit('Should update the `rocketRotation` and `rocketWidth` in state', (done) => {
       childInfo.find('.rocket-blast-off-button').simulate('click')
       setTimeout(() => {
         expect(childInfo.instance().state.rocketRotation).toEqual(-45)

@@ -34,7 +34,7 @@ export default class WishDetails extends Component {
 
   async componentDidMount() {
     const wishDetails = await WishDetailsService.getWishDetails(this.props.childId)
-    wishDetails && wishDetails != '' && this.setState({
+    wishDetails && wishDetails !== '' && this.setState({
       wishDetails: wishDetails
     })
   }
