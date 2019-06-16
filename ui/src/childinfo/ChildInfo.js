@@ -74,7 +74,7 @@ export default class ChildInfo extends Component {
           hometown: homeTown,
           illness: illness
         },
-        type: type ? type : '',
+        type: type ? type.toLowerCase() : '',
         details: details
       }
 
