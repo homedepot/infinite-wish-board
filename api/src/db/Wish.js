@@ -4,8 +4,7 @@ const Schema = mongoose.Schema
 
 const wishSchema = new Schema({
   child: {
-    firstName: String,
-    lastName: String,
+    name: String,
     hometown: String,
     illness: String,
     age: Number,

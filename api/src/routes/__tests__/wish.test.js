@@ -10,8 +10,7 @@ describe('Wish route', () => {
   const firstWishType = 'go'
   const firstWish = {
     child: {
-      firstName: 'patrick',
-      lastName: 'star',
+      name: 'patrick',
       hometown: 'marietta',
       illness: 'crecent',
       age: '12'
@@ -29,11 +28,10 @@ describe('Wish route', () => {
   const secondWishType = 'see'
   const secondWish = {
     child: {
-      firstName: 'spongebob',
-      lastName: 'squarepants',
-      hometown: 'atlantic ocean',
-      illness: 'non-absorbent',
-      age: '12',
+      name: 'spongebob',
+      hometown: 'marietta',
+      illness: 'loss of absorbency',
+      age: '12'
     },
     type: secondWishType,
     details: 'i am a goofy goober',
@@ -62,7 +60,7 @@ describe('Wish route', () => {
     await Wish.deleteMany({})
   })
 
-  xtest('It should respond with an array of wishes', async () => {
+  test('It should respond with an array of wishes', async () => {
     const newWish = new Wish(firstWish)
     await newWish.save()
 
