@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import WishDetailsService from '../services/WishDetailsService';
 import rocketImage from '../../src/assets/images/icn_To_Go_Rocket_White_Inside_130x130.png';
 import './ChildInfo.css';
 
@@ -59,8 +60,25 @@ export default class ChildInfo extends Component {
       });
     } else {
 
+      const { name, age, homeTown, illness, details } = this.state
+      const { type } = this.props
+
+      const wish = {
+        child: {
+          name: name,
+          age: age,
+          hometown: homeTown,
+          illness: illness
+        },
+        type: type ? type : '',
+        details: details
+      }
+
+      const response = await WishDetailsService.makeAWish(wish)
+
       this.setState({
-        showConfirmation: true
+        showConfirmation: true,
+        childId: response._id
       })
     }
   }
