@@ -39,7 +39,7 @@ describe('Initial Render', () => {
   let childInfo;
   let childId = 'some id string'
   beforeEach(() => {
-    childInfo = shallow(<ChildInfo name={testName} age={age} childId={childId} />);
+    childInfo = shallow(<ChildInfo name={testName} age={age} />);
   })
 
   it('renders!', () => {
