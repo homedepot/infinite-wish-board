@@ -183,9 +183,9 @@ export default class ChildInfo extends Component {
 
   render() {
     let inputValue = this.state[this.getInputType()];
-    let { showConfirmation, step } = this.state;
+    let { showConfirmation, showWishDetails, childId, isBlastOff, step } = this.state;
     return (
-      !this.state.showWishDetails ?
+      !showWishDetails ?
         <React.Fragment>
           {
             !showConfirmation ?
@@ -204,11 +204,11 @@ export default class ChildInfo extends Component {
                 <div className='rocket-image-container' style={this.getRocketContainerStyle()}>
                   <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
                 </div>
-                {!this.state.isBlastOff && <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Ready for blast off?</button>}
+                {!isBlastOff && <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Ready for blast off?</button>}
               </div>
           }
         </React.Fragment> :
-        this.state.childId && <WishDetails childId={this.state.childId} />
+        childId && <WishDetails childId={childId} />
     )
   }
 }
