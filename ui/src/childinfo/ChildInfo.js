@@ -190,7 +190,9 @@ export default class ChildInfo extends Component {
         <React.Fragment>
           {
             !showConfirmation ?
-              <div className='childInfo containerVertical'>
+
+              <body className="first">
+              <div className='childInfo containerVertical spotlight inner'>
                 <p className='progress'>{step + 1} of {this.numSteps}</p>
                 <p className="text-name">{this.getTextField()}</p>
                 {step ? //first step should not have any input
@@ -199,14 +201,18 @@ export default class ChildInfo extends Component {
                   </form>
                   : ''
                 }
-                <button className='next-button' onClick={this.nextStep}>NEXT</button>
-              </div> :
-              <div>
+                <button className='next-button' onClick={this.nextStep}>Next</button>
+              </div>
+              </body>
+              :
+              <body>
+              <div class="RocketPage">
                 <div className='rocket-image-container' style={this.getRocketContainerStyle()}>
                   <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
                 </div>
                 {!isBlastOff && <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Ready for blast off?</button>}
               </div>
+              </body>
           }
         </React.Fragment>
     )
