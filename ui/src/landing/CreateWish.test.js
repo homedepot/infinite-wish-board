@@ -2,6 +2,7 @@ import CreateWish from './CreateWish'
 import { shallow } from 'enzyme'
 import React from 'react'
 import { WishType } from './wishType'
+import Childinfo from '../childinfo/ChildInfo'
 
 describe('CreateWish tests', () => {
 
@@ -23,5 +24,37 @@ describe('CreateWish tests', () => {
     const wishType = WishType.SEE
     wrapper.instance().selectWishType(wishType)
     expect(wrapper.state().wishType).toEqual(wishType)
+  })
+
+  describe('When name, age, and wish type are present', () => {
+    let wrapper
+    beforeEach(() => {
+      wrapper = shallow(<CreateWish/>)
+      wrapper.setState({
+        name: 'a name',
+        age: 'an age',
+        wishType: 'a type'
+      })
+    })
+
+    it('Should show Childinfo component', () => {
+      expect(wrapper.find(Childinfo).length).toEqual(1)
+    })
+  })
+
+  describe('When any of the states (name, age, and wish type) is absent', () => {
+    let wrapper
+    beforeEach(() => {
+      wrapper = shallow(<CreateWish/>)
+      wrapper.setState({
+        name: 'a name',
+        age: 'an age',
+        wishType: ''
+      })
+    })
+
+    it('Should not show Childinfo component', () => {
+      expect(wrapper.find(Childinfo).length).toEqual(0)
+    })
   })
 })
