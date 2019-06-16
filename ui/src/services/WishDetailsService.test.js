@@ -52,4 +52,13 @@ describe('Wish details service', () => {
     await WishDetailsService.makeAWish(wish);
     expect(axios.post).toHaveBeenCalledWith(`${expressDomain}/wishes`, wish);
   })
+
+  // it('should return error if bad request', async () => {
+  //   const wish = {
+  //     badRequest: 'evilContent'
+  //   }
+  //   axios.post = jest.fn(() => Promise.resolve({ data: 'fail', status: 404 }));
+  //   let response = await WishDetailsService.makeAWish(wish);
+  //   expect(response).toEqual('error');
+  // })
 })
