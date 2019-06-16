@@ -2,10 +2,6 @@ import React from 'react'
 import ChildInfo from './ChildInfo'
 import { shallow } from 'enzyme'
 
-// jest.mock('Audio', () => ({
-//   play: jest.fn(() => {})
-// }));
-
 jest.mock('../services/WishDetailsService', () => ({
   makeAWish: jest.fn(() => {
     return ({
