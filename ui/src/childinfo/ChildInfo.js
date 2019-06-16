@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import WishDetailsService from '../services/WishDetailsService';
 import WishDetails from '../wishDetails/WishDetails';
 import rocketImage from '../../src/assets/images/icn_To_Go_Rocket_White_Inside_130x130.png';
+import rocketSound from '../../src/assets/audio/rocketSound.wav';
 import './ChildInfo.css';
 
 export default class ChildInfo extends Component {
@@ -23,6 +24,9 @@ export default class ChildInfo extends Component {
       childId: undefined
     }
     this.numSteps = Object.keys(this.stepMapFunction()).length
+
+    this.soundEffect = new Audio();
+    this.soundEffect.src = rocketSound;
   }
 
   stepMapFunction = () => {
@@ -141,6 +145,7 @@ export default class ChildInfo extends Component {
         this.rocketBlastOff()
       } else {
         this.rocketSizeGrow()
+        this.soundEffect.play()
       }
     }, 15)
   }
@@ -175,6 +180,7 @@ export default class ChildInfo extends Component {
         this.setState({
           showWishDetails: true
         })
+        this.soundEffect.pause()
       }
     }, 1)
   }
