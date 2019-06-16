@@ -24,6 +24,7 @@ wishRouter.route('/')
   .get(async (req, res) => {
     const beginDate = req.query.beginDate;
     const endDate = req.query.endDate;
+    const types = req.query.types;
 
     query = [];
     if (beginDate) {
@@ -37,6 +38,15 @@ wishRouter.route('/')
       const dateRange = wishRouter.getDefaultDateRange(wishRouter.today())
       query.push({ updatedAt: { '$gt': dateRange[0] } })
       query.push({ updatedAt: { '$lte': dateRange[1] } })
+    }
+
+    if (types) {
+      const typeArray = types.split(',')
+      const typeQuery = []
+      typeArray.forEach(t => {
+        typeQuery.push({ type: typeArray })
+      })
+      query.push({ '$or': typeQuery })
     }
 
     res.send(await Wish.find({
