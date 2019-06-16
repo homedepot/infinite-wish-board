@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Landing } from './splashScreen'
-import Childinfo from '../childinfo/ChildInfo'
 
 export default class CreateWish extends Component {
 
@@ -23,16 +22,10 @@ export default class CreateWish extends Component {
   }
 
   render() {
-    const { name, age, wishType } = this.state;
-    const showChildInfo = wishType !== '' && name !== '' && age !== '';
-
-    return (
-      !showChildInfo ?
-        <Landing name={name}
-          age={age}
-          updateField={this.updateField}
-          selectWishType={this.selectWishType} /> :
-        <Childinfo name={name} age={age} type={wishType} />
-    )
+    const { name, age } = this.state
+    return <Landing name={name}
+                    age={age}
+                    updateField={this.updateField}
+                    selectWishType={this.selectWishType} />
   }
 }
