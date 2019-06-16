@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react';
 import WishDetailsService from '../services/WishDetailsService';
-import WishDetails from '../wishDetails/WishDetails';
-import backgroundImage from '../../src/assets/space-background.jpg';
 import rocketImage from '../../src/assets/images/icn_To_Go_Rocket_White_Inside_130x130.png';
 import rocketSound from '../../src/assets/audio/rocketSound.wav';
 import './ChildInfo.css';
