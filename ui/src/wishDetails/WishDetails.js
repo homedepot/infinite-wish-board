@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropsType from 'prop-types'
 import WishDetailsService from '../services/WishDetailsService'
 import Rocket from '../assets/images/icn_To_Go_Rocket_White_Inside_130x130.png'
 import Alien from '../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
