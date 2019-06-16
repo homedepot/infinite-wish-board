@@ -24,15 +24,15 @@ export default class WishList extends Component {
   }
 
   render() {
-    const { wishes } = this.state;
+    const { wishes } = this.state
     const wishList = wishes.map(wish => {
       return <Wish key={wish._id} wish={wish} />
     })
 
     return (
-      <div id="wishList">
+      <div id="WishList">
         <WishHeader />
-        <WishFilter onChangeSearch= {this.filterWishes} />
+        <WishFilter onChangeSearch={this.filterWishes} />
         <ul>
           {wishList}
         </ul>

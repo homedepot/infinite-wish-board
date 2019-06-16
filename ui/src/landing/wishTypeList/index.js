@@ -13,7 +13,7 @@ export const WishTypeList = ({ selectWishType }) => {
   return (
     <Fragment>
       <h1>I wish to:</h1>
-      <ul id="WishList" className="wish-type-select">
+      <ul id="WishTypeList" className="wish-type-select">
         <li data-test="wishcard-rocket" onClick={() => selectWishType(GO)}>
           <WishTypeCard altText="Rocket" imgSrc={Rocket} title={GO} subtitle="Somewhere!" />
         </li>
