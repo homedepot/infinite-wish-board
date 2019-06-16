@@ -62,15 +62,18 @@ export default class ChildInfo extends Component {
       });
     } else {
 
+      const { name, age, homeTown, illness, details } = this.state
+      const { type } = this.props
+
       const wish = {
         child: {
-          name: this.state.name,
-          age: this.state.age,
-          hometown: this.state.homeTown,
-          illness: this.state.illness
+          name: name,
+          age: age,
+          hometown: homeTown,
+          illness: illness
         },
-        type: this.props.type,
-        details: this.state.details
+        type: type,
+        details: details
       }
 
       const response = WishDetailsService.makeAWish(wish)
@@ -200,7 +203,7 @@ export default class ChildInfo extends Component {
               </div>
           }
         </React.Fragment> :
-        <WishDetails childId={this.state.childId ? this.state.childId: ''} />
+        this.state.childId && <WishDetails childId={this.state.childId} />
     )
   }
 }

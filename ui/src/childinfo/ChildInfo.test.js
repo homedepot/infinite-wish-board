@@ -97,15 +97,17 @@ describe('Initial Render', () => {
     })
   })
 
-  describe('When `showWishDetails` in state is true', () => {
+  describe('When `showWishDetails` in state is true and `childId` in state is defined', () => {
     beforeEach(() => {
       childInfo = shallow(<ChildInfo />);
       childInfo.instance().setState({
-        showWishDetails: true
+        showWishDetails: true,
+        childId: 'a child id'
       })
     })
 
     it('Should show WishDetails component', () => {
+      console.log(childInfo.debug())
       expect(childInfo.find('WishDetails').length).toEqual(1)
     })
   })
