@@ -7,13 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 const Wish = ({ wish }) => {
-  const { child, details } = wish
+  const { child, sponsor, details } = wish
 
   return (
     <li className="wish">
       <div className="date">
       </div>
-      {false ? <img src={kidImg} alt="child" /> : <ImgPlaceholder text="Add Image" />}
+      {child.image ? <img src={child.image} alt="child" /> : <ImgPlaceholder text="Add Image" />}
       <div>
         <p>
           <strong>Maria</strong> - Age {child.age} from {child.hometown}
@@ -22,7 +22,7 @@ const Wish = ({ wish }) => {
                         {details}
                     </span>
       </div>
-      {false ? <img src={sponsorImg} alt="Sponsor" className="sponsor" /> : <a href="/review">Add Sponsor</a>}
+      {sponsor.logo ? <img src={sponsor.logo} alt="Sponsor" className="sponsor" /> : <a href="/review">Add Sponsor</a>}
       <FontAwesomeIcon icon={faChevronRight} className="wish-chevron" />
     </li>
   )
