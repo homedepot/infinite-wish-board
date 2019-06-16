@@ -59,6 +59,10 @@ describe('Registration', () => {
         .simulate('change', { target: { value: 'Lupe' } })
 
       wrapper
+        .find('[data-register-type]')
+        .simulate('change', { target: { value: 'admin' } })
+
+      wrapper
         .find('[data-register-username]')
         .simulate('change', { target: { value: 'good-username' } })
 
@@ -86,7 +90,7 @@ describe('Login', () => {
     beforeEach(() => {
       axios.create = () => ({
         post: () =>
-          Promise.resolve({ body: { firstName: 'Lupe', lastName: 'Fiasco' } })
+          Promise.resolve({ body: { firstName: 'Lupe', lastName: 'Fiasco', type: 'basic' } })
       })
     })
 

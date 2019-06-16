@@ -12,24 +12,27 @@ class Login extends Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      type: 'basic'
     }
   }
 
   createUser = async e => {
     e.preventDefault()
 
-    const { username, password } = this.state
+    const { username, password, type } = this.state
 
     try {
       await axios.post(`${this.expressDomain}/auth/register`, {
         username,
-        password
+        password,
+        type
       })
 
       this.setState({
         username: '',
-        password: ''
+        password: '',
+        type: ''
       })
     } catch (e) {}
   }
@@ -85,6 +88,14 @@ class Login extends Component {
                   this.handleFormFieldChange('lastName', event)
                 }
               />
+              Account Type:
+              <select data-register-type value={this.state.value} onChange={event =>
+                  this.handleFormFieldChange('type', event)
+                }>
+                <option value="basic">Basic</option>
+                <option value="admin">Admin</option>
+                <option value="sponsor">Sponsor</option>
+              </select>
               Username:
               <input
                 type="text"
