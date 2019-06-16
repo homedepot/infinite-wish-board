@@ -123,8 +123,8 @@ describe('Initial Render', () => {
       })
     })
 
-    it('Should update the `rocketRotation` and `rocketWidth` in state', async (done) => {
-      await childInfo.find('button').simulate('click')
+    it('Should update the `rocketRotation` and `rocketWidth` in state', (done) => {
+      childInfo.find('.rocket-blast-off-button').simulate('click')
       setTimeout(() => {
         expect(childInfo.instance().state.rocketRotation).toEqual(-45)
         expect(childInfo.instance().state.rocketWidth).toEqual(250)
