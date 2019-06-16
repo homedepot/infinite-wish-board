@@ -99,7 +99,7 @@ describe('Wish route', () => {
       expect(putResponse.body.child.firstName).toBe(secondWish.child.firstName)
     }
 
-    util.retry(action, 5, 500)
+    await util.retry(action, 5, 500)
   })
 
   // this may not be desired behavior; fix later(?)
