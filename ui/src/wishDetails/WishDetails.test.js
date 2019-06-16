@@ -59,7 +59,6 @@ describe('Initial Render', () => {
 
   it('renders!', () => {
     expect(wishInfo.exists('.wishInfo'));
-    expect(wishInfo.instance().state.wishDetails.child.name).toEqual('child name');
   })
 
   describe('Getting image for wish type', () => {

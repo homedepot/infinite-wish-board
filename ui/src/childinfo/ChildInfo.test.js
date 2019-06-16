@@ -98,20 +98,6 @@ describe('Initial Render', () => {
     })
   })
 
-  describe('When `showWishDetails` in state is true and `childId` in state is defined', () => {
-    beforeEach(() => {
-      childInfo = shallow(<ChildInfo />);
-      childInfo.instance().setState({
-        showWishDetails: true,
-        childId: 'a child id'
-      })
-    })
-
-    it('Should show WishDetails component', () => {
-      expect(childInfo.find('WishDetails').length).toEqual(1)
-    })
-  })
-
   describe('When user on confirmation page and click blast off the rocket', () => {
     const play = jest.fn()
     const pause = jest.fn()
