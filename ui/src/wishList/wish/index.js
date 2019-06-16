@@ -4,17 +4,22 @@ import ImgPlaceholder from '../imgPlaceholder'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-const Wish = ({ wish }) => {
+const Wish = ({ wish, history }) => {
   const { child, sponsor, details } = wish
 
+  const handleWishClick = (id) => {
+    const url = `/wish-summary/${id}`;
+    history.push(url);
+  }
+
   return (
-    <li className="wish">
+    <li className="wish" onClick={() => handleWishClick(wish._id)}>
       <div className="date">
       </div>
       {child.image ? <img src={child.image} alt="child" /> : <ImgPlaceholder text="Add Image" />}
       <div>
         <p>
-          <strong>Maria</strong> - Age {child.age} from {child.hometown}
+          <strong>{child.name}</strong> - Age {child.age} from {child.hometown}
         </p>
         <span className="summary">
                         {details}

@@ -21,12 +21,13 @@ export default class WishList extends Component {
   }
 
   filterWishes = (e) => {
+    //TODO
   }
 
   render() {
     const { wishes } = this.state
     const wishList = wishes.map(wish => {
-      return <Wish key={wish._id} wish={wish} />
+      return <Wish key={wish._id} wish={wish} history={this.props.history} />
     })
 
     return (

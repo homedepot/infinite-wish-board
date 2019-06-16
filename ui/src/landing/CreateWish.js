@@ -18,7 +18,6 @@ export default class CreateWish extends Component {
   }
 
   selectWishType = (wishType) => {
-    console.log(wishType)
     this.setState({ wishType })
   }
 

@@ -6,6 +6,7 @@ import Login from '../login/Login'
 import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
 import WishList from '../wishList'
+import WishDetails from '../wishDetails/WishDetails';
 
 describe('Default routing behavior', () => {
   it('renders the login page by default', () => {
@@ -13,11 +14,19 @@ describe('Default routing behavior', () => {
 
     let loginRoute = wrapper
       .find(Route)
-      .at(3)
+      .at(4)
       .props()
 
     expect(loginRoute.path).toEqual('/')
     expect(loginRoute.component).toEqual(Login)
+
+    let wishDetailsRoute = wrapper
+      .find(Route)
+      .at(3)
+      .props()
+
+    expect(wishDetailsRoute.path).toEqual('/wish-summary/:id')
+    expect(wishDetailsRoute.component).toEqual(WishDetails)
 
     let wishCurationRoute = wrapper
       .find(Route)

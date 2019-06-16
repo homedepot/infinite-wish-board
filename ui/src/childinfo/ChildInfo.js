@@ -1,7 +1,5 @@
 
 import React, { Component } from 'react';
-import WishDetailsService from '../services/WishDetailsService';
-import WishDetails from '../wishDetails/WishDetails';
 import rocketImage from '../../src/assets/images/icn_To_Go_Rocket_White_Inside_130x130.png';
 import './ChildInfo.css';
 
@@ -19,8 +17,7 @@ export default class ChildInfo extends Component {
       rocketRotation: 20,
       rocketWidth: 170,
       rocketContainerHeight: 350,
-      isBlastOff: false,
-      childId: undefined
+      isBlastOff: false
     }
     this.numSteps = Object.keys(this.stepMapFunction()).length
   }
@@ -62,25 +59,8 @@ export default class ChildInfo extends Component {
       });
     } else {
 
-      const { name, age, homeTown, illness, details } = this.state
-      const { type } = this.props
-
-      const wish = {
-        child: {
-          name: name,
-          age: age,
-          hometown: homeTown,
-          illness: illness
-        },
-        type: type ? type : '',
-        details: details
-      }
-
-      const response = await WishDetailsService.makeAWish(wish)
-
       this.setState({
-        showConfirmation: true,
-        childId: response._id
+        showConfirmation: true
       })
     }
   }
@@ -181,9 +161,8 @@ export default class ChildInfo extends Component {
 
   render() {
     let inputValue = this.state[this.getInputType()];
-    let { showConfirmation, showWishDetails, childId, isBlastOff, step } = this.state;
+    let { showConfirmation, isBlastOff, step } = this.state;
     return (
-      !showWishDetails ?
         <React.Fragment>
           {
             !showConfirmation ?
@@ -205,8 +184,7 @@ export default class ChildInfo extends Component {
                 {!isBlastOff && <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Ready for blast off?</button>}
               </div>
           }
-        </React.Fragment> :
-        childId && <WishDetails childId={childId} />
+        </React.Fragment>
     )
   }
 }
