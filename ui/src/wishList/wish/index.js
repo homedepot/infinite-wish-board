@@ -58,7 +58,7 @@ const Wish = ({ wish, history }) => {
             {details}
         </span>
       </div>
-      {sponsor.logo ? <img src={sponsor.logo} alt="Sponsor" className="sponsor" /> : <a href="/review">Add Sponsor</a>}
+      {sponsor.logo ? <img src={sponsor.logo} alt="Sponsor" className="sponsor" /> : <p>Add Sponsor</p>}
       <div className="wish-type-container">
         <img src={getImageSource(wish)} alt={wish.type} />
         <span>{getWishType(wish)}</span>
