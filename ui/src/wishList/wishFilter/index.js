@@ -11,13 +11,13 @@ const WishFilter = ({onChangeSearch}) => (
     </div>
     <div className="">
       <p>Filter by Wish Type</p>
-      <input type="checkbox" id="toGo" name="toGo" />
+      <input type="checkbox" id="go" name="toGo" onClick={onChangeSearch} />
       <label htmlFor="toGo">To Go</label>
-      <input type="checkbox" id="toMeet" name="toMeet" />
+      <input type="checkbox" id="meet" name="toMeet" onClick={onChangeSearch}/>
       <label htmlFor="toMeet">To Meet</label>
-      <input type="checkbox" id="toBe" name="toBe" />
+      <input type="checkbox" id="be" name="toBe" onClick={onChangeSearch}/>
       <label htmlFor="toBe">To Be</label>
-      <input type="checkbox" id="toSee" name="toSee" />
+      <input type="checkbox" id="see" name="toSee" onClick={onChangeSearch}/>
       <label htmlFor="toSee">To See</label>
     </div>
   </div>

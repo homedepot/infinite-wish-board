@@ -54,4 +54,31 @@ describe('WishSummary tests', () => {
     expect(wishes.length).toEqual(2)
   })
 
+  describe('filter by wish types', () => {
+    it('should update wishes when filterWishes called', async () => {
+      getWishes.mockImplementation(() => mockWishList)
+      const wrapper = shallow(<WishSummary />)
+      expect(wrapper.instance().state.typeFilters).toEqual([])
+      let clickEvt1 = {
+        target: {
+          id: 'go',
+          checked: true
+        }
+      }
+      await wrapper.instance().filterWishes(clickEvt1);
+      expect(wrapper.instance().state.typeFilters).toEqual(['go']);
+      let clickEvt2 = {
+        target: {
+          id: 'meet',
+          checked: true
+        }
+      }
+      await wrapper.instance().filterWishes(clickEvt2);
+      expect(wrapper.instance().state.typeFilters).toEqual(['go', 'meet']);
+      clickEvt1.target.checked = false
+      await wrapper.instance().filterWishes(clickEvt1);
+      expect(wrapper.instance().state.typeFilters).toEqual(['meet']);
+    });
+  })
+
 })

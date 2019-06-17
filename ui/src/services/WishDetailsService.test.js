@@ -52,4 +52,14 @@ describe('Wish details service', () => {
     await WishDetailsService.makeAWish(wish);
     expect(axios.post).toHaveBeenCalledWith(`${expressDomain}/wishes`, wish);
   })
+
+  it('should get wishes', async () => {
+    await WishDetailsService.getWishes();
+    expect(axios.get).toHaveBeenCalledWith(`${expressDomain}/wishes`);
+  })
+
+  it('should make request with filter if required', async () => {
+    await WishDetailsService.getWishes(['go', 'meet']);
+    expect(axios.get).toHaveBeenCalledWith(`${expressDomain}/wishes?types=go,meet`);
+  })
 })
