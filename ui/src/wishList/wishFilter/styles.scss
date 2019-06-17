@@ -5,6 +5,15 @@
     justify-content: space-between;
     margin-bottom: 2em;
 
+    .type-filter {
+      color: $dark-gray;
+
+      label {
+        margin-right: 15px;
+        cursor: pointer;
+      } 
+    }
+
     .wish-search {
       border: 2px solid $medium-blue;
       border-radius: 3px;
