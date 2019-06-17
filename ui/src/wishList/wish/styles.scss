@@ -13,9 +13,14 @@
   .date {
     width: 2.5em;
     height: 2.5em;
-    border: 0.4em solid $magenta;
-    border-top: 1em solid $magenta;
+    border: 0.4em solid $medium-blue;
+    border-top: 1em solid $medium-blue;
     border-radius: .5em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
   }
 
   .summary {
@@ -31,5 +36,16 @@
   .wish-chevron {
     color: $medium-blue;
     font-size: 1.2em;
+  }
+
+  .wish-type-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 60px;
+    }
   }
 }

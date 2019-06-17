@@ -79,6 +79,7 @@ describe('Initial Render', () => {
       });
       expect(wishInfo.instance().getImageByType()).toEqual(Alien);
     })
+
     it('should return astronaut image for type BE', () => {
       let currentWishState = wishInfo.instance().state.wishDetails;
       currentWishState.type = 'BE'
@@ -87,6 +88,7 @@ describe('Initial Render', () => {
       });
       expect(wishInfo.instance().getImageByType()).toEqual(Astronaut);
     })
+    
     it('should return telescope image for type SEE', () => {
       let currentWishState = wishInfo.instance().state.wishDetails;
       currentWishState.type = 'SEE'
