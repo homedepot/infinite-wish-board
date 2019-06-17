@@ -31,7 +31,7 @@ export default class CreateWish extends Component {
           age={age}
           updateField={this.updateField}
           selectWishType={this.selectWishType} /> :
-        <Childinfo name={name} age={age} type={wishType} />
+        <Childinfo name={name} age={age} type={wishType} history={this.props.history} />
     )
   }
 }

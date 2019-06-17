@@ -1,9 +1,9 @@
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import WishDetailsService from '../services/WishDetailsService';
-import rocketImage from '../../src/assets/images/icn_To_Go_Rocket_White_Inside_130x130.png';
+import rocketImage from '../../src/assets/images/rocket.png';
 import rocketSound from '../../src/assets/audio/rocketSound.wav';
-import './ChildInfo.css';
+import './styles.scss';
 
 export default class ChildInfo extends Component {
   constructor(props) {
@@ -16,10 +16,7 @@ export default class ChildInfo extends Component {
       details: '',
       showConfirmation: false,
       showWishDetails: false,
-      rocketRotation: 20,
-      rocketWidth: 170,
-      rocketContainerHeight: 350,
-      isBlastOff: false
+      launchRocket: false
     }
     this.numSteps = Object.keys(this.stepMapFunction()).length
 
@@ -114,83 +111,26 @@ export default class ChildInfo extends Component {
     }
   }
 
-  getRocketStyle = () => {
-    return {
-      transform: `rotate(${this.state.rocketRotation}deg)`,
-      width: `${this.state.rocketWidth}px`
-    }
-  }
-
-  getRocketContainerStyle = () => {
-    return {
-      height: `${this.state.rocketContainerHeight}px`
-    }
-  }
-
-  // Rocket blast off rotation animation
-  blastOffTime = 20;
   rocketBlastOff = () => {
     this.setState({
-      isBlastOff: true
+      launchRocket: true
     })
-
+    this.soundEffect.play();
     setTimeout(() => {
-      this.blastOffTime--;
-      if (this.blastOffTime >= -45) {
-        this.setState({
-          rocketRotation: this.blastOffTime,
-        })
-        this.rocketBlastOff()
-      } else {
-        this.rocketSizeGrow()
-        this.soundEffect.play()
-      }
-    }, 15)
-  }
-
-  // Rocket blast off grow animation
-  rocketSize = 170;
-  rocketSizeGrow = () => {
-    setTimeout(() => {
-      this.rocketSize++;
-      if (this.rocketSize <= 250) {
-        this.setState({
-          rocketWidth: this.rocketSize,
-        })
-        this.rocketSizeGrow()
-      } else {
-        this.blastOff()
-      }
-    }, 10)
-  }
-
-  // Blast off rocket container
-  rocketContainerHeight = 350
-  blastOff = () => {
-    setTimeout(() => {
-      this.rocketContainerHeight--;
-      if (this.rocketContainerHeight > 0) {
-        this.setState({
-          rocketContainerHeight: this.rocketContainerHeight
-        })
-        this.blastOff()
-      } else {
-        this.setState({
-          showWishDetails: true
-        })
-        this.soundEffect.pause()
-      }
-    }, 1)
+        this.soundEffect.pause();
+        const url = `/wish-summary/${this.state.childId}`
+        this.props.history.push(url)
+    }, 3000);
   }
 
   render() {
     let inputValue = this.state[this.getInputType()];
-    let { showConfirmation, isBlastOff, step } = this.state;
+    let { showConfirmation, step } = this.state;
     return (
-        <React.Fragment>
+        <Fragment>
           {
             !showConfirmation ?
-
+              
               <body className="first">
               <div className='childInfo containerVertical spotlight inner'>
                 <p className='progress'>{step + 1} of {this.numSteps}</p>
@@ -207,14 +147,12 @@ export default class ChildInfo extends Component {
               :
               <body>
               <div class="RocketPage">
-                <div className='rocket-image-container' style={this.getRocketContainerStyle()}>
-                  <img className='rocket-image' style={this.getRocketStyle()} src={rocketImage} alt={rocketImage} />
-                </div>
-                {!isBlastOff && <button className='rocket-blast-off-button' onClick={this.rocketBlastOff}>Ready for blast off?</button>}
+                <img className={this.state.launchRocket ? 'rocket-launch' : 'rocket'} src={rocketImage} alt={rocketImage} />
+                <button className='rocket-blast-off-button' onClick={this.rocketBlastOff} disabled={this.state.launchRocket}>Fulfill my wish</button>
               </div>
               </body>
           }
-        </React.Fragment>
+        </Fragment>
     )
   }
 }

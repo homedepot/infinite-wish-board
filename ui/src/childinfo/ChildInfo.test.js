@@ -49,8 +49,6 @@ describe('Initial Render', () => {
     expect(childInfo.find('input')).toEqual({});
     expect(childInfo.instance().props.name).toEqual(testName);
     expect(childInfo.instance().state.illness).toEqual('');
-    expect(childInfo.instance().state.rocketRotation).toEqual(20);
-    expect(childInfo.instance().state.rocketWidth).toEqual(170);
   })
 
   describe('step updates and progress', () => {
@@ -101,6 +99,7 @@ describe('Initial Render', () => {
   describe('When user on confirmation page and click blast off the rocket', () => {
     const play = jest.fn()
     const pause = jest.fn()
+    const push = jest.fn()
 
     beforeEach(() => {
       childInfo = shallow(<ChildInfo name={testName} age={age} />);
@@ -113,35 +112,28 @@ describe('Initial Render', () => {
         play,
         pause
       }
+
+      childInfo.setProps({
+        history: {
+          push
+        }
+      })
     })
 
     afterEach(() => {
       play.mockClear()
       pause.mockClear()
+      push.mockClear()
     })
 
-    it('Should disapear', () => {
-      expect(childInfo.find('.rocket-blast-off-button').length).toEqual(1)
-      childInfo.find('.rocket-blast-off-button').simulate('click')
-      expect(childInfo.find('.rocket-blast-off-button').length).toEqual(0)
-    })
-
-    it('Should update the `rocketRotation` and `rocketWidth` in state', (done) => {
-      childInfo.find('.rocket-blast-off-button').simulate('click')
-      setTimeout(() => {
-        expect(childInfo.instance().state.rocketRotation).toEqual(-45)
-        expect(childInfo.instance().state.rocketWidth).toEqual(250)
-        done()
-      }, 3000);
-    })
-
-    it('Should click play and pause sound effect', (done) => {      
+    it('Should play and pause sound effect, and push to next url', (done) => {      
       childInfo.find('.rocket-blast-off-button').simulate('click')
       setTimeout(() => {
         expect(play.mock.calls.length).toEqual(1)
         expect(pause.mock.calls.length).toEqual(1)
+        expect(push.mock.calls.length).toEqual(1)
         done()
-      }, 3000);
+      }, 4000);
     })
   });
 });

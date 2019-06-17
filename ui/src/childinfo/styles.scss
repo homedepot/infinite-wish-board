@@ -21,16 +21,6 @@ body{
     -o-background-size: cover;
     background-size: cover;
 }
-.rocket-image-container {
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 350px;
-    height: 350px;
-    display: flex;
-    align-items: center;
-    justify-content: center
-}
 
 .progress{
     font-family: 'B612 Mono', sans-serif;
@@ -91,10 +81,7 @@ body{
     border-radius: 0px 0px 20px 20px;
 
 }
-.rocket{
-    opacity: 0.9;
-    padding: 30px;
-}
+
 .inner {
     display: -moz-flex;
     display: -webkit-flex;
@@ -105,44 +92,63 @@ body{
     -ms-align-items: center;
     align-items: center;
     -moz-justify-content: space-between;
-    /*-webkit-justify-content: space-between;*/
     -ms-justify-content: space-between;
-    /*justify-content: space-between;*/
     max-width: 75rem;
     width: calc(100% - 4rem);
 }
 .RocketPage{
-    opacity: 0.95;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
+
 .rocket-blast-off-button {
-
     font-family: 'B612 Mono', sans-serif;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-    opacity: 0.93;
-    box-shadow: var(--yellow) 8px 6px;
     background-color: black !important;
-    color: var(--yellow) !important;
-    border-color: black;
-    height: 30%;
-    width: 20%;
-    border-radius: 20px;
+    color: var(--yellow);
+    border-color: yellow;
+    border-radius: 30px;
+    padding: 15px;
+    outline: none;
+    font-size: 1.2em;
 }
+
+.rocket {
+    height: 200px;
+    position: relative;
+    z-index: 5;
+}
+
+.rocket-launch {
+    object-fit: cover;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+    animation-name: rocket-launch;
+    animation-duration: 5s;
+  }
+  
+  @keyframes rocket-launch {
+    0% {
+        -webkit-transform: translateY(0px);
+    }
+    100% {
+        -webkit-transform: translateY(-100vh);
+    }
+}
+
 .second{
     background-color: var(--light-blue);
 }
-.wishId{
 
+.wishId{
     font-family: 'B612 Mono', sans-serif;
     color: var(--yellow);
     text-align: center;
     background-color: black;
     opacity: 0.93;
     margin-top: 17%;
-    /*top: 50%;*/
-    /*left: 50%;*/
-    /*margin-right: -70%;*/
-    /*transform: translate(-50%, -50%)*/
 }
