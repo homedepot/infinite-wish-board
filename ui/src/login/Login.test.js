@@ -12,6 +12,14 @@ jest.mock('axios', () => {
   }
 })
 
+describe('When render login page', () => {
+  const wrapper = shallow(<Login />)
+
+  it('Should render a Header component', () => {
+    expect(wrapper.find('Header').length).toEqual(1)
+  })
+})
+
 describe('Registration', () => {
   describe('on success', () => {
     beforeEach(() => {

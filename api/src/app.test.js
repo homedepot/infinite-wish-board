@@ -5,9 +5,11 @@ process.env.mongoUrl = process.env.mongoUrl || 'mongodb://localhost:27017/test'
 
 const app = require('./app')
 const Account = require('./db/Account')
+const Wish = require('./db/Wish')
 
 beforeEach(async () => {
-  await Account.remove({})
+  await Account.deleteMany({})
+  await Wish.deleteMany({})
 })
 
 describe('Sanity test express', () => {
@@ -65,5 +67,19 @@ describe('auth', () => {
 
       expect(badRegisterResponse.statusCode).toEqual(500)
     })
+  })
+})
+
+describe('a wish', () => {
+  it('should be added and retrieved', async () => {
+    const wishType = 'go'
+    const wish = new Wish()
+    wish.type = wishType
+    await wish.save()
+
+    const wishList = await Wish.find({})
+
+    expect(wishList.length).toBe(1)
+    expect(wishList[0].type).toBe(wishType)
   })
 })

@@ -1,0 +1,63 @@
+@import "../../styles/colors";
+
+#SplashScreen {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: $light-blue;
+  color: $dark-blue;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  padding: 2.5em;
+  box-sizing: border-box;
+
+  h1 {
+    font-size: 3.5em;
+  }
+
+  .header-title {
+    align-self: center;
+    font-size: 5em;
+  }
+
+  img.header-make-a-wish-logo {
+    max-height: 3em;
+  }
+
+  @font-face {
+    font-family: 'Arial Rounded MT Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Arial Rounded MT Bold'), url('../../assets/fonts/ARLRDBD_0.woff') format('woff');
+}
+  
+  img.header-galaxy-logo {
+    max-height: 7em;
+  }
+
+  .wish-input {
+    text-align: center;
+    font-size: 1.6em;
+    font-weight: bold;
+    margin: 2em 0;
+
+    input {
+      border: 2px solid $medium-blue;
+      border-radius: 3px;
+      padding: .8em;
+      font-size: .9em;
+    }
+
+    input::placeholder {
+      color: $rose;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    .age-input {
+      width: 4.2em;
+    }
+  }
+}

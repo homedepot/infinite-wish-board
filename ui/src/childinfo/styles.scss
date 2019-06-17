@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css?family=B612+Mono&display=swap');
+:root{
+    --light-blue: #87cacf;
+    --medium-blue: #2e6fb3;
+    --dark-blue: #2d348d;
+    --yellow: #f8e94d;
+    --pink: #d9318a;
+
+}
+.childInfo {
+    height: 5000px;
+}
+
+body{
+
+    margin: 0;
+    padding: 0;
+    background: url('../../src/assets/space-background.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.progress{
+    font-family: 'B612 Mono', sans-serif;
+    size: 0.75em;
+    opacity: 100%;
+}
+
+.spotlight {
+    box-shadow: var(--yellow) 12px 7px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.7);
+
+    color: var(--yellow);
+
+    opacity: 0.93;
+    height: 10em;
+    width: 4em;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    margin-right: -70%;
+    transform: translate(-50%, -50%)
+}
+
+
+.text-name{
+    font-family: 'B612 Mono', sans-serif;
+    opacity: 1;
+    margin-top: 0;
+    font-size: 1.20rem;
+    color: var(--yellow);
+
+}
+.input-value{
+
+    font-family: 'B612 Mono', sans-serif;
+    box-shadow: var(--yellow) 5px 3px;
+    opacity: 0.95;
+    height: 1.25rem;
+    -moz-border-radius-bottomleft: 20px;
+    -moz-border-radius-topleft: 5px;
+    width: 300px;
+    color: #0156B8;
+    border-color: #ffffff;
+    border-radius: 20px 20px 0px 0px;
+}
+
+
+.next-button{
+    font-family: 'B612 Mono', sans-serif;
+    box-shadow: var(--yellow) 5px 3px;
+    background-color: black !important;
+    color: var(--yellow) !important;
+    border-color: black;
+    height: 1.25rem;
+    width: 305px;
+    border-radius: 0px 0px 20px 20px;
+
+}
+
+.inner {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    max-width: 75rem;
+    width: calc(100% - 4rem);
+}
+.rocketPage{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.rocket-blast-off-button {
+    font-family: 'B612 Mono', sans-serif;
+    background-color: black !important;
+    color: var(--yellow);
+    border-color: yellow;
+    border-radius: 30px;
+    padding: 15px;
+    outline: none;
+    font-size: 1.2em;
+}
+
+.rocket {
+    height: 200px;
+    position: relative;
+    z-index: 5;
+}
+
+.rocket-launch {
+    object-fit: cover;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+    animation-name: rocket-launch;
+    animation-duration: 5s;
+  }
+  
+  @keyframes rocket-launch {
+    0% {
+        -webkit-transform: translateY(0px);
+    }
+    100% {
+        -webkit-transform: translateY(-100vh);
+    }
+}
+
+.second{
+    background-color: var(--light-blue);
+}
+
+.wishId{
+    font-family: 'B612 Mono', sans-serif;
+    color: var(--yellow);
+    text-align: center;
+    background-color: black;
+    opacity: 0.93;
+    margin-top: 17%;
+}

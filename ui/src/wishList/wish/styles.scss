@@ -1,0 +1,51 @@
+@import '../../styles/colors.scss';
+
+.wish {
+  padding: 1em;
+  border-radius: .25em;
+  border: 1px solid $light-gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 6px -6px $light-gray;
+  margin-bottom: 0.6em;
+
+  .date {
+    width: 2.5em;
+    height: 2.5em;
+    border: 0.4em solid $medium-blue;
+    border-top: 1em solid $medium-blue;
+    border-radius: .5em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+  }
+
+  .summary {
+    font-size: .7em;
+  }
+
+  .sponsor {
+    border-right: 1px solid $light-gray;
+    border-left: 1px solid $light-gray;
+    padding: 2em;
+  }
+
+  .wish-chevron {
+    color: $medium-blue;
+    font-size: 1.2em;
+  }
+
+  .wish-type-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 60px;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+@import '../styles/colors.scss';
+
+.wish-details-page {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #87cacf;
+    color: #2d348d;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    padding: 2.5em;
+    box-sizing: border-box;
+
+    .childDetails label {
+        font-weight: bold;
+    }
+
+    input, textarea {
+        border: 2px solid $medium-blue;
+        border-radius: 3px;
+        padding: .8em;
+        font-size: .9em;
+        background: $lighter-gray;
+    }
+
+    input::placeholder {
+        color: $rose;
+        font-weight: bold;
+    }
+
+    .wishDetails {
+        flex-wrap: wrap;
+    }
+
+    .wish-type-img {
+        width: 10em;
+        height: 10em;
+    }
+
+    .imageFrame {
+        width: 7em;
+        height: 7em;
+        border-radius: 50%;
+        border: 5px solid #ccc;
+        box-shadow: 0px 1px 14px #8a8a8a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ccc;
+
+        .camera-icon {
+            font-size: 3em;
+            color: #777;
+        }
+    }
+
+    textarea {
+        height: 4em;
+        width: 23em;
+    }
+}
+
+.back-to-summary-link-container {
+    margin-bottom: 1em;
+}
+
+.wish-details-container {
+    margin-top: 3em;
+    display: flex;
+    flex-direction: start;
+}
