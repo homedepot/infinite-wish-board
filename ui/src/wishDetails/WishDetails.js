@@ -5,6 +5,10 @@ import Rocket from '../assets/images/icn_To_Go_Rocket_White_Inside_130x130.png'
 import Alien from '../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
 import Astronaut from '../assets/images/icn_To_Be_Astronaut_White_Inside_130x130.png'
 import Telescope from '../assets/images/icn_To_See_Telescope_White_Inside_130x130.png'
+import './styles.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import WishHeader from '../wishList/wishHeader'
 
 export default class WishDetails extends Component {
   constructor(props) {
@@ -67,38 +71,48 @@ export default class WishDetails extends Component {
     const { name, age, hometown } = child;
 
     return (
-      <div className='wishDetails containerVertical'>
-        <Link to="/wish-summary">Back to Summary</Link>
-        <div className='containerHorizontal'>
-          <div className='containerVertical'>
-            <div className='childDetails'>
-              <label>Name: </label><span>{name}</span>
-              <label>Age: </label><span>{age}</span>
-              <label>Hometown: </label><span>{hometown}</span>
-            </div>
-            <div className='illness-summary containerVertical'>
-              <h3>Illness Summary</h3>
-              <p>
-                {child.illness}
-              </p>
-            </div>
+      <div className='wish-details-page'>
+        <WishHeader />
+        <div className='back-to-summary-link-container'>
+            <Link to="/wish-summary">Back to Summary</Link>
           </div>
-
-          <div className='sponsor-info containerVertical'>
-            <h2>Sponsor</h2>
-            <p>{sponsor.name}</p>
+        <div className='wishDetails containerHorizontal evenSpacing'>
+          <div>
+            <div className="imageFrame">
+              <FontAwesomeIcon icon={faCamera} className="camera-icon" />
+            </div>
+            <p>Upload Image</p>
+          </div>
+          <div className='childDetails containerVertical'>
+            <div><span>{name}</span></div>
+            <div><label>Age: </label><span>{age}</span></div>
+            <div><label>Hometown: </label><span>{hometown}</span></div>
+            <h3>Illness Summary</h3>
+            <textarea value={child.illness}>
+            </textarea>
+            <h4>Parent's Name:</h4>
+            <input />
+            <h4>Contact Info:</h4>
+            <input />
+          </div>
+          <div>
+              <h3>Sponsor Details</h3>
+              <div className="imageFrame">
+                <FontAwesomeIcon icon={faCamera} className="camera-icon" />
+              </div>
+              <p>Upload Sponsor's Logo</p>
+              <p>{sponsor.name}</p>
           </div>
         </div>
-
-        <div className='containerHorizontal'>
-          <div className='wish-type containerVertical'>
-            <img src={this.getImageByType()} alt={Rocket} />
+        <div className='wish-details-container containerHorizontal'>
+            <div className='wish-type containerVertical'>
+              <img src={this.getImageByType()} alt={Rocket} className="wish-type-img" />
+            </div>
+            <div className='wish-details containerVertical'>
+              <h3>Wish Details</h3>
+              <textarea value={details}></textarea>
+            </div>
           </div>
-          <div className='wish-details containerVertical'>
-            <h3>Wish Details</h3>
-            <p>{details}</p>
-          </div>
-        </div>
       </div>
     )
   }
