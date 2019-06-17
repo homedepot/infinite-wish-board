@@ -41,7 +41,7 @@ class Login extends Component {
     const { username, password } = this.state
 
     try {
-      const response = await axios
+      await axios
         .create({ withCredentials: true })
         .post(`${this.expressDomain}/auth/login`, {
           username,
