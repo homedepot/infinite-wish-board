@@ -1,0 +1,18 @@
+.wish-details-page {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #87cacf;
+    color: #2d348d;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    padding: 2.5em;
+    box-sizing: border-box;
+}
+
+.back-to-summary-link-container {
+    margin-bottom: 3em;
+}
+
+.wish-details-container {
+    margin-top: 3em;
+}

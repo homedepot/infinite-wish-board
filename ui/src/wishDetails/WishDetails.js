@@ -5,6 +5,7 @@ import Rocket from '../assets/images/icn_To_Go_Rocket_White_Inside_130x130.png'
 import Alien from '../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
 import Astronaut from '../assets/images/icn_To_Be_Astronaut_White_Inside_130x130.png'
 import Telescope from '../assets/images/icn_To_See_Telescope_White_Inside_130x130.png'
+import './WishDetails.css';
 
 export default class WishDetails extends Component {
   constructor(props) {
@@ -67,14 +68,17 @@ export default class WishDetails extends Component {
     const { name, age, hometown } = child;
 
     return (
+      <div className='wish-details-page'>
       <div className='wishDetails containerVertical'>
-        <Link to="/wish-summary">Back to Summary</Link>
-        <div className='containerHorizontal'>
+        <div className='back-to-summary-link-container'>
+          <Link to="/wish-summary">Back to Summary</Link>
+        </div>
+        <div className='containerHorizontal evenSpacing'>
           <div className='containerVertical'>
-            <div className='childDetails'>
-              <label>Name: </label><span>{name}</span>
-              <label>Age: </label><span>{age}</span>
-              <label>Hometown: </label><span>{hometown}</span>
+            <div className='childDetails containerVertical'>
+              <div><label>Name: </label><span>{name}</span></div>
+              <div><label>Age: </label><span>{age}</span></div>
+              <div><label>Hometown: </label><span>{hometown}</span></div>
             </div>
             <div className='illness-summary containerVertical'>
               <h3>Illness Summary</h3>
@@ -90,7 +94,7 @@ export default class WishDetails extends Component {
           </div>
         </div>
 
-        <div className='containerHorizontal'>
+        <div className='wish-details-container containerHorizontal'>
           <div className='wish-type containerVertical'>
             <img src={this.getImageByType()} alt={Rocket} />
           </div>
@@ -99,6 +103,7 @@ export default class WishDetails extends Component {
             <p>{details}</p>
           </div>
         </div>
+      </div>
       </div>
     )
   }
