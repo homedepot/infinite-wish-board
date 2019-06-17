@@ -65,7 +65,7 @@ describe('WishSummary tests', () => {
           checked: true
         }
       }
-      await wrapper.instance().filterWishes(clickEvt1);
+      await wrapper.instance().filterWishesByType(clickEvt1);
       expect(wrapper.instance().state.typeFilters).toEqual(['go']);
       let clickEvt2 = {
         target: {
@@ -73,10 +73,10 @@ describe('WishSummary tests', () => {
           checked: true
         }
       }
-      await wrapper.instance().filterWishes(clickEvt2);
+      await wrapper.instance().filterWishesByType(clickEvt2);
       expect(wrapper.instance().state.typeFilters).toEqual(['go', 'meet']);
       clickEvt1.target.checked = false
-      await wrapper.instance().filterWishes(clickEvt1);
+      await wrapper.instance().filterWishesByType(clickEvt1);
       expect(wrapper.instance().state.typeFilters).toEqual(['meet']);
     });
   })
