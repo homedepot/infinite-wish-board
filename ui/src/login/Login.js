@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Login.css'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
+import { Header } from '../header/index'
 
 class Login extends Component {
   constructor(props) {
@@ -59,8 +60,8 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Welcome to the Make-A-Wish Hackathon starter!!</h1>
+      <div className={'login-page'} >
+        <Header />
         <div className={'login-container'}>
           <div>
             <h2>Register</h2>
