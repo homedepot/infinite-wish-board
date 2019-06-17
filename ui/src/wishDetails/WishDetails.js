@@ -6,6 +6,8 @@ import Alien from '../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
 import Astronaut from '../assets/images/icn_To_Be_Astronaut_White_Inside_130x130.png'
 import Telescope from '../assets/images/icn_To_See_Telescope_White_Inside_130x130.png'
 import './styles.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import WishHeader from '../wishList/wishHeader'
 
 export default class WishDetails extends Component {
@@ -71,41 +73,46 @@ export default class WishDetails extends Component {
     return (
       <div className='wish-details-page'>
         <WishHeader />
-        <div className='wishDetails containerVertical'>
-          <div className='back-to-summary-link-container'>
+        <div className='back-to-summary-link-container'>
             <Link to="/wish-summary">Back to Summary</Link>
           </div>
-          <div className='containerHorizontal evenSpacing'>
-            <div className='containerVertical'>
-              <div className='childDetails containerVertical'>
-                <div><label>Name: </label><span>{name}</span></div>
-                <div><label>Age: </label><span>{age}</span></div>
-                <div><label>Hometown: </label><span>{hometown}</span></div>
-              </div>
-              <div className='illness-summary containerVertical'>
-                <h3>Illness Summary</h3>
-                <p>
-                  {child.illness}
-                </p>
-              </div>
+        <div className='wishDetails containerHorizontal evenSpacing'>
+          <div>
+            <div className="imageFrame">
+              <FontAwesomeIcon icon={faCamera} className="camera-icon" />
             </div>
-
-            <div className='sponsor-info containerVertical'>
-              <h2>Sponsor</h2>
-              <p>{sponsor.name}</p>
-            </div>
+            <p>Upload Image</p>
           </div>
-
-          <div className='wish-details-container containerHorizontal'>
+          <div className='childDetails containerVertical'>
+            <div><span>{name}</span></div>
+            <div><label>Age: </label><span>{age}</span></div>
+            <div><label>Hometown: </label><span>{hometown}</span></div>
+            <h3>Illness Summary</h3>
+            <textarea value={child.illness}>
+            </textarea>
+            <h4>Parent's Name:</h4>
+            <input />
+            <h4>Contact Info:</h4>
+            <input />
+          </div>
+          <div>
+              <h3>Sponsor Details</h3>
+              <div className="imageFrame">
+                <FontAwesomeIcon icon={faCamera} className="camera-icon" />
+              </div>
+              <p>Upload Sponsor's Logo</p>
+              <p>{sponsor.name}</p>
+          </div>
+        </div>
+        <div className='wish-details-container containerHorizontal'>
             <div className='wish-type containerVertical'>
-              <img src={this.getImageByType()} alt={Rocket} />
+              <img src={this.getImageByType()} alt={Rocket} className="wish-type-img" />
             </div>
             <div className='wish-details containerVertical'>
               <h3>Wish Details</h3>
-              <p>{details}</p>
+              <textarea value={details}></textarea>
             </div>
           </div>
-        </div>
       </div>
     )
   }
