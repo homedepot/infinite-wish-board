@@ -131,7 +131,7 @@ describe('Wish route', () => {
 
     const action = async () => {
       expect(putResponse.status).toBe(200)
-      expect(putResponse.body.child.firstName).toBe(secondWish.child.firstName)
+      expect(putResponse.body.child.name).toBe(secondWish.child.name)
     }
 
     await util.retry(action, 5, 500)
