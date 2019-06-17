@@ -12,13 +12,15 @@ const makeAWish = async(wish) => {
   return response.data;
 }
 
-export const getWishes = async () => {
+export const getWishes = async (types) => {
+  let typeParams = types && types.length ? `?types=${types.toString()}` : '';
   // TODO query param options
-  const { data } = await axios.get(`${expressDomain}/wishes`)
+  const { data } = await axios.get(`${expressDomain}/wishes${typeParams}`)
   return data
 }
 
 export default {
   getWishDetails,
-  makeAWish
+  makeAWish,
+  getWishes
 }

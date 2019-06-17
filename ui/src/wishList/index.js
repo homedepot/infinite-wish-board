@@ -11,17 +11,29 @@ export default class WishList extends Component {
     super(props)
 
     this.state = {
-      wishes: []
+      wishes: [],
+      typeFilters: []
     }
   }
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     const wishes = await getWishes()
     this.setState({ wishes })
   }
 
-  filterWishes = (e) => {
-    //TODO
+  filterWishes = async (e) => {
+    let { typeFilters } = this.state
+    if(e.target.checked) {
+      typeFilters.push(e.target.id)
+    }
+    else {
+      typeFilters = typeFilters.filter(type => type !== e.target.id)
+    }
+    let wishes = await getWishes(typeFilters);
+    this.setState({
+      wishes,
+      typeFilters
+    })
   }
 
   render() {
