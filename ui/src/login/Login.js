@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Login.css'
+import './styles.scss'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { Header } from '../header/index'
@@ -47,9 +47,6 @@ class Login extends Component {
           username,
           password
         })
-
-      console.log(`User profile is: ${response.body}`)
-
       this.props.history.push('/landing')
     } catch (e) {}
   }
@@ -60,11 +57,11 @@ class Login extends Component {
 
   render() {
     return (
-      <div className={'login-page'} >
+      <div className='login-page' >
         <Header />
-        <div className={'login-container'}>
+        <div className='login-container'>
           <div>
-            <h2>Register</h2>
+            <h2>New User?</h2>
             <form
               className="registration-form"
               onSubmit={this.createUser}
@@ -102,12 +99,12 @@ class Login extends Component {
                   this.handleFormFieldChange('password', event)
                 }
               />
-              <input type="submit" value="Submit!" />
+              <input type="submit" value="Register" className="form-submit-btn" />
             </form>
           </div>
 
           <div>
-            <h2>Login</h2>
+            <h2>Have an account?</h2>
             <form
               className="login-form"
               onSubmit={this.loginUser}
@@ -129,7 +126,7 @@ class Login extends Component {
                   this.handleFormFieldChange('password', event)
                 }
               />
-              <input type="submit" value="Submit!" />
+              <input type="submit" value="Sign In" className="form-submit-btn" />
             </form>
           </div>
         </div>

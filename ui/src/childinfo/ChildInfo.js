@@ -146,7 +146,7 @@ export default class ChildInfo extends Component {
               </body>
               :
               <body>
-              <div class="RocketPage">
+              <div className="RocketPage">
                 <img className={this.state.launchRocket ? 'rocket-launch' : 'rocket'} src={rocketImage} alt={rocketImage} />
                 <button className='rocket-blast-off-button' onClick={this.rocketBlastOff} disabled={this.state.launchRocket}>Fulfill my wish</button>
               </div>

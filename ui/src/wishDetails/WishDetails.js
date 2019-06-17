@@ -5,7 +5,8 @@ import Rocket from '../assets/images/icn_To_Go_Rocket_White_Inside_130x130.png'
 import Alien from '../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
 import Astronaut from '../assets/images/icn_To_Be_Astronaut_White_Inside_130x130.png'
 import Telescope from '../assets/images/icn_To_See_Telescope_White_Inside_130x130.png'
-import './WishDetails.css';
+import './styles.scss';
+import WishHeader from '../wishList/wishHeader'
 
 export default class WishDetails extends Component {
   constructor(props) {
@@ -69,41 +70,42 @@ export default class WishDetails extends Component {
 
     return (
       <div className='wish-details-page'>
-      <div className='wishDetails containerVertical'>
-        <div className='back-to-summary-link-container'>
-          <Link to="/wish-summary">Back to Summary</Link>
-        </div>
-        <div className='containerHorizontal evenSpacing'>
-          <div className='containerVertical'>
-            <div className='childDetails containerVertical'>
-              <div><label>Name: </label><span>{name}</span></div>
-              <div><label>Age: </label><span>{age}</span></div>
-              <div><label>Hometown: </label><span>{hometown}</span></div>
+        <WishHeader />
+        <div className='wishDetails containerVertical'>
+          <div className='back-to-summary-link-container'>
+            <Link to="/wish-summary">Back to Summary</Link>
+          </div>
+          <div className='containerHorizontal evenSpacing'>
+            <div className='containerVertical'>
+              <div className='childDetails containerVertical'>
+                <div><label>Name: </label><span>{name}</span></div>
+                <div><label>Age: </label><span>{age}</span></div>
+                <div><label>Hometown: </label><span>{hometown}</span></div>
+              </div>
+              <div className='illness-summary containerVertical'>
+                <h3>Illness Summary</h3>
+                <p>
+                  {child.illness}
+                </p>
+              </div>
             </div>
-            <div className='illness-summary containerVertical'>
-              <h3>Illness Summary</h3>
-              <p>
-                {child.illness}
-              </p>
+
+            <div className='sponsor-info containerVertical'>
+              <h2>Sponsor</h2>
+              <p>{sponsor.name}</p>
             </div>
           </div>
 
-          <div className='sponsor-info containerVertical'>
-            <h2>Sponsor</h2>
-            <p>{sponsor.name}</p>
+          <div className='wish-details-container containerHorizontal'>
+            <div className='wish-type containerVertical'>
+              <img src={this.getImageByType()} alt={Rocket} />
+            </div>
+            <div className='wish-details containerVertical'>
+              <h3>Wish Details</h3>
+              <p>{details}</p>
+            </div>
           </div>
         </div>
-
-        <div className='wish-details-container containerHorizontal'>
-          <div className='wish-type containerVertical'>
-            <img src={this.getImageByType()} alt={Rocket} />
-          </div>
-          <div className='wish-details containerVertical'>
-            <h3>Wish Details</h3>
-            <p>{details}</p>
-          </div>
-        </div>
-      </div>
       </div>
     )
   }
