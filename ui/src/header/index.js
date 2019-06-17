@@ -5,7 +5,15 @@ import './styles.scss'
 
 export const Header = () => (
   <div id="makeAWishHeader">
-    <span className="header-title">Hello!</span>
+    <div class="header-title">
+      <div class="slidingVertical">
+        <span>Hello!</span>
+        <span>Bonjour!</span>
+        <span>Hola!</span>
+        <span>你好</span>
+        <span>こんにちは</span>
+      </div>
+    </div>
     <img className="header-make-a-wish-logo" src={MakeAWishLogo} alt="Make a Wish" />
     <img className="header-galaxy-logo" src={GalaxyLogo} alt="Galaxy Logo" />
   </div>
