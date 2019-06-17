@@ -9,34 +9,67 @@ jest.mock('../services/WishDetailsService')
 describe('WishSummary tests', () => {
   const mockWishList = [
     {
-      'child': {
-        'name': 'Jerel Weber',
-        'age': 5,
-        'hometown': 'North Robertside',
-        'illness': 'SMTP'
+      "child": {
+        "name": "corey",
+        "hometown": "smyrna",
+        "illness": "non-absorbent",
+        "age": 15
       },
-      'sponsor': {
-        'links': []
+      "sponsor": {
+        "links": [
+          
+        ],
+        "name": "Home Depot",
+        "logo": "HD"
       },
-      '_id': '5d0528c11170183ea576e3da',
-      'type': 'be',
-      'details': 'overriding calculating Shirt',
-      '__v': 0
+      "_id": "5d070b90db7b540028dea1c3",
+      "type": "be",
+      "details": "dfehjhgjhgjdf",
+      "createdAt": "2019-06-17T03:40:00.105Z",
+      "updatedAt": "2019-06-17T03:40:00.105Z",
+      "__v": 0
     },
     {
-      'child': {
-        'name': 'Meta Brakus',
-        'age': 16,
-        'hometown': 'Rauburgh',
-        'illness': 'Exclusive'
+      "child": {
+        "name": "mina",
+        "hometown": "marie",
+        "illness": "non-absorbent",
+        "age": 10
       },
-      'sponsor': {
-        'links': []
+      "sponsor": {
+        "links": [
+          
+        ],
+        "name": "Home Depot",
+        "logo": "HD"
       },
-      '_id': '5d0528c11170183ea576e3db',
-      'type': 'meet',
-      'details': 'Officer application Borders',
-      '__v': 0
+      "_id": "5d070b9adb7b540028dea1c4",
+      "type": "see",
+      "details": "dfehjhgjhgjdf",
+      "createdAt": "2019-06-17T03:40:10.083Z",
+      "updatedAt": "2019-06-17T03:40:10.083Z",
+      "__v": 0
+    },
+    {
+      "child": {
+        "name": "john",
+        "hometown": "sammie",
+        "illness": "non-absorbent",
+        "age": 10
+      },
+      "sponsor": {
+        "links": [
+          
+        ],
+        "name": "Home Depot",
+        "logo": "HD"
+      },
+      "_id": "5d070ba5db7b540028dea1c5",
+      "type": "go",
+      "details": "dfehjhgjhgjdf",
+      "createdAt": "2019-06-17T03:40:21.782Z",
+      "updatedAt": "2019-06-17T03:40:21.782Z",
+      "__v": 0
     }
   ]
 
@@ -51,11 +84,11 @@ describe('WishSummary tests', () => {
 
     const wrapper = await shallow(<WishSummary />)
     const wishes = wrapper.find(Wish)
-    expect(wishes.length).toEqual(2)
+    expect(wishes.length).toEqual(3)
   })
 
   describe('filter by wish types', () => {
-    it('should update wishes when filterWishes called', async () => {
+    it('should update typeFilters when filterWishesByType called', async () => {
       getWishes.mockImplementation(() => mockWishList)
       const wrapper = shallow(<WishSummary />)
       expect(wrapper.instance().state.typeFilters).toEqual([])
@@ -78,6 +111,63 @@ describe('WishSummary tests', () => {
       clickEvt1.target.checked = false
       await wrapper.instance().filterWishesByType(clickEvt1);
       expect(wrapper.instance().state.typeFilters).toEqual(['meet']);
+    });
+  })
+
+  describe('when filterWishes func called by name', () => {
+    let wrapper
+    beforeEach(() => {
+       getWishes.mockImplementation(() => mockWishList)
+       wrapper = shallow(<WishSummary />)
+    })
+
+    it('should update filterWishes by name', async () => {
+      let clickEvt = {
+        target: {
+          value: 'corey'
+        }
+      }
+      
+      wrapper.instance().filterWishes(clickEvt);
+      expect(wrapper.instance().state.filteredWishes).toEqual([mockWishList[0]]);
+    });
+  })
+
+  describe('when filterWishes func called by hometown', () => {
+    let wrapper
+    beforeEach(() => {
+       getWishes.mockImplementation(() => mockWishList)
+       wrapper = shallow(<WishSummary />)
+    })
+
+    it('should update filterWishes by hometown', async () => {
+      let clickEvt = {
+        target: {
+          value: 'sammie'
+        }
+      }
+      
+      wrapper.instance().filterWishes(clickEvt);
+      expect(wrapper.instance().state.filteredWishes).toEqual([mockWishList[2]]);
+    });
+  })
+
+  describe('when filterWishes func called by sponsor', () => {
+    let wrapper
+    beforeEach(() => {
+       getWishes.mockImplementation(() => mockWishList)
+       wrapper = shallow(<WishSummary />)
+    })
+
+    it('should update filterWishes by sponsor', async () => {
+      let clickEvt = {
+        target: {
+          value: 'Home Depot'
+        }
+      }
+      
+      wrapper.instance().filterWishes(clickEvt);
+      expect(wrapper.instance().state.filteredWishes).toEqual(mockWishList);
     });
   })
 
