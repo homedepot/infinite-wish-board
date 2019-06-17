@@ -64,8 +64,8 @@ export default class ChildInfo extends Component {
       });
     } else {
 
-      const { name, age, homeTown, illness, details } = this.state
-      const { type } = this.props
+      const { homeTown, illness, details } = this.state
+      const { name, age, type } = this.props
 
       const wish = {
         child: {
