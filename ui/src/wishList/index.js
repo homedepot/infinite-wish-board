@@ -12,16 +12,17 @@ export default class WishList extends Component {
 
     this.state = {
       wishes: [],
-      typeFilters: []
+      typeFilters: [],
+      filteredWishes: []
     }
   }
 
   async componentDidMount() {
     const wishes = await getWishes()
-    this.setState({ wishes })
+    this.setState({ wishes, filteredWishes: wishes })
   }
 
-  filterWishes = async (e) => {
+  filterWishesByType = async (e) => {
     let { typeFilters } = this.state
     if(e.target.checked) {
       typeFilters.push(e.target.id)
@@ -29,23 +30,36 @@ export default class WishList extends Component {
     else {
       typeFilters = typeFilters.filter(type => type !== e.target.id)
     }
-    let wishes = await getWishes(typeFilters);
+    let filteredWishes = await getWishes(typeFilters);
     this.setState({
-      wishes,
+      filteredWishes,
       typeFilters
     })
   }
 
+  filterWishes = (e) => {
+    const wishFilter = e.target.value;
+    let filteredWishes = this.state.wishes;
+    filteredWishes = filteredWishes.filter((wish) => {
+      let wishItem = wish.child.name.toLowerCase() + wish.sponsor.name.toLowerCase() + wish.child.hometown.toLowerCase();
+      return wishItem.indexOf(
+        wishFilter.toLowerCase()) !== -1
+    })
+    this.setState({
+      filteredWishes
+    })
+  }
+
   render() {
-    const { wishes } = this.state
-    const wishList = wishes.map(wish => {
+    const { filteredWishes } = this.state
+    const wishList = filteredWishes.map(wish => {
       return <Wish key={wish._id} wish={wish} history={this.props.history} />
     })
 
     return (
       <div id="WishList">
         <WishHeader />
-        <WishFilter onChangeSearch={this.filterWishes} />
+        <WishFilter handleFilterSearch={this.filterWishes} handleCheckboxChange={this.filterWishesByType} />
         <ul>
           {wishList}
         </ul>
