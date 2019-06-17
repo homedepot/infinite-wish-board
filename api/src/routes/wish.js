@@ -30,6 +30,7 @@ wishRouter.route('/')
     const beginDate = req.query.beginDate;
     const endDate = req.query.endDate;
     const types = req.query.types;
+    const sort = req.query.sort;
 
     query = [];
     if (beginDate) {
@@ -54,9 +55,60 @@ wishRouter.route('/')
       query.push({ '$or': typeQuery })
     }
 
-    res.send(await Wish.find({
+    const sorter = (() => {
+      if (sort === 'asc') {
+        return { updatedAt: 1 }
+      } else if (sort === 'desc') {
+        return { updatedAt: -1 }
+      } else {
+        return {}
+      }
+    })()
+
+    const rs = await Wish.find({
       '$and': query
-    }))
+    }).sort(sorter)
+
+    if (sort) {
+      const groupedWishes = []
+      let currentGroup = null
+      let prevYear = null;
+      let prevMonth = null;
+
+      function yearMonthMatch(year, month) {
+        // probably the first time, so no match
+        if (prevYear === null || prevMonth === null) {
+          return false
+        }
+        return (prevYear === year && prevMonth === month)
+      }
+
+      rs.forEach(wish => {
+        const year = (new Date(wish.updatedAt)).getFullYear()
+        const month = (new Date(wish.updatedAt)).getMonth() + 1
+        if (!yearMonthMatch(year, month)) {
+          if (currentGroup) {
+            groupedWishes.push({
+              year: prevYear,
+              month: prevMonth,
+              wishes: currentGroup,              
+            })
+          }
+          currentGroup = []
+          prevYear = year
+          prevMonth = month
+        }
+        currentGroup.push(wish)      
+      })
+      groupedWishes.push({
+        year: prevYear,
+        month: prevMonth,
+        wishes: currentGroup,              
+      })
+      res.send(groupedWishes)
+    } else {
+      res.send(rs)
+    }
   })
   .post((req, res) => {
     let wish = new Wish(req.body)
