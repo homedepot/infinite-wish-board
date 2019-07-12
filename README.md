@@ -1,14 +1,14 @@
-# hackathon-purple-parrots
+# Infinite Wish Board
 create-react-app + expressjs + mongodb + docker-compose!!
 
 [![Node.JS Version](https://img.shields.io/badge/node.js-12.4.0-00ADD8.svg?style=flat)](https://nodejs.org/en/) 
-[![Code Coverage](https://img.shields.io/codecov/c/github/homedepot/hackathon-purple-parrots.svg?style=flat)](https://codecov.io/gh/homedepot/hackathon-purple-parrots)
-[![Build Status](https://travis-ci.org/homedepot/hackathon-purple-parrots.svg?branch=master)](https://travis-ci.org/homedepot/hackathon-purple-parrots)
+[![Code Coverage](https://img.shields.io/codecov/c/github/homedepot/infinite-wish-board.svg?style=flat)](https://codecov.io/gh/homedepot/infinite-wish-board)
+[![Build Status](https://travis-ci.org/homedepot/infinite-wish-board.svg?branch=master)](https://travis-ci.org/homedepot/infinite-wish-board)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](LICENSE)
 
 ## Quick Setup
 
-This purple-parrots application uses docker-compose to get the entire environment setup off of the ground.
+Infinite Wish Board uses docker-compose to get the entire environment setup off of the ground.
 
 The tech stack is: 
 
