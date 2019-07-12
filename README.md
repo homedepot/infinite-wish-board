@@ -22,7 +22,7 @@ If you don't have docker installed, install [docker desktop](https://www.docker.
 
 From there, clone the repository into your workspace of choice. 
 
-Finally, make sure you are on public wifi and then run the following command from your favorite terminal: 
+Finally, run the following command from your favorite terminal: 
 
 ```
 docker-compose down && docker-compose build && docker-compose up
