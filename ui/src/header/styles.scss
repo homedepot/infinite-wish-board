@@ -1,22 +1,26 @@
-#makeAWishHeader {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2em;
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 
-  .header-galaxy-logo {
-    max-height: 7em;
+  .header-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
-  .header-title {
-    margin-right: 2em;
+  .header-galaxy-logo {
+    max-height: 6em;
+  }
+
+  .logo-container, .galaxy-logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   /*Vertical Sliding*/
   .slidingVertical{
-    display: inline;
-    text-indent: 8px;
+    font-size: 2em;
   }
   .slidingVertical span{
     animation: topToBottom 12.5s linear infinite 0s;
