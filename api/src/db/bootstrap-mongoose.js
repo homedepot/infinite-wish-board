@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const mongoDB = process.env.mongoUrl || 'mongodb://mongo/my_database'
+const mongoDB = process.env.mongoUrl || 'mongodb://localhost/my_database'
 
 mongoose.connect(mongoDB, { useNewUrlParser: true })
 

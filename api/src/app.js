@@ -2,11 +2,11 @@ const express = require('express')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const session = require('cookie-session')
-const bodyParser = require('body-parser')
 const compression = require('compression')
 const errorHandler = require('api-error-handler')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const graphql = require('./graphql')
 
 const index = require('./routes')
 const auth = require('./routes/auth')
@@ -32,8 +32,6 @@ app.use(
 )
 
 app.use(logger('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use(session({ keys: [process.env.cookieSigningKey || 'secretkey1'] }))
@@ -60,6 +58,9 @@ app.use((req, res, next) => {
   err.status = 404
   next(err)
 })
+
+// GraphQL
+graphql(app);
 
 // error handler
 app.use(errorHandler())
