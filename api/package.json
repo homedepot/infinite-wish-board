@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "api-error-handler": "^1.0.0",
+    "apollo-server": "^2.8.1",
+    "apollo-server-express": "^2.8.1",
     "body-parser": "~1.18.2",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.3",
@@ -17,6 +19,7 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "graphql": "^14.4.2",
     "mongoose": "^5.5.13",
     "morgan": "~1.9.0",
     "nodemon": "1.19.1",
