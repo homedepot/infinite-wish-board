@@ -6,16 +6,12 @@ const session = require('cookie-session')
 const bodyParser = require('body-parser')
 const compression = require('compression')
 const errorHandler = require('api-error-handler')
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+// const passport = require('passport')
+// const LocalStrategy = require('passport-local').Strategy
 
-const index = require('./routes')
-const auth = require('./routes/auth')
-const wish = require('./routes/wish')
 const cors = require('cors')
 const schema = require('./schema')
 const resolvers = require('./resolvers')
-const models = require('./models')
 
 const app = express()
 
@@ -52,7 +48,7 @@ app.use(
 // passport.serializeUser(Account.serializeUser())
 // passport.deserializeUser(Account.deserializeUser())
 
-// require('./db/bootstrap-mongoose')
+require('./db/bootstrap-mongoose')
 
 // app.use('/', index)
 // app.use('/auth', auth)
@@ -80,9 +76,6 @@ app.use(
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
-  context: {
-    models
-  }
 });
 
 server.applyMiddleware({ app, path: '/graphql' });

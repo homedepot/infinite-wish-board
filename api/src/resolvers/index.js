@@ -1,4 +1,4 @@
 const userResolvers = require('./user')
-const messageResolvers = require('./message')
+const wishResolvers = require('./wish')
 
-module.exports = [userResolvers, messageResolvers];
+module.exports = [userResolvers, wishResolvers];
