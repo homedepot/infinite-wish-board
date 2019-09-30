@@ -1,3 +1,5 @@
+![Hacktoberfest](https://hacktoberfest.digitalocean.com/assets/logo-hf19-header-8245176fe235ab5d942c7580778a914110fa06a23c3d55bf40e2d061809d8785.svg)
+
 # Infinite Wish Board
 create-react-app + expressjs + mongodb + docker-compose!!
 
@@ -5,6 +7,11 @@ create-react-app + expressjs + mongodb + docker-compose!!
 [![Code Coverage](https://img.shields.io/codecov/c/github/homedepot/infinite-wish-board.svg?style=flat)](https://codecov.io/gh/homedepot/infinite-wish-board)
 [![Build Status](https://travis-ci.org/homedepot/infinite-wish-board.svg?branch=master)](https://travis-ci.org/homedepot/infinite-wish-board)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](LICENSE)
+
+## What is Infinite Wish Board?
+
+It is a new digital experience for kids that visit the Make-A-Wish of Georgia office. We, at Home Depot, donated a complete office renovation to make the Georgia office more inviting to kids. As part of that makeover, we also agreed to add a new digital experience. This is that experience. 
+
 
 ## Quick Setup
 
@@ -38,4 +45,4 @@ is if you made changes to the package.json file in either ui or api.
 
 ## TODOs
 
-- Add captcha: https://github.com/appleboy/react-recaptcha
+See [issues](github.com/homedepot/infinite-wish-board/issues)

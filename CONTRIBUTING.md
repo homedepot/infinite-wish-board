@@ -18,6 +18,7 @@ Your contribution needs to meet the following standards:
 
 - Separate each logical change into its own commit.
 - Add a descriptive message for each commit. Follow commit message best practices.
+- If you are resolving an issue, mention the issue # in the commit body.
 - Document your pull requests. Include the reasoning behind each change and the testing done.
 - To the extent possible, follow existing code and documentation style and practices.
 
