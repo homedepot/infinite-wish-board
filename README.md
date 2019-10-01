@@ -25,11 +25,13 @@ The tech stack is:
 
 - [Mongodb](https://www.mongodb.com/) for database 
 
-If you don't have docker installed, install [docker desktop](https://www.docker.com/products/docker-desktop). 
+If you don't have docker installed, install [docker desktop](https://www.docker.com/products/docker-desktop).
 
-From there, clone the repository into your workspace of choice. 
+*NOTE:* If it's your first time installing Docker & you're on Windows, make sure the "Use Windows containers instead of Linux containers" checkbox is unchecked during setup, or you will run into an error when trying to build.
 
-Finally, run the following command from your favorite terminal: 
+From there, clone the repository into your workspace of choice.
+
+Finally, run the following command from your favorite terminal:
 
 ```
 docker-compose down && docker-compose build && docker-compose up
