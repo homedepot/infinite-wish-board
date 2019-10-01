@@ -45,4 +45,4 @@ is if you made changes to the package.json file in either ui or api.
 
 ## TODOs
 
-See [issues](github.com/homedepot/infinite-wish-board/issues)
+See [issues](https://github.com/homedepot/infinite-wish-board/issues)
