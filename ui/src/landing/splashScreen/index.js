@@ -17,7 +17,7 @@ export const Landing = ({ name, age, updateField, selectWishType }) => {
         <input data-test="age-input" placeholder="your age" type="number" className="age-input" onChange={(e) => updateField(ageField, e.target.value)} value={age}/>
         <span> years old!</span>
       </div>
-      <WishTypeList selectWishType={selectWishType}/>
+      <WishTypeList hidden={name === '' || age === ''} selectWishType={selectWishType} />
     </div>
   )
 }

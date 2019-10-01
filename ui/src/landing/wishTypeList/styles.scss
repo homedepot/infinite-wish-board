@@ -1,5 +1,14 @@
 @import "../../styles/colors";
 
+#WishTypeContainer {
+    transition: opacity 500ms ease-in-out;
+    opacity: 1;
+}
+
+#WishTypeContainer.hidden {
+    opacity: 0;
+}
+
 #WishTypeList {
     display: flex;
     flex-direction: row;

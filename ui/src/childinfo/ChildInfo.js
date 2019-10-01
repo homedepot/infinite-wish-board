@@ -46,7 +46,10 @@ export default class ChildInfo extends Component {
     }
   }
 
-  nextStep = async () => {
+  nextStep = async (e) => {
+    if (typeof e !== 'undefined') {
+      e.preventDefault();
+    }
     let stepMap = this.stepMapFunction();
     let { step } = this.state;
     if (step < Object.keys(stepMap).length - 1) {
@@ -130,13 +133,12 @@ export default class ChildInfo extends Component {
         <Fragment>
           {
             !showConfirmation ?
-              
               <body className="first">
               <div className='childInfo containerVertical spotlight inner'>
                 <p className='progress'>{step + 1} of {this.numSteps}</p>
                 <p className="text-name">{this.getTextField()}</p>
                 {step ? //first step should not have any input
-                  <form>
+                  <form onSubmit={this.nextStep}>
                     <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField} />
                   </form>
                   : ''
