@@ -6,7 +6,7 @@
     "start": "./startup.sh",
     "test": "NODE_ENV=test jest --coverage --forceExit",
     "test:watch": "NODE_ENV=test jest --watch",
-    "build": "sed -i.bak 's/{{MONGO_URL}}/'$prodMongoUrl'/g' app.yaml && sed -i.bak 's/{{CORS_DOMAIN}}/'$corsDomain'/g' app.yaml && sed -i.bak 's/{{COOKIE_SIGNING_KEY}}/'$cookieSigningKey'/g' app.yaml && sed -i.bak 's/{{RECAPTCHA_SECRET_KEY}}/'$recaptchaSecretKey'/g' app.yaml"
+    "build": "sed -i.bak 's#{{MONGO_URL}}#'$prodMongoUrl'#g' app.yaml && sed -i.bak 's/{{CORS_DOMAIN}}/'$corsDomain'/g' app.yaml && sed -i.bak 's/{{COOKIE_SIGNING_KEY}}/'$cookieSigningKey'/g' app.yaml && sed -i.bak 's/{{RECAPTCHA_SECRET_KEY}}/'$recaptchaSecretKey'/g' app.yaml"
   },
   "dependencies": {
     "api-error-handler": "^1.0.0",
