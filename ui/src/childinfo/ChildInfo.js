@@ -28,7 +28,7 @@ export default class ChildInfo extends Component {
     let { name } = this.props
     return {
       0: {
-        text: `Hi${name ? ` ${name}` : ''}, I have a few questions for you before we can make your wish come true!`,
+        text: `Hi, ${name ? ` ${name}` : ''}. I have a few questions for you before we can make your wish come true!`,
         input: ''
       },
       1: {

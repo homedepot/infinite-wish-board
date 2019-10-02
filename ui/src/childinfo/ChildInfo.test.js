@@ -82,7 +82,7 @@ describe('Initial Render', () => {
 
     it('Should update text on button click', async () => {
       let nextButton = childInfo.find('.next-button');
-      expect(childInfo.find('.text-name').text()).toEqual(`Hi ${testName}, I have a few questions for you before we can make your wish come true!`);
+      expect(childInfo.find('.text-name').text()).toEqual(`Hi, ${testName}. I have a few questions for you before we can make your wish come true!`);
       await nextButton.simulate('click');
       expect(childInfo.find('.text-name').text()).toEqual('Where are you from?');
       await nextButton.simulate('click');
