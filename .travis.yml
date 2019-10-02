@@ -33,4 +33,4 @@ deploy:
   keyfile: gae.json
   project: wishhack-hackathon
   on:
-    branch: release
+    branch: master
