@@ -1,146 +1,152 @@
 @import '../styles/colors.scss';
 
 .login-page {
-    display: grid;
-    width: 100vw;
-    height: 100vh;
-    background-color: $light-blue;
-    color: $dark-blue;
-    padding: 1.5em;
-    box-sizing: border-box;
-    grid-template-rows: 20% auto;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  background-color: $light-blue;
+  color: $dark-blue;
+  padding: 1.5em;
+  box-sizing: border-box;
+  grid-template-rows: 20% auto;
 
-    .form-wrapper {
-        background: $lighter-gray;
-        margin-top: 2em;
-        height: fit-content;
-        padding: 1.5em 2em;
-        border-radius: .5em;
-        -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-        -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-        -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-        -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  .form-wrapper {
+    width: 300px;
+    background: $lighter-gray;
+    margin-top: 2em;
+    height: fit-content;
+    padding: 1.5em 2em;
+    border-radius: 0.5em;
+    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+    -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+    -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  .main-section {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.2em;
+
+    input {
+      border: none;
+      border-bottom: 1px solid $medium-gray;
+      padding: 0.5em 0;
+      font-size: 0.9em;
+      background: $lighter-gray;
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box; /* Firefox, other Gecko */
+      box-sizing: border-box;
     }
 
-    .main-section {
-        display: flex;
-        justify-content: space-around;
-        font-size: 1.2em;
-    
-        input {
-            border: none;
-            border-bottom: 1px solid $medium-gray;
-            padding: .5em 0;
-            font-size: .9em;
-            background: $lighter-gray;
-            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-            box-sizing: border-box;
-        }
-    
-        .input-section {
-            display: flex;
-            align-items: center;
-            margin-top: 1em;
+    .input-section {
+      display: flex;
+      align-items: center;
+      margin-top: 1em;
+      width: 100%;
 
-            input { 
-                margin-left: .5em;
-            }
-        }
-    
-        .form-submit-btn {
-            border-radius: 1.3em;
-            padding: .6em;
-            font-size: 1em;
-            background: $medium-blue;
-            color: $white;
-            font-weight: bold;
-            margin-top: 1.5em;
-            width: 100%;
-        }
-
-        .btn-secondary {
-            background-color: $yellow;
-            color: $dark-blue;
-            width: 100%;
-        }
-        
-        .btn-link {
-            padding: 0;
-            border: none;
-            font: inherit;
-            color: inherit;
-            background-color: transparent;
-            display: inline-block;
-            margin-top: 0;
-            margin-left: .5em;
-            text-decoration: underline;
-            width: fit-content;
-        }
+      input {
+        margin-left: 0.5em;
+        width: 100%;
       }
+    }
 
-      .icon {
-          font-weight: 1.3em;
-          margin-right: .3em;
-      }
+    .form-submit-btn {
+      border-radius: 1.3em;
+      padding: 0.6em;
+      font-size: 1em;
+      background: $medium-blue;
+      color: $white;
+      font-weight: bold;
+      margin-top: 1.5em;
+      width: 100%;
+    }
 
-      .toast {
-        color: $red;
-        margin: .5em 0 0;
-        font-size: .9em;
-      }
+    .btn-secondary {
+      background-color: $yellow;
+      color: $dark-blue;
+      width: 100%;
+    }
+
+    .btn-link {
+      padding: 0;
+      border: none;
+      font: inherit;
+      color: inherit;
+      background-color: transparent;
+      display: inline-block;
+      margin-top: 0;
+      margin-left: 0.5em;
+      text-decoration: underline;
+      width: fit-content;
+    }
+  }
+
+  .icon {
+    font-weight: 1.3em;
+    margin-right: 0.3em;
+  }
+
+  .toast {
+    color: $red;
+    margin: 0.5em 0 0;
+    font-size: 0.9em;
+  }
 }
 
 label {
-    font-weight: bold;
-    margin: 1em 0 .3em;
+  font-weight: bold;
+  margin: 1em 0 0.3em;
 }
 
-
-
 .input-feedback {
-    font-weight: bold;
-    font-size: .7em;
-    color: $red;
-    margin: .3em 0 0 2em;
-    max-width: 14em;
+  font-weight: bold;
+  font-size: 0.7em;
+  color: $red;
+  margin: 0.3em 0 0 2em;
+  max-width: 14em;
 }
 
 h1 {
-    font-size: 3.5em;
+  font-size: 3.5em;
 }
 
-.signin-title, .signup-title {
-    margin-top: 0;
+.signin-title,
+.signup-title {
+  margin-top: 0;
 }
 
 .header-title {
-    align-self: center;
-    font-size: 5em;
+  align-self: center;
+  font-size: 5em;
 }
 
 img.header-make-a-wish-logo {
-    max-height: 3em;
+  max-height: 3em;
 }
 
-.signup-form{
-    .col-2 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 1em;
-    }
+.signup-form {
+  .col-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+  }
 }
 
 .signup-section {
-    display: flex;
-    justify-content: center;
-    font-size: .8em;
-    margin-top: 1.2em;
+  display: flex;
+  justify-content: center;
+  font-size: 0.8em;
+  margin-top: 1.2em;
 }
 
-.login-form{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }

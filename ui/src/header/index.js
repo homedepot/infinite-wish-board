@@ -21,7 +21,7 @@ export const Header = () => (
         />
       </div>
     </div>
-    <div className="header-row">
+    {/* <div className="header-row">
       <div className="slidingVertical header-item">
         <span>Hello!</span>
         <span>Bonjour!</span>
@@ -29,6 +29,6 @@ export const Header = () => (
         <span>你好</span>
         <span>こんにちは</span>
       </div>
-    </div>
+    </div> */}
   </header>
 )
