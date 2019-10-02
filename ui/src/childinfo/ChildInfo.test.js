@@ -45,7 +45,7 @@ describe('Initial Render', () => {
   it('renders!', () => {
     expect(childInfo.exists('.childInfo'));
     expect(childInfo.find('.text-name').text())
-      .toEqual(`Hi ${testName}, I have a few questions for you before we can make your wish come true!`);
+      .toEqual(`Hi, ${testName}. I have a few questions for you before we can make your wish come true!`);
     expect(childInfo.find('input')).toEqual({});
     expect(childInfo.instance().props.name).toEqual(testName);
     expect(childInfo.instance().state.illness).toEqual('');
