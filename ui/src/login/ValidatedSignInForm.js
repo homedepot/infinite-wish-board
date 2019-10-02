@@ -44,7 +44,7 @@ export default class ValidatedSignInForm extends Component {
       if (response.status === 200) this.props.history.push('/landing')
       else {
         this.setState({
-          invalidFormErrorMsg: response.message,
+          invalidFormErrorMsg: "I'm sorry your credentials is not valid. Please try again",
           isFormInvalid: true
         })
         resetForm({
