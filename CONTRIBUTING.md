@@ -1,17 +1,17 @@
 # Contributions Welcome
-First off, thank you for considering contributing to this repository! This hackathon starter was first made to seed a hack day for Make a Wish and could be used for projects beyond that..
+First off, thank you for considering contributing to this repository! This infinite-wish-board was first made for a hack day for Make-A-Wish.
 
-If you're just looking for quick feedback for an idea, proposal, or bug, feel free to open an issue.
+If you're just looking for quick feedback for an idea, proposal, or bug, feel free to [open an issue](https://github.com/homedepot/infinite-wish-board/issues/new/choose).
 
 Follow the [contribution workflow](#contribution-workflow) for submitting your changes.
 
 ## Contribution Workflow
 This project uses the “fork-and-pull” development model. Follow these steps if you want to merge your changes into the project:
 
-1. Within your fork of hackathon-starter, create a branch for your contribution and use a meaningful name.
+1. Within your fork of infinite-wish-board, create a branch for your contribution and use a meaningful name.
 2. Create your contribution, meeting all contribution quality standards.
 3. Create a pull request against the master branch.
-4. Once the pull request is approved, one of the maintainers will merge it and build a release if needed.
+4. Once the pull request is approved, one of the maintainers will merge it and build a release as needed.
 
 ## Contribution Quality Standards
 Your contribution needs to meet the following standards:
