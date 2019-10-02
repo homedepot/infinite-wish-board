@@ -4,20 +4,20 @@ import React from 'react'
 import { WishType } from '../wishType'
 
 describe('WishList tests', () => {
-  const selectWishType = jest.fn();
+  const selectWishType = jest.fn()
 
   beforeEach(() => {
     jest.clearAllMocks()
   })
 
   it('should call selectWishType with selected wish when wish is clicked', () => {
-    const wrapper = shallow(<WishTypeList selectWishType={selectWishType}/>)
-    const { GO, MEET, BE, SEE } = WishType
+    const wrapper = shallow(<WishTypeList selectWishType={selectWishType} />)
+    const { GO, MEET, BE, HAVE } = WishType
 
-    const wishCardRocket = wrapper.find('[data-test="wishcard-rocket"]');
-    const wishCardAlien = wrapper.find('[data-test="wishcard-alien"]');
-    const wishCardAstronaut = wrapper.find('[data-test="wishcard-astronaut"]');
-    const wishCardTelescope = wrapper.find('[data-test="wishcard-telescope"]');
+    const wishCardRocket = wrapper.find('[data-test="wishcard-rocket"]')
+    const wishCardAlien = wrapper.find('[data-test="wishcard-alien"]')
+    const wishCardAstronaut = wrapper.find('[data-test="wishcard-astronaut"]')
+    const wishCardTelescope = wrapper.find('[data-test="wishcard-telescope"]')
 
     wishCardRocket.simulate('click')
     expect(selectWishType).toHaveBeenCalledWith(GO)
@@ -29,7 +29,6 @@ describe('WishList tests', () => {
     expect(selectWishType).toHaveBeenCalledWith(BE)
 
     wishCardTelescope.simulate('click')
-    expect(selectWishType).toHaveBeenCalledWith(SEE)
-
+    expect(selectWishType).toHaveBeenCalledWith(HAVE)
   })
 })

@@ -2,11 +2,11 @@
 
 ### What was the feature/problem?
 
-{Please write here}
+issue 93 - change type 'see' to 'have'
 
 ### How does this PR address the above feature/problem?
 
-{Please write here}
+all types of 'see' have been changed to 'have'
 
 ### Check lists (check `x` in `[ ]` of list items)
 
