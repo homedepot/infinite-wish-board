@@ -1,6 +1,11 @@
 header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr 1fr;
+
+  .header--row {
+    display: flex;
+    justify-content: space-around;
+  }
 
   .header-item {
     display: flex;
@@ -21,6 +26,7 @@ header {
   /*Vertical Sliding*/
   .slidingVertical{
     font-size: 2em;
+    padding-top: 2rem;
   }
   .slidingVertical span{
     animation: topToBottom 12.5s linear infinite 0s;
