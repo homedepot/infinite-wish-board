@@ -1,11 +1,11 @@
 import React from 'react'
 import MakeAWishLogo from '../assets/images/Logo_MakeWish_Dark_Blue.png'
-import GalaxyLogo from '../assets/images/Logo_Galaxy_Colour_Dark_Blue.png'
+import GalaxyLogo from '../assets/images/newStyle/logo_galaxy_501x176.svg'
 import './styles.scss'
 
 export const Header = () => (
   <header>
-    <section className="slidingVertical header-item">
+    <section className="slidingVertical header-item" style={{color: '#000000'}}>
       <span>Hello!</span>
       <span>Bonjour!</span>
       <span>Hola!</span>
