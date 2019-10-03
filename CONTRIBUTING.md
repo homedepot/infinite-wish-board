@@ -11,7 +11,8 @@ This project uses the “fork-and-pull” development model. Follow these steps 
 1. Within your fork of infinite-wish-board, create a branch for your contribution and use a meaningful name.
 2. Create your contribution, meeting all contribution quality standards.
 3. Create a pull request against the master branch.
-4. Once the pull request is approved, one of the maintainers will merge it and build a release as needed.
+4. Before we merge your PR, we may ask you to catch your fork up with what is on master. We are following the merge strategy to [catch up your fork](https://help.github.com/en/articles/syncing-a-fork). 
+5. Once the pull request is approved, one of the maintainers will merge it and build a release as needed.
 
 ## Contribution Quality Standards
 Your contribution needs to meet the following standards:
