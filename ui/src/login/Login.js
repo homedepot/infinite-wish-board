@@ -1,135 +1,65 @@
 import React, { Component } from 'react'
-import './styles.scss'
-import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { Header } from '../header/index'
+import {
+  NEW_USER,
+  EXISTING_USER,
+  SIGN_IN,
+  CREATE_ACCOUNT,
+  CREATE_MY_ACCOUNT
+} from '../constants'
+import ValidatedSignInForm from './ValidatedSignInForm'
+import ValidatedSignUpForm from './ValidatedSignUpForm'
+import './styles.scss'
 
 class Login extends Component {
   constructor(props) {
     super(props)
 
-    this.expressDomain =
-      process.env.REACT_APP_expressDomain || 'http://localhost:3002'
-
     this.state = {
-      username: '',
-      password: ''
+      showSignIn: true
     }
   }
 
-  createUser = async e => {
-    e.preventDefault()
-
-    const { username, password } = this.state
-
-    try {
-      await axios.post(`${this.expressDomain}/auth/register`, {
-        username,
-        password
-      })
-
-      this.setState({
-        username: '',
-        password: ''
-      })
-    } catch (e) {}
-  }
-
-  loginUser = async e => {
-    e.preventDefault()
-
-    const { username, password } = this.state
-
-    try {
-      await axios
-        .create({ withCredentials: true })
-        .post(`${this.expressDomain}/auth/login`, {
-          username,
-          password
-        })
-      this.props.history.push('/landing')
-    } catch (e) {}
-  }
-
-  handleFormFieldChange = (key, { target: { value } }) => {
-    this.setState({ [key]: value })
+  toggleForm = () => {
+    this.setState({ showSignIn: !this.state.showSignIn })
   }
 
   render() {
-    return (
-      <div className='login-page' >
-        <Header />
-        <div className='login-container'>
-          <div>
-            <h2>New User?</h2>
-            <form
-              className="registration-form"
-              onSubmit={this.createUser}
-              data-register-form
-            >
-              First Name:
-              <input
-                type="text"
-                data-register-first-name
-                onChange={event =>
-                  this.handleFormFieldChange('firstName', event)
-                }
-              />
-              Last Name:
-              <input
-                type="text"
-                data-register-last-name
-                onChange={event =>
-                  this.handleFormFieldChange('lastName', event)
-                }
-              />
-              Username:
-              <input
-                type="text"
-                data-register-username
-                onChange={event =>
-                  this.handleFormFieldChange('username', event)
-                }
-              />
-              Password:
-              <input
-                type="password"
-                data-register-password
-                onChange={event =>
-                  this.handleFormFieldChange('password', event)
-                }
-              />
-              <input type="submit" value="Register" className="form-submit-btn" />
-            </form>
-          </div>
+    const { showSignIn } = this.state
+    const { history } = this.props
 
-          <div>
-            <h2>Have an account?</h2>
-            <form
-              className="login-form"
-              onSubmit={this.loginUser}
-              data-login-form
-            >
-              Username:{' '}
-              <input
-                type="text"
-                data-login-username
-                onChange={event =>
-                  this.handleFormFieldChange('username', event)
-                }
-              />
-              Password:{' '}
-              <input
-                type="password"
-                data-login-password
-                onChange={event =>
-                  this.handleFormFieldChange('password', event)
-                }
-              />
-              <input type="submit" value="Sign In" className="form-submit-btn" />
-            </form>
-          </div>
-        </div>
+    return (
+      <div className="login-page">
+        <Header />
+        <main className="main-section">
+          {showSignIn ? (
+            <section className="form-wrapper">
+              <h2 className="signin-title">{SIGN_IN}</h2>
+              <ValidatedSignInForm history={history} />
+              <section className="signup-section">
+                <span className="divider-text">{NEW_USER}</span>
+                <button
+                  onClick={this.toggleForm}
+                  className="form-submit-btn btn-link"
+                >
+                  {CREATE_MY_ACCOUNT}
+                </button>
+              </section>
+            </section>
+          ) : (
+            <section className="form-wrapper">
+              <h2 className="signup-title">{CREATE_ACCOUNT}</h2>
+              <ValidatedSignUpForm history={history} />
+              <section className="signup-section">
+                <span className="divider-text">{EXISTING_USER}</span>
+                <button className="btn-link" onClick={this.toggleForm}>
+                  {SIGN_IN}
+                </button>
+              </section>
+            </section>
+          )}
+        </main>
       </div>
     )
   }

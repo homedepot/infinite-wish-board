@@ -1,11 +1,16 @@
-service: purple-parrots-ui
-runtime: custom
-env: flex
+service: default
+runtime: python37
+automatic_scaling:
+  min_instances: 0
+  max_instances: 1
 
-manual_scaling:
-  instances: 1
-
-resources:
-  cpu: 1
-  memory_gb: 0.5
-  disk_size_gb: 10
+handlers:
+- url: /
+  static_files: build/index.html
+  secure: always
+  upload: build/index.html
+  
+- url: /(.*)
+  static_files: build/\1
+  secure: always
+  upload: build/(.*)

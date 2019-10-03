@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When render login page Should render a Header component 1`] = `ShallowWrapper {}`;

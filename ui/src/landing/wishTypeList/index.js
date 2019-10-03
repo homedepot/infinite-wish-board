@@ -8,23 +8,43 @@ import { WishTypeCard } from '../wishTypeCard'
 import './styles.scss'
 
 export const WishTypeList = ({ selectWishType }) => {
-  const { GO, MEET, BE, SEE } = WishType
+  const { GO, MEET, BE, HAVE } = WishType
 
   return (
     <Fragment>
       <h1>I wish to:</h1>
       <ul id="WishTypeList" className="wish-type-select">
         <li data-test="wishcard-rocket" onClick={() => selectWishType(GO)}>
-          <WishTypeCard altText="Rocket" imgSrc={Rocket} title={GO} subtitle="Somewhere!" />
+          <WishTypeCard
+            altText="Rocket"
+            imgSrc={Rocket}
+            title={GO}
+            subtitle="Somewhere!"
+          />
         </li>
         <li data-test="wishcard-alien" onClick={() => selectWishType(MEET)}>
-          <WishTypeCard altText="Alien" imgSrc={Alien} title={MEET} subtitle="Someone!" />
+          <WishTypeCard
+            altText="Alien"
+            imgSrc={Alien}
+            title={MEET}
+            subtitle="Someone!"
+          />
         </li>
         <li data-test="wishcard-astronaut" onClick={() => selectWishType(BE)}>
-          <WishTypeCard altText="Astronaut" imgSrc={Astronaut} title={BE} subtitle="Someone!" />
+          <WishTypeCard
+            altText="Astronaut"
+            imgSrc={Astronaut}
+            title={BE}
+            subtitle="Someone!"
+          />
         </li>
-        <li data-test="wishcard-telescope" onClick={() => selectWishType(SEE)}>
-          <WishTypeCard altText="Telescope" imgSrc={Telescope} title={SEE} subtitle="Something!" />
+        <li data-test="wishcard-telescope" onClick={() => selectWishType(HAVE)}>
+          <WishTypeCard
+            altText="Telescope"
+            imgSrc={Telescope}
+            title={HAVE}
+            subtitle="Something!"
+          />
         </li>
       </ul>
     </Fragment>
