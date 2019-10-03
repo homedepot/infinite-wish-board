@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react'
 import { WishType } from '../wishType'
 import Rocket from '../../assets/images/newStyle/icon_GO_100x100.svg'
-import Alien from '../../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
-import Astronaut from '../../assets/images/icn_To_Be_Astronaut_White_Inside_130x130.png'
-import Telescope from '../../assets/images/icn_To_See_Telescope_White_Inside_130x130.png'
+import Alien from '../../assets/images/newStyle/icon_MEET_100x100.svg'
+import Astronaut from '../../assets/images/newStyle/icon_BE_100x100.svg'
+import Telescope from '../../assets/images/newStyle/icon_HAVE_100x100.svg'
 import { WishTypeCard } from '../wishTypeCard'
 import './styles.scss'
 
