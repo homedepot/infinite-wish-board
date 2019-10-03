@@ -35,13 +35,17 @@ export default class ValidatedSignInForm extends Component {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_expressDomain ||
-          'http://localhost:3002'}/auth/login`,
+        'http://localhost:3002'}/auth/login`,
         {
           username,
           password
         }
       )
-      if (response.status === 200) this.props.history.push('/landing')
+      if (response.status === 200) {
+        // store token or something like that to browser storage or wherever you want 
+        localStorage.setItem('username', response.data.username)
+        this.props.history.go('/')
+      }
       else {
         this.setState({
           invalidFormErrorMsg: response.message,
@@ -82,62 +86,62 @@ export default class ValidatedSignInForm extends Component {
     handleBlur,
     handleSubmit
   }) => (
-    <form className="login-form" onSubmit={handleSubmit} data-login-form>
-      {this.state.isFormInvalid && (
-        <div className="toast">
-          <FontAwesomeIcon icon={faTimesCircle} className="icon" />
-          {this.state.invalidFormErrorMsg}
-        </div>
-      )}
-      <section className="input-section">
-        <FontAwesomeIcon icon={faUser} className="icon" />
-        <input
-          name="username"
-          type="text"
-          value={values.username}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className={errors.username && touched.username && 'error'}
-          placeholder="Username"
-          data-signin-username
-        />
-      </section>
-      {errors.username && touched.username && (
-        <div className="input-feedback">{errors.username}</div>
-      )}
-      <section className="input-section">
-        <FontAwesomeIcon icon={faLock} className="icon" />
-        <input
-          name="password"
-          type="password"
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className={errors.password && touched.password && 'error'}
-          placeholder="Password"
-          data-signin-password
-        />
-      </section>
-      {errors.password && touched.password && (
-        <div className="input-feedback">{errors.password}</div>
-      )}
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="form-submit-btn"
-        data-signin-form
-      >
-        {isSubmitting ? (
-          <>
-            <FontAwesomeIcon icon={faCircleNotch} className="fa-spin icon" />
-            {SIGNING_IN}
-          </>
-        ) : (
-          <span>{SIGN_IN}</span>
+      <form className="login-form" onSubmit={handleSubmit} data-login-form>
+        {this.state.isFormInvalid && (
+          <div className="toast">
+            <FontAwesomeIcon icon={faTimesCircle} className="icon" />
+            {this.state.invalidFormErrorMsg}
+          </div>
         )}
-      </button>
-    </form>
-  )
+        <section className="input-section">
+          <FontAwesomeIcon icon={faUser} className="icon" />
+          <input
+            name="username"
+            type="text"
+            value={values.username}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={errors.username && touched.username && 'error'}
+            placeholder="Username"
+            data-signin-username
+          />
+        </section>
+        {errors.username && touched.username && (
+          <div className="input-feedback">{errors.username}</div>
+        )}
+        <section className="input-section">
+          <FontAwesomeIcon icon={faLock} className="icon" />
+          <input
+            name="password"
+            type="password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={errors.password && touched.password && 'error'}
+            placeholder="Password"
+            data-signin-password
+          />
+        </section>
+        {errors.password && touched.password && (
+          <div className="input-feedback">{errors.password}</div>
+        )}
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="form-submit-btn"
+          data-signin-form
+        >
+          {isSubmitting ? (
+            <>
+              <FontAwesomeIcon icon={faCircleNotch} className="fa-spin icon" />
+              {SIGNING_IN}
+            </>
+          ) : (
+              <span>{SIGN_IN}</span>
+            )}
+        </button>
+      </form>
+    )
 
   render() {
     return (

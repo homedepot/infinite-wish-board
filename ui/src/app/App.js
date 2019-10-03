@@ -1,6 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import './App.css'
+import { PrivateRoute, TemporaryRoute } from './Routing'
 import Login from '../login/Login'
 import WishList from '../wishList'
 import WatchAuth from '../auth/WatchAuth'
@@ -11,15 +12,15 @@ import WishDetails from '../wishDetails/WishDetails';
 function App() {
   return (
     <Router>
-      <WatchAuth>
+      {/* <WatchAuth> */}
         <Switch>
-          <Route exact path="/child-info" component={ChildInfo} />
-          <Route exact path="/landing" component={CreateWish} />
-          <Route exact path="/wish-summary" component={WishList} />
-          <Route exact path="/wish-summary/:id" component={WishDetails} />
-          <Route exact path="/" component={Login} />
+          <PrivateRoute exact path="/" component={CreateWish} />
+          <PrivateRoute path="/child-info" component={ChildInfo} />
+          <PrivateRoute path="/wish-summary" component={WishList} />
+          <PrivateRoute path="/wish-summary/:id" component={WishDetails} />
+          <TemporaryRoute path="/login" component={Login} />
         </Switch>
-      </WatchAuth>
+      {/* </WatchAuth> */}
     </Router>
   )
 }
