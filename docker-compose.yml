@@ -1,11 +1,13 @@
-version: '3'
+version: '3.7'
 services:
   api:
-    build:
-      context: ./api
-      dockerfile: dockerfile.dev
+    build: ./api
+    command: nodemon --watch views -e js,html src/app.js
+    depends_on:
+      - db
     ports:
       - "3002:3002"
+      - "8000:8000"
     volumes:
       - ./api:/api
       - /api/node_modules
@@ -18,6 +20,8 @@ services:
     build:
       context: ./ui
       dockerfile: dockerfile.dev
+    depends_on:
+      - api
     ports:
       - "3001:3001"
     volumes:

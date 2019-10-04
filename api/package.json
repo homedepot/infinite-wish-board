@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./startup.sh",
+    "start": "node src/app.js",
     "test": "NODE_ENV=test jest --coverage --forceExit",
     "test:watch": "NODE_ENV=test jest --watch",
     "build": "sed -i.bak 's#{{MONGO_URL}}#'$prodMongoUrl'#g' app.yaml && sed -i.bak 's#{{CORS_DOMAIN}}#'$corsDomain'#g' app.yaml && sed -i.bak 's/{{COOKIE_SIGNING_KEY}}/'$cookieSigningKey'/g' app.yaml && sed -i.bak 's/{{RECAPTCHA_SECRET_KEY}}/'$recaptchaSecretKey'/g' app.yaml"
@@ -22,7 +22,6 @@
     "graphql": "^14.4.2",
     "mongoose": "^5.5.13",
     "morgan": "~1.9.0",
-    "nodemon": "1.19.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1"
@@ -32,6 +31,7 @@
     "axios": "^0.19.0",
     "jest": "^24.8.0",
     "moxios": "^0.4.0",
+    "nodemon": "^1.19.3",
     "prettier": "1.18.2",
     "supertest": "^4.0.2"
   },
