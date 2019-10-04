@@ -7,7 +7,7 @@ export const Landing = ({ name, age, updateField, selectWishType, validFields })
   const nameField = 'name'
   const ageField = 'age'
 
-  const DisplayWishTypeList = (selectWishType) => {
+  const DisplayWishTypeList = ({selectWishType}) => {
     if (validFields()) {
       return <WishTypeList selectWishType={selectWishType} />
     } else {
