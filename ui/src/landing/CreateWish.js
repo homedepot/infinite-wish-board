@@ -8,8 +8,20 @@ export default class CreateWish extends Component {
     super(props)
     this.state = {
       name: '',
-      age: '',
+      age: '1',
       wishType: ''
+    }
+  }
+
+  validFields = () => {
+    if (Number(this.state.age) < 18) {
+      if (this.state.name !== '') {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
     }
   }
 
@@ -30,7 +42,8 @@ export default class CreateWish extends Component {
         <Landing name={name}
           age={age}
           updateField={this.updateField}
-          selectWishType={this.selectWishType} /> :
+          selectWishType={this.selectWishType}
+          validFields={this.validFields} /> :
         <Childinfo name={name} age={age} type={wishType} history={this.props.history} />
     )
   }
