@@ -5,9 +5,8 @@ import { WishType } from './wishType'
 import Childinfo from '../childinfo/ChildInfo'
 
 describe('CreateWish tests', () => {
-
   it('should update the state for the desired field', () => {
-    const wrapper = shallow(<CreateWish/>)
+    const wrapper = shallow(<CreateWish />)
 
     const name = 'Susan'
     wrapper.instance().updateField('name', name)
@@ -19,9 +18,9 @@ describe('CreateWish tests', () => {
   })
 
   it('should set the wishType when selectWishType is called', () => {
-    const wrapper = shallow(<CreateWish/>)
+    const wrapper = shallow(<CreateWish />)
 
-    const wishType = WishType.SEE
+    const wishType = WishType.HAVE
     wrapper.instance().selectWishType(wishType)
     expect(wrapper.state().wishType).toEqual(wishType)
   })
@@ -29,7 +28,7 @@ describe('CreateWish tests', () => {
   describe('When name, age, and wish type are present', () => {
     let wrapper
     beforeEach(() => {
-      wrapper = shallow(<CreateWish/>)
+      wrapper = shallow(<CreateWish />)
       wrapper.setState({
         name: 'a name',
         age: 'an age',
@@ -45,7 +44,7 @@ describe('CreateWish tests', () => {
   describe('When any of the states (name, age, and wish type) is absent', () => {
     let wrapper
     beforeEach(() => {
-      wrapper = shallow(<CreateWish/>)
+      wrapper = shallow(<CreateWish />)
       wrapper.setState({
         name: 'a name',
         age: 'an age',

@@ -10,7 +10,7 @@ const wishSchema = new Schema(
       illness: String,
       age: Number
     },
-    type: { type: String, enum: ['GO', 'MEET', 'BE', 'SEE'] },
+    type: { type: String, enum: ['go', 'meet', 'be', 'have'] },
     details: String,
     sponsor: {
       name: String,
