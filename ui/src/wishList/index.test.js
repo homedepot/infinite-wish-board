@@ -164,4 +164,61 @@ describe('WishSummary tests', () => {
       expect(wrapper.instance().state.filteredWishes).toEqual(mockWishList)
     })
   })
+
+  describe('when filterWishes encounters undefined values', () => {
+    let wrapper
+    beforeEach(() => {
+      mockWishList.push(
+              {
+                child: {
+                  name: 'lila',
+                  hometown: '',
+                  illness: 'non-absorbent',
+                  age: 10
+                },
+                sponsor: {
+                  links: [],
+                  name: '',
+                  logo: ''
+                },
+                _id: '5d070ba5db7b540028dea1c5',
+                type: 'go',
+                details: 'dfehjhgjhgjdf',
+                createdAt: '2019-06-17T03:40:21.782Z',
+                updatedAt: '2019-06-17T03:40:21.782Z',
+                __v: 0
+              },{
+                child: {
+                  name: 'jasmine',
+                  hometown: '',
+                  illness: 'non-absorbent',
+                  age: 10
+                },
+                sponsor: {},
+                _id: '5d070ba5db7b540028dea1c5',
+                type: 'go',
+                details: 'dfehjhgjhgjdf',
+                createdAt: '2019-06-17T03:40:21.782Z',
+                updatedAt: '2019-06-17T03:40:21.782Z',
+                __v: 0
+              }
+            );
+            getWishes.mockImplementation(() => mockWishList)
+            wrapper = shallow(<WishSummary />)
+          });
+
+    it('should update filterWishes by sponsor not', async () => {
+      let clickEvt = {
+        target: {
+          value: 'Home Depot'
+        }
+      }
+      const wishes = wrapper.find(Wish)
+      wrapper.instance().filterWishes(clickEvt)
+
+      expect(wishes.length).toEqual(5)
+      expect(wrapper.instance().state.filteredWishes.length).toEqual(3)
+      expect(wrapper.instance().state.filteredWishes.includes("lila")).toEqual(false)
+    })
+  })
 })
