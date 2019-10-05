@@ -1,5 +1,4 @@
-
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import WishDetailsService from '../services/WishDetailsService';
 import rocketImage from '../../src/assets/images/rocket.png';
 import rocketSound from '../../src/assets/audio/rocketSound.wav';
