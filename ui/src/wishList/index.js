@@ -37,6 +37,7 @@ export default class WishList extends Component {
     })
   }
 
+
   filterWishes = (e) => {
     const wishFilter = e.target.value;
     let filteredWishes = this.state.wishes;
@@ -45,7 +46,6 @@ export default class WishList extends Component {
       const sponsor = wish.sponsor.name ? wish.sponsor.name.toLowerCase() : "";
       const hometown = wish.child.hometown ? wish.child.hometown.toLowerCase() : "";
       let wishItem = child + sponsor + hometown;
-      
       return wishItem.indexOf(
         wishFilter.toLowerCase()) !== -1
     })
