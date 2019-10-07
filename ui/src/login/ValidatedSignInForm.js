@@ -44,7 +44,7 @@ export default class ValidatedSignInForm extends Component {
       if (response.status === 200) {
         // store token or something like that to browser storage or wherever you want 
         localStorage.setItem('username', response.data.username)
-        this.props.history.go('/')
+        this.props.history.push('/')
       }
       else {
         this.setState({
