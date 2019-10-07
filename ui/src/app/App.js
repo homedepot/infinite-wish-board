@@ -4,7 +4,7 @@ import './App.css'
 import { PrivateRoute, TemporaryRoute } from './Routing'
 import Login from '../login/Login'
 import WishList from '../wishList'
-import WatchAuth from '../auth/WatchAuth'
+// import WatchAuth from '../auth/WatchAuth'
 import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
 import WishDetails from '../wishDetails/WishDetails';
