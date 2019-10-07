@@ -25,18 +25,26 @@ describe('CreateWish tests', () => {
     expect(wrapper.state().wishType).toEqual(wishType)
   })
 
-  describe('When name, age, and wish type are present', () => {
+  describe('When name, age and wish type are present', () => {
     let wrapper
     beforeEach(() => {
       wrapper = shallow(<CreateWish />)
       wrapper.setState({
         name: 'a name',
         age: 'an age',
-        wishType: 'a type'
+        wishType: 'a type',
+        showChildInfo: false
       })
     })
 
+    it('Should hide Childinfo component', () => {
+      expect(wrapper.find(Childinfo).length).toEqual(0)
+    })
+
     it('Should show Childinfo component', () => {
+      wrapper.setState({
+        showChildInfo: true
+      })
       expect(wrapper.find(Childinfo).length).toEqual(1)
     })
   })
