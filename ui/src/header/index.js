@@ -1,5 +1,5 @@
 import React from 'react'
-import MakeAWishLogo from '../assets/images/Logo_MakeWish_Dark_Blue.png'
+import MakeAWishLogo from '../assets/images/Logo_MakeAWish.svg'
 import GalaxyLogo from '../assets/images/newStyle/logo_galaxy_501x176.svg'
 import './styles.scss'
 
