@@ -13,17 +13,9 @@ export default class CreateWish extends Component {
     }
   }
 
-  validFields = () => {
-    if (Number(this.state.age) < 18) {
-      if (this.state.name !== '') {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
+  validFields = (age) => ({
+      validAge: age !== '' && Number(age) < 18
+  })
 
   updateField = (field, value) => {
     this.setState({ [field]: value })

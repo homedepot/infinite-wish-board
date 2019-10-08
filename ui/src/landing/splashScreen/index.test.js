@@ -6,7 +6,7 @@ describe('Initial Render', () => {
   it('renders!', () => {
     const wrapper = shallow(<Landing />)
 
-    expect(wrapper.text()).toEqual('<Header />My name is  and I am  years old!<DisplayWishTypeList />')
+    expect(wrapper.text()).toEqual('<Header />My name is  and I am  years old!<WishTypeList />')
   })
 
   it('should call updateField when name is entered', () => {
