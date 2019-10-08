@@ -11,6 +11,7 @@ export const WishTypeList = ({ selectWishType, validFields, age }) => {
   const { GO, MEET, BE, HAVE } = WishType
 
   const {validAge} = validFields(age);
+  
   if (validAge) {
     return (
       <Fragment>
