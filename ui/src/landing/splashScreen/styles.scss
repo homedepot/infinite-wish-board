@@ -1,12 +1,11 @@
 @import '../../styles/colors';
 
 #SplashScreen {
-  height: 100%;
-  width: 100%;
+  padding-top: 2.5em;
+  min-height: 100vh;
   background-color: $light-blue;
   color: $dark-blue;
   font-family: 'Arial Rounded MT Bold', sans-serif;
-  padding: 2.5em;
   box-sizing: border-box;
 
   h1 {
@@ -32,6 +31,10 @@
 
   img.header-galaxy-logo {
     max-height: 7em;
+  }
+
+  .main-section {
+    padding: 0 2.5em 2.5em;
   }
 
   .wish-input {

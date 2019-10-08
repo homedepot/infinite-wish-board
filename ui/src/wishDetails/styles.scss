@@ -1,8 +1,7 @@
 @import '../styles/colors.scss';
 
 .wish-details-page {
-  height: 100%;
-  width: 100%;
+  min-height: 100vh;
   background-color: #87cacf;
   color: #2d348d;
   font-family: 'Arial Rounded MT Bold', sans-serif;

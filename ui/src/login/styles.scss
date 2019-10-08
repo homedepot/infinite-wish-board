@@ -1,14 +1,11 @@
 @import '../styles/colors.scss';
 
 .login-page {
-  display: grid;
-  width: 100vw;
-  height: 100vh;
+  padding-top: 1.5em;
+  min-height: 100vh;
   background-color: $light-blue;
   color: $dark-blue;
-  padding: 1.5em;
   box-sizing: border-box;
-  grid-template-rows: 20% auto;
 
   .form-wrapper {
     width: 300px;
@@ -29,6 +26,7 @@
   }
 
   .main-section {
+    padding: 0 1.5em 1.5em;
     display: flex;
     justify-content: space-around;
     font-size: 1.2em;
