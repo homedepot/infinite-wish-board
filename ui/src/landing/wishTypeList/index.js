@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { WishType } from '../wishType'
 import Rocket from '../../assets/images/icn_To_Go_Rocket_White_Inside_130x130.png'
 import Alien from '../../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
