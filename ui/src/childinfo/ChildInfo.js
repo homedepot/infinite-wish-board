@@ -1,5 +1,4 @@
-
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import WishDetailsService from '../services/WishDetailsService';
 import rocketImage from '../../src/assets/images/rocket.png';
 import rocketSound from '../../src/assets/audio/rocketSound.wav';
@@ -28,7 +27,7 @@ export default class ChildInfo extends Component {
     let { name } = this.props
     return {
       0: {
-        text: `Hi${name ? ` ${name}` : ''}, I have a few questions for you before we can make your wish come true!`,
+        text: `Hi,${name ? ` ${name}` : ''}. I have a few questions for you before we can make your wish come true!`,
         input: ''
       },
       1: {
@@ -120,9 +119,9 @@ export default class ChildInfo extends Component {
     })
     this.soundEffect.play();
     setTimeout(() => {
-        this.soundEffect.pause();
-        const url = `/wish-summary/${this.state.childId}`
-        this.props.history.push(url)
+      this.soundEffect.pause();
+      const url = `/wish-summary/${this.state.childId}`
+      this.props.history.push(url)
     }, 3000);
   }
 
@@ -130,10 +129,9 @@ export default class ChildInfo extends Component {
     let inputValue = this.state[this.getInputType()];
     let { showConfirmation, step } = this.state;
     return (
-        <Fragment>
-          {
-            !showConfirmation ?
-              <body className="first">
+        <>
+          {!showConfirmation ?
+            <div className="first">
               <div className='childInfo containerVertical spotlight inner'>
                 <p className='progress'>{step + 1} of {this.numSteps}</p>
                 <p className="text-name">{this.getTextField()}</p>
@@ -145,16 +143,16 @@ export default class ChildInfo extends Component {
                 }
                 <button className='next-button' onClick={this.nextStep}>Next</button>
               </div>
-              </body>
-              :
-              <body>
+            </div>
+            :
+            <div>
               <div className="rocketPage">
                 <img className={this.state.launchRocket ? 'rocket-launch' : 'rocket'} src={rocketImage} alt={rocketImage} />
                 <button className='rocket-blast-off-button' onClick={this.rocketBlastOff} disabled={this.state.launchRocket}>Fulfill my wish</button>
               </div>
-              </body>
+            </div>
           }
-        </Fragment>
+        </>
     )
   }
 }

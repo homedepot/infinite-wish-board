@@ -3,47 +3,45 @@ const Wish = require('../db/Wish')
 
 wishRouter.MEET = 'meet'
 wishRouter.GO = 'go'
-wishRouter.SEE = 'see'
+wishRouter.HAVE = 'have'
 wishRouter.BE = 'be'
 
 wishRouter.today = () => {
   return new Date()
 }
 
-wishRouter.getDefaultDateRange = (date) => {
+wishRouter.getDefaultDateRange = date => {
   const year = (() => {
     if (date.getMonth() === 0) {
       return date.getFullYear() - 1
     } else {
       return date.getFullYear()
     }
-  })();
+  })()
 
-  return [
-    `${year}-01-01T00:00:00Z`,
-    `${year}-12-31T23:59:59Z`,
-  ]
+  return [`${year}-01-01T00:00:00Z`, `${year}-12-31T23:59:59Z`]
 }
 
-wishRouter.route('/')
+wishRouter
+  .route('/')
   .get(async (req, res) => {
-    const beginDate = req.query.beginDate;
-    const endDate = req.query.endDate;
-    const types = req.query.types;
-    const sort = req.query.sort;
+    const beginDate = req.query.beginDate
+    const endDate = req.query.endDate
+    const types = req.query.types
+    const sort = req.query.sort
 
-    query = [];
+    query = []
     if (beginDate) {
-      query.push({ updatedAt: { '$gt': beginDate } })      
+      query.push({ updatedAt: { $gt: beginDate } })
     }
     if (endDate) {
-      query.push({ updatedAt: { '$lte': endDate } })      
+      query.push({ updatedAt: { $lte: endDate } })
     }
 
     if (query.length <= 0) {
       const dateRange = wishRouter.getDefaultDateRange(wishRouter.today())
-      query.push({ updatedAt: { '$gt': dateRange[0] } })
-      query.push({ updatedAt: { '$lte': dateRange[1] } })
+      query.push({ updatedAt: { $gt: dateRange[0] } })
+      query.push({ updatedAt: { $lte: dateRange[1] } })
     }
 
     if (types) {
@@ -52,7 +50,7 @@ wishRouter.route('/')
       typeArray.forEach(t => {
         typeQuery.push({ type: typeArray })
       })
-      query.push({ '$or': typeQuery })
+      query.push({ $or: typeQuery })
     }
 
     const sorter = (() => {
@@ -66,44 +64,44 @@ wishRouter.route('/')
     })()
 
     const rs = await Wish.find({
-      '$and': query
+      $and: query
     }).sort(sorter)
 
     if (sort) {
       const groupedWishes = []
       let currentGroup = null
-      let prevYear = null;
-      let prevMonth = null;
+      let prevYear = null
+      let prevMonth = null
 
       function yearMonthMatch(year, month) {
         // probably the first time, so no match
         if (prevYear === null || prevMonth === null) {
           return false
         }
-        return (prevYear === year && prevMonth === month)
+        return prevYear === year && prevMonth === month
       }
 
       rs.forEach(wish => {
-        const year = (new Date(wish.updatedAt)).getFullYear()
-        const month = (new Date(wish.updatedAt)).getMonth() + 1
+        const year = new Date(wish.updatedAt).getFullYear()
+        const month = new Date(wish.updatedAt).getMonth() + 1
         if (!yearMonthMatch(year, month)) {
           if (currentGroup) {
             groupedWishes.push({
               year: prevYear,
               month: prevMonth,
-              wishes: currentGroup,              
+              wishes: currentGroup
             })
           }
           currentGroup = []
           prevYear = year
           prevMonth = month
         }
-        currentGroup.push(wish)      
+        currentGroup.push(wish)
       })
       groupedWishes.push({
         year: prevYear,
         month: prevMonth,
-        wishes: currentGroup,              
+        wishes: currentGroup
       })
       res.send(groupedWishes)
     } else {
@@ -113,26 +111,32 @@ wishRouter.route('/')
   .post((req, res) => {
     let wish = new Wish(req.body)
     wish.save()
-    return res.status(201).send(wish) 
+    return res.status(201).send(wish)
   })
 
-wishRouter.route('/:id')
+wishRouter
+  .route('/:id')
   .get((req, res) => {
     Wish.findById(req.params.id, (err, wish) => {
       return res.send(wish)
     })
   })
   .put((req, res) => {
-    Wish.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, wish) => {
-      if (err) return res.status(500).send(err);
-      return res.status(200).send(wish);
-    })
+    Wish.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true },
+      (err, wish) => {
+        if (err) return res.status(500).send(err)
+        return res.status(200).send(wish)
+      }
+    )
   })
   .delete((req, res) => {
     Wish.findByIdAndRemove(req.params.id, (err, wish) => {
       if (err) return res.status(500).send(err)
       const response = {
-        message: "Wish successfully deleted",
+        message: 'Wish successfully deleted',
         id: wish._id
       }
       return res.status(200).send(response)
