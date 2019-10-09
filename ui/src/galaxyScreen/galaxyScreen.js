@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './styles.scss'
+import { getWishes } from '../services/WishDetailsService'
 import defaultGif from '../assets/gifs/giphy.gif'
 
 export default class GalaxyScreen extends Component {
@@ -8,20 +9,43 @@ export default class GalaxyScreen extends Component {
         super(props)
         this.state = {
             currentGif: null,
-            currentWishList: []
+            previousWishList: []
         }
     }
 
     componentDidMount() {
         this.setState({
-            currentGif: defaultGif
+            // currentGif: defaultGif
+        },
+        () => {
+            setInterval(() => {
+                this.handleCurrentGif()
+            },
+            3000)
         })
-
-        this.handleCurrentGif()
     }
 
-    handleCurrentGif = () => {
-        // get wish list, find new wish type, update current wish list, update currentGif
+    handleCurrentGif = async () => {
+        const wishes = await getWishes()
+        if (JSON.stringify(this.state.previousWishList) !== JSON.stringify(wishes)) {
+            const difference = wishes.filter(wish => !this.state.previousWishList.some(prevWish => wish._id === prevWish._id));
+
+            // console.log(this.state.previousWishList)
+            // console.log(difference)
+            if (difference && difference.length > 0) {
+                console.log(difference[0].type)
+
+                if (difference[0].type === 'be') {
+                    this.setState({
+                        currentGif: defaultGif
+                    })
+                }
+            }
+
+            this.setState({
+                previousWishList: wishes
+            })
+        }
     }
 
     render() {
