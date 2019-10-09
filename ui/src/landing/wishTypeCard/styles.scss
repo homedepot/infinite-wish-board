@@ -1,6 +1,6 @@
 @import '../../styles/colors';
 
-#WishCard {
+.wishCard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +8,7 @@
   margin-bottom: 1rem;
 
   &:hover {
+    cursor: pointer;
     transform: scale(1.05);
     cursor: pointer;
   }
