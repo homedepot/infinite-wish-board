@@ -101,3 +101,16 @@ body{
     opacity: 0.93;
     margin-top: 17%;
 }
+
+@media screen and (max-width: 600px) {
+    .childInfo {
+        font-size: 2em;
+    }
+  }
+
+@media screen and (max-width: 600px) and (orientation: portrait) {
+    .childInfo {
+        font-size: 2em;
+        align-items: flex-start;
+    }
+}
