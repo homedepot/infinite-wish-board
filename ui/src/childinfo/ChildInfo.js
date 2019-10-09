@@ -35,10 +35,6 @@ export default class ChildInfo extends Component {
         input: 'homeTown'
       },
       2: {
-        text: 'Tell us about your condition',
-        input: 'illness'
-      },
-      3: {
         text: 'Tell us more about your wish!',
         input: 'details'
       }
