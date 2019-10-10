@@ -98,7 +98,7 @@ export default class WishDetails extends Component {
               <span>{hometown}</span>
             </div>
             <h3>Illness Summary</h3>
-            <textarea value={child.illness}></textarea>
+            <textarea readOnly value={child.illness}></textarea>
             <h4>Parent's Name:</h4>
             <input />
             <h4>Contact Info:</h4>
@@ -123,7 +123,7 @@ export default class WishDetails extends Component {
           </div>
           <div className="wish-details containerVertical">
             <h3>Wish Details</h3>
-            <textarea value={details}></textarea>
+            <textarea readOnly value={details}></textarea>
           </div>
         </div>
       </div>
