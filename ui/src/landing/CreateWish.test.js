@@ -32,17 +32,23 @@ describe('CreateWish tests', () => {
       wrapper.setState({
         name: 'a name',
         age: '14',
-        wishType: 'a type'
+        wishType: 'a type',
+        showChildInfo: false
       })
     })
 
+    it('Should hide Childinfo component', () => {
+      expect(wrapper.find(Childinfo).length).toEqual(0)
+    })
+
     it('Should show Childinfo component', () => {
+      wrapper.instance().selectWishType('GO')
       expect(wrapper.find(Childinfo).length).toEqual(1)
     })
 
     it('Should have validFields return true', () => {
       const instance = wrapper.instance();
-      const {validAge, validName} = instance.validFields(instance.state.age, instance.state.name);
+      const { validAge, validName } = instance.validFields(instance.state.age, instance.state.name);
       expect(validAge).toEqual(true);
       expect(validName).toEqual(true);
     })
@@ -65,7 +71,7 @@ describe('CreateWish tests', () => {
 
     it('Should have all validFields return true', () => {
       const instance = wrapper.instance();
-      const {validAge, validName} = instance.validFields(instance.state.age, instance.state.name);
+      const { validAge, validName } = instance.validFields(instance.state.age, instance.state.name);
       expect(validAge).toEqual(false);
       expect(validName).toEqual(false);
     })
