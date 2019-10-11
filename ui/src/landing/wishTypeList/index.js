@@ -7,12 +7,12 @@ import Telescope from '../../assets/images/icn_To_See_Telescope_White_Inside_130
 import { WishTypeCard } from '../wishTypeCard'
 import './styles.scss'
 
-export const WishTypeList = ({ selectWishType, validFields, age }) => {
+export const WishTypeList = ({ selectWishType, validFields, age, name }) => {
   const { GO, MEET, BE, HAVE } = WishType
 
-  const {validAge} = validFields(age);
+  const {validAge, validName} = validFields(age, name);
   
-  if (validAge) {
+  if (validAge && validName) {
     return (
       <Fragment>
         <h1>I wish to:</h1>
@@ -56,7 +56,8 @@ export const WishTypeList = ({ selectWishType, validFields, age }) => {
     return (
       <div className="fields-not-valid">
         <ul>
-          <li>Oops! You have to be at least 2 years old, and under 18 to make a wish.</li>
+          {validAge || <li>Oops! You have to be at least 2 years old, and under 18 to make a wish.</li>}
+          {validName || <li>Oops! You have to enter a name to make a wish.</li>}
         </ul>
       </div>);
   }

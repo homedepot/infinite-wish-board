@@ -42,8 +42,9 @@ describe('CreateWish tests', () => {
 
     it('Should have validFields return true', () => {
       const instance = wrapper.instance();
-      const {validAge} = instance.validFields(instance.state.age);
+      const {validAge, validName} = instance.validFields(instance.state.age, instance.state.name);
       expect(validAge).toEqual(true);
+      expect(validName).toEqual(true);
     })
   })
 
@@ -64,8 +65,9 @@ describe('CreateWish tests', () => {
 
     it('Should have all validFields return true', () => {
       const instance = wrapper.instance();
-      const {validAge} = instance.validFields(instance.state.age);
+      const {validAge, validName} = instance.validFields(instance.state.age, instance.state.name);
       expect(validAge).toEqual(false);
+      expect(validName).toEqual(false);
     })
   })
 })

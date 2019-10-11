@@ -5,7 +5,7 @@ import { WishType } from '../wishType'
 
 describe('WishList tests when all fields are valid', () => {
   const selectWishType = jest.fn()
-  const validFields = jest.fn(() => ({validAge: true}))
+  const validFields = jest.fn(() => ({validAge: true, validName: true}))
   const age = '17'
 
   beforeEach(() => {
@@ -37,12 +37,14 @@ describe('WishList tests when all fields are valid', () => {
 
 describe('WishList tests when a field is invalid', () => {
   const selectWishType = jest.fn()
-  const validFields = jest.fn(() => ({validAge: false}))
+  const validFields = jest.fn(() => ({validAge: false, validName: false}))
   const age = '19'
+  const name = ''
 
   it('should call selectWishType with selected wish when wish is clicked', () => {
-    const wrapper = shallow(<WishTypeList selectWishType={selectWishType} validFields={validFields} age={age} />)
-    expect(wrapper.text()).toEqual('Oops! You have to be at least 2 years old, and under 18 to make a wish.')
+    const wrapper = shallow(<WishTypeList selectWishType={selectWishType} validFields={validFields} age={age} name={name} />)
+    console.log(wrapper.text())
+    expect(wrapper.text()).toEqual('Oops! You have to be at least 2 years old, and under 18 to make a wish.Oops! You have to enter a name to make a wish.')
   })
 })
 
