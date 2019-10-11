@@ -42,7 +42,7 @@ describe('WishList tests when a field is invalid', () => {
 
   it('should call selectWishType with selected wish when wish is clicked', () => {
     const wrapper = shallow(<WishTypeList selectWishType={selectWishType} validFields={validFields} age={age} />)
-    expect(wrapper.text()).toEqual('Oops! You have to be under 18 to make a wish.')
+    expect(wrapper.text()).toEqual('Oops! You have to be at least 2 years old, and under 18 to make a wish.')
   })
 })
 
