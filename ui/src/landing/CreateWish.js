@@ -15,7 +15,7 @@ export default class CreateWish extends Component {
 
   validFields = (age, name) => ({
       validAge: age !== '' && (Number(age) < 18 && Number(age) >= 2),
-      validName: ( (name !== '') && (name.match(/[\w\-’\s]+/)) ) ? true : false
+      validName: (name !== '') && (name.match(/[\w\-’\s]+/)) ? true : false
   })
 
   updateField = (field, value) => {
