@@ -42,9 +42,7 @@ describe('CreateWish tests', () => {
     })
 
     it('Should show Childinfo component', () => {
-      wrapper.setState({
-        showChildInfo: true
-      })
+      wrapper.instance().selectWishType('GO')
       expect(wrapper.find(Childinfo).length).toEqual(1)
     })
 
