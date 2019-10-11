@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { WishType } from '../wishType'
 import Rocket from '../../assets/images/newStyle/icon_GO_100x100.svg'
 import Alien from '../../assets/images/newStyle/icon_MEET_100x100.svg'
@@ -18,7 +18,7 @@ export const WishTypeList = ({ selectWishType }) => {
   const { GO, MEET, BE, HAVE } = WishType
 
   return (
-    <Fragment>
+    <>
       <h1 style={styles.text}>I wish to:</h1>
       <ul id="WishTypeList" className="wish-type-select" style={styles.text}>
         <li data-test="wishcard-rocket" style={styles.text} onClick={() => selectWishType(GO)}>
@@ -54,6 +54,6 @@ export const WishTypeList = ({ selectWishType }) => {
           />
         </li>
       </ul>
-    </Fragment>
+    </>
   )
 }

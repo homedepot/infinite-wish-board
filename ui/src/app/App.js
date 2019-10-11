@@ -17,6 +17,7 @@ function App() {
           <Route exact path="/landing" component={CreateWish} />
           <Route exact path="/wish-summary" component={WishList} />
           <Route exact path="/wish-summary/:id" component={WishDetails} />
+          <Route exact path="/logout" component={Login} />
           <Route exact path="/" component={Login} />
         </Switch>
       </WatchAuth>
