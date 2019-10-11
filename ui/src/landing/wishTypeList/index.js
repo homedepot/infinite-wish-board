@@ -56,8 +56,8 @@ export const WishTypeList = ({ selectWishType, validFields, age, name }) => {
     return (
       <div className="fields-not-valid">
         <ul>
-          {validAge || <li>Oops! You have to be at least 2 years old, and under 18 to make a wish.</li>}
-          {validName || <li>Oops! You have to enter a name to make a wish.</li>}
+          { validAge || <li>Oops! You have to be at least 2 years old, and under 18 to make a wish.</li> }
+          { validName || <li>Oops! You have to enter a name to make a wish.</li> }
         </ul>
       </div>);
   }
