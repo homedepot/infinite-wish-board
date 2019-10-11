@@ -25,13 +25,13 @@ describe('CreateWish tests', () => {
     expect(wrapper.state().wishType).toEqual(wishType)
   })
 
-  describe('When name, age and wish type are present', () => {
+  describe('When name, age, and wish type are present and valid', () => {
     let wrapper
     beforeEach(() => {
       wrapper = shallow(<CreateWish />)
       wrapper.setState({
         name: 'a name',
-        age: 'an age',
+        age: '14',
         wishType: 'a type',
         showChildInfo: false
       })
@@ -47,14 +47,20 @@ describe('CreateWish tests', () => {
       })
       expect(wrapper.find(Childinfo).length).toEqual(1)
     })
+
+    it('Should have validFields return true', () => {
+      const instance = wrapper.instance()
+      const { validAge } = instance.validFields(instance.state.age)
+      expect(validAge).toEqual(true)
+    })
   })
 
-  describe('When any of the states (name, age, and wish type) is absent', () => {
+  describe('When the states (name, age, and wish type) are invalid', () => {
     let wrapper
     beforeEach(() => {
       wrapper = shallow(<CreateWish />)
       wrapper.setState({
-        name: 'a name',
+        name: '',
         age: 'an age',
         wishType: ''
       })
@@ -62,6 +68,12 @@ describe('CreateWish tests', () => {
 
     it('Should not show Childinfo component', () => {
       expect(wrapper.find(Childinfo).length).toEqual(0)
+    })
+
+    it('Should have all validFields return true', () => {
+      const instance = wrapper.instance()
+      const { validAge } = instance.validFields(instance.state.age)
+      expect(validAge).toEqual(false)
     })
   })
 })
