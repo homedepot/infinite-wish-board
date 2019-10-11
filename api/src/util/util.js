@@ -3,7 +3,6 @@ const util = {};
 util.sleep = (duration = 1234) => {
   return new Promise(resolve => {
     setTimeout(() => {
-      console.log(`Zzz for ${duration}`);
       resolve(true);
     }, duration);
   });

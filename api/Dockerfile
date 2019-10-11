@@ -6,7 +6,9 @@ ENV PATH /api/node_modules/.bin:$PATH
 
 COPY package*.json ./
 
-RUN yarn install --silent
+RUN yarn global add nodemon
+
+RUN yarn install
 
 COPY . .
 
