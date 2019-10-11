@@ -45,6 +45,10 @@
     font-size: 1.6em;
     font-weight: bold;
     margin: 2em 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
     input {
       border: 2px solid $medium-blue;
@@ -57,6 +61,21 @@
       color: $rose;
       font-weight: bold;
     }
+
+    .input-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .input-feedback {
+      font-weight: bold;
+      font-size: .7em;
+      color: $red;
+      margin: .3em 0 0 0;
+      max-width: 14em;
+      align-self: flex-start; 
+  }
 
     h1 {
       font-size: 3em;
