@@ -99,14 +99,14 @@ describe('ValidatedSignInForm', () => {
     }
     const CompInstance = wrapper.instance()
     const response = {
-      message: 'invalid credentials'
+      message: 'Incorrect username/password. Please try again.'
     }
     axios.post.mockImplementationOnce(() => Promise.resolve(response))
     await CompInstance.onSubmit(values, bag)
 
-    expect(response.message).toEqual('invalid credentials')
+    expect(response.message).toEqual('Incorrect username/password. Please try again.')
     expect(wrapper.state('isFormInvalid')).toEqual(true)
-    expect(wrapper.state('invalidFormErrorMsg')).toEqual('invalid credentials')
+    expect(wrapper.state('invalidFormErrorMsg')).toEqual('Incorrect username/password. Please try again.')
   })
 
   it('should set isFormInvalid to true when invalid credentials are submitted', async () => {

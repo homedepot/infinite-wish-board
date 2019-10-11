@@ -44,7 +44,7 @@ export default class ValidatedSignInForm extends Component {
       if (response.status === 200) this.props.history.push('/landing')
       else {
         this.setState({
-          invalidFormErrorMsg: response.message,
+          invalidFormErrorMsg: 'Incorrect username/password. Please try again.',
           isFormInvalid: true
         })
         resetForm({
