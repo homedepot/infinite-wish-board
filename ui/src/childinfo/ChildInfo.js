@@ -116,6 +116,10 @@ export default class ChildInfo extends Component {
     }
   }
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+  }
+
   rocketBlastOff = () => {
     this.setState({
       launchRocket: true
@@ -141,7 +145,7 @@ export default class ChildInfo extends Component {
             </p>
             <p className="text-name">{this.getTextField()}</p>
             {step ? ( //first step should not have any input
-              <form>
+              <form onSubmit={this.handleFormSubmit}>
                 <input
                   className="input-value"
                   type="text"
