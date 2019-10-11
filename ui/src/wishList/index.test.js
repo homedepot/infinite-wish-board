@@ -164,4 +164,34 @@ describe('WishSummary tests', () => {
       expect(wrapper.instance().state.filteredWishes).toEqual(mockWishList)
     })
   })
+
+  describe('when filterWishes func called by sponsor, but there is not an assigned sponsor', () => {
+    let wrapper
+    beforeEach(() => {
+      getWishes.mockImplementation(() => {
+        return [
+          {
+            _id: '1',
+            something: "wrong",
+          },
+          {
+            _id: '2',
+            something: "incorrect"
+          }
+        ]
+      })
+      wrapper = shallow(<WishSummary />)
+    })
+
+    it('should update filterWishes to be an empty array', async () => {
+      let clickEvt = {
+        target: {
+          value: 'Home Depot'
+        }
+      }
+
+      wrapper.instance().filterWishes(clickEvt)
+      expect(wrapper.instance().state.filteredWishes).toEqual([])
+    })
+  })
 })
