@@ -1,13 +1,11 @@
-@import "../../styles/colors";
+@import '../../styles/colors';
 
 #SplashScreen {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  padding-top: 2.5em;
+  min-height: 100vh;
   background-color: $light-blue;
   color: $dark-blue;
   font-family: 'Arial Rounded MT Bold', sans-serif;
-  padding: 2.5em;
   box-sizing: border-box;
 
   .fields-not-valid {
@@ -33,11 +31,16 @@
     font-family: 'Arial Rounded MT Bold';
     font-style: normal;
     font-weight: normal;
-    src: local('Arial Rounded MT Bold'), url('../../assets/fonts/ARLRDBD_0.woff') format('woff');
-}
-  
+    src: local('Arial Rounded MT Bold'),
+      url('../../assets/fonts/ARLRDBD_0.woff') format('woff');
+  }
+
   img.header-galaxy-logo {
     max-height: 7em;
+  }
+
+  .main-section {
+    padding: 0 2.5em 2.5em;
   }
 
   .wish-input {
@@ -49,8 +52,8 @@
     input {
       border: 2px solid $medium-blue;
       border-radius: 3px;
-      padding: .8em;
-      font-size: .9em;
+      padding: 0.8em;
+      font-size: 0.9em;
     }
 
     input::placeholder {

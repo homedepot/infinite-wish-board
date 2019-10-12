@@ -1,8 +1,10 @@
-@import "../../styles/colors";
+@import '../../styles/colors';
 
 #WishTypeList {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-around;
+  padding: 0;
+  flex-wrap: wrap;
 }

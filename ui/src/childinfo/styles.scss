@@ -1,116 +1,122 @@
-@import "../styles/colors.scss";
+@import '../styles/colors.scss';
 
-body{
-    margin: 0;
-    padding: 0;
-    background: url('../assets/images/MAW_StarrySpace_Background.svg');
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .childInfo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3em;
-    color: $white;
-    margin: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  color: $white;
+  margin: 1em;
 
-    p {
-        margin: .3em;
-    }
+  p {
+    margin: 0.3em;
+  }
 }
 
-.progress{
-    font-family: 'Arial Rounded MT Bold', sans-serif;
-    size: 0.75em;
-    opacity: 100%;
+.bg-cover {
+  min-height: 100vh;
+  background: url('../assets/images/MAW_StarrySpace_Background.svg') no-repeat
+    center center fixed;
+  background-size: cover;
 }
 
+.progress {
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  size: 0.75em;
+  opacity: 100%;
+}
 .input-value {
-    border: 2px solid $medium-blue;
-    border-radius: .2em;
-    padding: .2em 1em;
-    font-size: .9em;
-    margin-bottom: 1em;
+  border: 2px solid $medium-blue;
+  border-radius: 0.2em;
+  padding: 0.2em 1em;
+  font-size: 0.9em;
+  margin-bottom: 1em;
 }
 
 .input-value::placeholder {
-    color: $rose;
-    font-weight: bold;
+  color: $rose;
+  font-weight: bold;
 }
 
-.next-button{
-    border-radius: 1.5em;
-    font-size: .9em;
-    padding: .2em 1em;
-    background: $medium-blue;
-    color: $white;
-    font-weight: bold;
+.next-button {
+  border-radius: 1.5em;
+  font-size: 0.9em;
+  padding: 0.2em 1em;
+  background: $medium-blue;
+  color: $white;
+  font-weight: bold;
 }
 
-.rocketPage{
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.rocketPage {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .rocket-blast-off-button {
-    background-color: $black !important;
-    color: $yellow;
-    border-color: $yellow;
-    border-radius: 30px;
-    padding: 15px;
-    outline: none;
-    font-size: 1.2em;
+  background-color: $black !important;
+  color: $yellow;
+  border-color: $yellow;
+  border-radius: 30px;
+  padding: 15px;
+  outline: none;
+  font-size: 1.2em;
 }
 
 .rocket {
-    height: 200px;
-    position: relative;
-    z-index: 5;
+  height: 200px;
+  position: relative;
+  z-index: 5;
 }
 
 .rocket-launch {
-    object-fit: cover;
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-    z-index: 5;
-    animation-name: rocket-launch;
-    animation-duration: 5s;
+  object-fit: cover;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+  animation-name: rocket-launch;
+  animation-duration: 5s;
+}
+
+@keyframes rocket-launch {
+  0% {
+    -webkit-transform: translateY(0px);
   }
-  
-  @keyframes rocket-launch {
-    0% {
-        -webkit-transform: translateY(0px);
-    }
-    100% {
-        -webkit-transform: translateY(-100vh);
-    }
+
+  100% {
+    -webkit-transform: translateY(-100vh);
+  }
 }
 
-.second{
-    background-color: $light-blue;
+.second {
+  background-color: $light-blue;
 }
 
-.wishId{
-    color: $yellow;
-    text-align: center;
-    background-color: $black;
-    opacity: 0.93;
-    margin-top: 17%;
+.wishId {
+  color: $yellow;
+  text-align: center;
+  background-color: $black;
+  opacity: 0.93;
+  margin-top: 17%;
 }
 
 @media screen and (max-width: 600px) {
-    .childInfo {
-        font-size: 2em;
-    }
+  .childInfo {
+    font-size: 2em;
   }
+}
 
 @media screen and (max-width: 600px) and (orientation: portrait) {
-    .childInfo {
-        font-size: 2em;
-        align-items: flex-start;
-    }
+  .childInfo {
+    font-size: 2em;
+    align-items: flex-start;
+  }
 }

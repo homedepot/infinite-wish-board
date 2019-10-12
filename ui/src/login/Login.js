@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Header } from '../header/index'
+import { Header } from '../header'
 import {
   NEW_USER,
   EXISTING_USER,

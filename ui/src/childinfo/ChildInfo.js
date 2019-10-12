@@ -131,41 +131,45 @@ export default class ChildInfo extends Component {
       <>
         <Header />
         {!showConfirmation ? (
-          <div className="childInfo containerVertical spotlight">
-            <p className="progress">
-              {step + 1} of {this.numSteps}
-            </p>
-            <p className="text-name">{this.getTextField()}</p>
-            {step ? ( //first step should not have any input
-              <form>
-                <input
-                  className="input-value"
-                  type="text"
-                  value={inputValue}
-                  onChange={this.updateInputField}
-                />
-              </form>
-            ) : (
-              ''
-            )}
-            <button className="next-button" onClick={this.nextStep}>
-              Next
-            </button>
+          <div className="first bg-cover">
+            <div className="childInfo containerVertical spotlight">
+              <p className="progress">
+                {step + 1} of {this.numSteps}
+              </p>
+              <p className="text-name">{this.getTextField()}</p>
+              {step ? ( //first step should not have any input
+                <form>
+                  <input
+                    className="input-value"
+                    type="text"
+                    value={inputValue}
+                    onChange={this.updateInputField}
+                  />
+                </form>
+              ) : (
+                ''
+              )}
+              <button className="next-button" onClick={this.nextStep}>
+                Next
+              </button>
+            </div>
           </div>
         ) : (
-          <div className="rocketPage">
-            <img
-              className={this.state.launchRocket ? 'rocket-launch' : 'rocket'}
-              src={rocketImage}
-              alt={rocketImage}
-            />
-            <button
-              className="rocket-blast-off-button"
-              onClick={this.rocketBlastOff}
-              disabled={this.state.launchRocket}
-            >
-              Fulfill my wish
-            </button>
+          <div className="bg-cover">
+            <div className="rocketPage">
+              <img
+                className={this.state.launchRocket ? 'rocket-launch' : 'rocket'}
+                src={rocketImage}
+                alt={rocketImage}
+              />
+              <button
+                className="rocket-blast-off-button"
+                onClick={this.rocketBlastOff}
+                disabled={this.state.launchRocket}
+              >
+                Fulfill my wish
+              </button>
+            </div>
           </div>
         )}
       </>

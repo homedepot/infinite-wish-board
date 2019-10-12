@@ -1,19 +1,21 @@
-@import "../../styles/colors";
+@import '../../styles/colors';
 
 .wishCard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 1rem;
 
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
+    cursor: pointer;
   }
 
   .wish-card-image {
     background: $yellow;
-    border-radius: .8em;
+    border-radius: 0.8em;
     border-bottom: 1em solid $medium-blue;
     border-right: 1em solid $medium-blue;
   }
@@ -21,7 +23,7 @@
   .card-title {
     display: block;
     font-size: 2.5em;
-    margin: .25em 0;
+    margin: 0.25em 0;
     font-weight: bold;
   }
 
