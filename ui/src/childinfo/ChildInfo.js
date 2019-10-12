@@ -129,6 +129,7 @@ export default class ChildInfo extends Component {
     let { showConfirmation, step } = this.state
     return (
       <>
+        <Header />
         {!showConfirmation ? (
           <div className="first bg-cover">
             <div className="childInfo containerVertical spotlight">
