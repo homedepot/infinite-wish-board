@@ -110,8 +110,10 @@ wishRouter
   })
   .post((req, res) => {
     let wish = new Wish(req.body)
-    wish.save()
+    wish.save(function (err, wish) {
+    if (err) return res.status(422).send(err);
     return res.status(201).send(wish)
+    });
   })
 
 wishRouter
