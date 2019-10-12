@@ -8,6 +8,12 @@
   font-family: 'Arial Rounded MT Bold', sans-serif;
   box-sizing: border-box;
 
+  .fields-not-valid {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
   h1 {
     font-size: 3.5em;
   }

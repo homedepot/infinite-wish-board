@@ -42,7 +42,11 @@ export default class WishList extends Component {
     const wishFilter = e.target.value;
     let filteredWishes = this.state.wishes;
     filteredWishes = filteredWishes.filter((wish) => {
-      let wishItem = `${wish.child.name.toLowerCase()} ${wish.sponsor.name ? wish.sponsor.name.toLowerCase() : ''} ${wish.child.hometown.toLowerCase()}`;
+      const childName = `${wish && wish.child && wish.child.name ? wish.child.name.toLowerCase() : ''}`;
+      const childHometown = `${wish && wish.child && wish.child.hometown ? wish.child.hometown.toLowerCase() : ''}`;
+      const sponsorName = `${wish && wish.sponsor && wish.sponsor.name ? wish.sponsor.name.toLowerCase() : ''}`;
+
+      const wishItem = `${childName} ${sponsorName} ${childHometown}`
       return wishItem.indexOf(
         wishFilter.toLowerCase()) !== -1
     })

@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import WishDetailsService from '../services/WishDetailsService';
-import rocketImage from '../../src/assets/images/rocket.png';
-import rocketSound from '../../src/assets/audio/rocketSound.wav';
-import './styles.scss';
+import React, { Component } from 'react'
+import { Header } from '../header'
+import WishDetailsService from '../services/WishDetailsService'
+import rocketImage from '../../src/assets/images/rocket.png'
+import rocketSound from '../../src/assets/audio/rocketSound.wav'
+import './styles.scss'
 
 export default class ChildInfo extends Component {
   constructor(props) {
@@ -27,9 +28,9 @@ export default class ChildInfo extends Component {
     let { name } = this.props
     return {
       0: {
-        text: `Hi${
+        text: `Hi,${
           name ? ` ${name}` : ''
-        }! I have a few questions for you before we can make your wish come true!`,
+        }. I have a few questions for you before we can make your wish come true!`,
         input: ''
       },
       1: {
@@ -37,10 +38,6 @@ export default class ChildInfo extends Component {
         input: 'homeTown'
       },
       2: {
-        text: 'Tell us about your condition',
-        input: 'illness'
-      },
-      3: {
         text: 'Tell us more about your wish!',
         input: 'details'
       }
@@ -131,30 +128,50 @@ export default class ChildInfo extends Component {
     let inputValue = this.state[this.getInputType()]
     let { showConfirmation, step } = this.state
     return (
-        <>
-          {!showConfirmation ?
-            <div className="first bg-cover">
-              <div className='childInfo containerVertical spotlight inner'>
-                <p className='progress'>{step + 1} of {this.numSteps}</p>
-                <p className="text-name">{this.getTextField()}</p>
-                {step ? //first step should not have any input
-                  <form>
-                    <input className='input-value' type="text" value={inputValue} onChange={this.updateInputField} />
-                  </form>
-                  : ''
-                }
-                <button className='next-button' onClick={this.nextStep}>Next</button>
-              </div>
+      <>
+        {!showConfirmation ? (
+          <div className="first bg-cover">
+            <div className="childInfo containerVertical spotlight">
+              <p className="progress">
+                {step + 1} of {this.numSteps}
+              </p>
+              <p className="text-name">{this.getTextField()}</p>
+              {step ? ( //first step should not have any input
+                <form>
+                  <input
+                    className="input-value"
+                    type="text"
+                    value={inputValue}
+                    onChange={this.updateInputField}
+                  />
+                </form>
+              ) : (
+                ''
+              )}
+              <button className="next-button" onClick={this.nextStep}>
+                Next
+              </button>
             </div>
-            :
-            <div className="bg-cover">
-              <div className="rocketPage">
-                <img className={this.state.launchRocket ? 'rocket-launch' : 'rocket'} src={rocketImage} alt={rocketImage} />
-                <button className='rocket-blast-off-button' onClick={this.rocketBlastOff} disabled={this.state.launchRocket}>Fulfill my wish</button>
-              </div>
+          </div>
+        ) : (
+          <div className="bg-cover">
+            <div className="rocketPage">
+              <img
+                className={this.state.launchRocket ? 'rocket-launch' : 'rocket'}
+                src={rocketImage}
+                alt={rocketImage}
+              />
+              <button
+                className="rocket-blast-off-button"
+                onClick={this.rocketBlastOff}
+                disabled={this.state.launchRocket}
+              >
+                Fulfill my wish
+              </button>
             </div>
-          }
-        </>
+          </div>
+        )}
+      </>
     )
   }
 }

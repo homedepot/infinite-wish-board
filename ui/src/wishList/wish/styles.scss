@@ -10,17 +10,32 @@
   box-shadow: 0 8px 6px -6px $light-gray;
   margin-bottom: 0.6em;
 
-  .date {
+  .date, .date-now {
     width: 2.5em;
     height: 2.5em;
-    border: 0.4em solid $medium-blue;
-    border-top: 1em solid $medium-blue;
     border-radius: .5em;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2em;
+  }
+
+  .date {
+    border: 0.4em solid $medium-blue;
+    border-top: 1em solid $medium-blue;
+  }
+
+  .date-now {
+    border: 0.4em solid $yellow;
+    border-top: 1em solid $yellow;
+    animation: border-pulsate 2s infinite;
+  }
+
+  @keyframes border-pulsate {
+    0%   { border-color: $red; }
+    50%  { border-color: $medium-blue; }
+    100% { border-color: $red; }
   }
 
   .summary {

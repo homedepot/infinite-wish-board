@@ -3,7 +3,7 @@ import { Header } from '../../header'
 import './styles.scss'
 import { WishTypeList } from '../wishTypeList'
 
-export const Landing = ({ name, age, updateField, selectWishType }) => {
+export const Landing = ({ name, age, updateField, selectWishType, validFields }) => {
   const nameField = 'name'
   const ageField = 'age'
 
