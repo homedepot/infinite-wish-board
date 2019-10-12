@@ -3,7 +3,13 @@ import { Header } from '../../header'
 import './styles.scss'
 import { WishTypeList } from '../wishTypeList'
 
-export const Landing = ({ name, age, updateField, selectWishType, validFields }) => {
+export const Landing = ({
+  name,
+  age,
+  updateField,
+  selectWishType,
+  validFields
+}) => {
   const nameField = 'name'
   const ageField = 'age'
 
@@ -31,7 +37,11 @@ export const Landing = ({ name, age, updateField, selectWishType, validFields })
           />
           <span> years old!</span>
         </div>
-        <WishTypeList selectWishType={selectWishType} />
+        <WishTypeList
+          selectWishType={selectWishType}
+          validFields={validFields}
+          age={age}
+        />
       </main>
     </div>
   )
