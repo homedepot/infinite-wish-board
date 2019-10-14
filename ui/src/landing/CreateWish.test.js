@@ -32,11 +32,17 @@ describe('CreateWish tests', () => {
       wrapper.setState({
         name: 'a name',
         age: '14',
-        wishType: 'a type'
+        wishType: 'a type',
+        showChildInfo: false
       })
     })
 
+    it('Should hide Childinfo component', () => {
+      expect(wrapper.find(Childinfo).length).toEqual(0)
+    })
+
     it('Should show Childinfo component', () => {
+      wrapper.instance().selectWishType('GO')
       expect(wrapper.find(Childinfo).length).toEqual(1)
     })
 
