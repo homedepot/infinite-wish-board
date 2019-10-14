@@ -48,7 +48,7 @@ export default class ValidatedSignInForm extends Component {
       }
       else {
         this.setState({
-          invalidFormErrorMsg: response.message,
+          invalidFormErrorMsg: 'Incorrect username/password. Please try again.',
           isFormInvalid: true
         })
         resetForm({
