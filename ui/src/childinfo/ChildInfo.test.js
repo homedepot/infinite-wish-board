@@ -107,16 +107,13 @@ describe('Initial Render', () => {
     })
 
     it('should update progress at top of page', async () => {
-      expect(childInfo.find('.progress').text()).toEqual('1 of 4');
+      expect(childInfo.find('.progress').text()).toEqual('1 of 3');
 
       childInfo.instance().nextStep();
-      expect(childInfo.find('.progress').text()).toEqual('2 of 4');
+      expect(childInfo.find('.progress').text()).toEqual('2 of 3');
 
       childInfo.instance().nextStep();
-      expect(childInfo.find('.progress').text()).toEqual('3 of 4');
-
-      childInfo.instance().nextStep();
-      expect(childInfo.find('.progress').text()).toEqual('4 of 4');
+      expect(childInfo.find('.progress').text()).toEqual('3 of 3');
     })
   })
 
@@ -130,8 +127,6 @@ describe('Initial Render', () => {
       expect(childInfo.find('.text-name').text()).toEqual(`Hi, ${testName}. I have a few questions for you before we can make your wish come true!`);
       await nextButton.simulate('click');
       expect(childInfo.find('.text-name').text()).toEqual('Where are you from?');
-      await nextButton.simulate('click');
-      expect(childInfo.find('.text-name').text()).toEqual('Tell us about your condition');
       await nextButton.simulate('click');
       expect(childInfo.find('.text-name').text()).toEqual('Tell us more about your wish!');
       await nextButton.simulate('click');
