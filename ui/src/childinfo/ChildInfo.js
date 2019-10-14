@@ -24,6 +24,23 @@ export default class ChildInfo extends Component {
     this.soundEffect.src = rocketSound
   }
 
+  componentDidMount() {
+    document.addEventListener('keypress', this.enter);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keypress', this.enter);
+  }
+
+  /**
+   * @desc if 'Enter' is pressed, execute code
+   * @param event
+   */
+  enter = (event) => {
+    if (event.charCode === 13) {
+      this.nextStep();
+    }
+  }
+
   stepMapFunction = () => {
     let { name } = this.props
     return {
