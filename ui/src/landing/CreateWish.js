@@ -8,15 +8,27 @@ export default class CreateWish extends Component {
     super(props)
     this.state = {
       name: '',
-      age: '2',
+      age: '',
       wishType: ''
     }
+    this.initialState = Object.assign({}, this.state);
   }
 
-  validFields = (age, name) => ({
+  validFields = (age, name) => {
+    let fields = {
       validAge: age !== '' && (Number(age) < 18 && Number(age) >= 2),
-      validName: (name !== '') && (name.match(/[\w\-’\s]+/)) ? true : false
-  })
+      validName: (name !== '') && (name.match(/^[-'a-zA-ZÀ-ÖØ-öø-ÿ]+/)) ? true : false,
+      ageTouched: false,
+      nameTouched: false
+    }
+    if (age !== this.initialState.age) {
+      fields.ageTouched = true;
+    }
+    if (name !== this.initialState.name) {
+      fields.nameTouched = true;
+    }
+    return fields;
+  }
 
   updateField = (field, value) => {
     this.setState({ [field]: value })
