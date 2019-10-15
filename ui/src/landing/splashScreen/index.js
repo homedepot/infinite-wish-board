@@ -10,7 +10,7 @@ export const Landing = ({ name, age, updateField, selectWishType, validFields })
   return (
     <div id="SplashScreen">
       <Header />
-      <div className="wish-input">
+      <div className="wish-input" style={{color: '#000000'}}>
         <span>My name is </span>
         <input data-test="name-input" placeholder="enter your name" type="text" onChange={(e) => updateField(nameField, e.target.value)} value={name}/>
         <span> and I am </span>
