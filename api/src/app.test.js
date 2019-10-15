@@ -142,7 +142,7 @@ describe('a wish', () => {
     expect(response.body.errors['sponsor.name'].message).toBe('Sponsor\'s name required')
   })
 
-  it('should return 422 and error message for nameValidation \'Name must contain only letters of the alphabet\'', async () => {
+  it('should return 422 and error message for child\'s nameValidation \'Name must contain only letters of the alphabet\'', async () => {
     const response = await request(app)
       .post('/wishes')
       .send({
@@ -162,7 +162,6 @@ describe('a wish', () => {
       })
 
     expect(response.status).toBe(422)
-    expect(response.body.errors['sponsor.name'].message).toBe('Name must contain only letters of the alphabet')
     expect(response.body.errors['child.name'].message).toBe('Name must contain only letters of the alphabet')
   })
 })

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const regex = /[{}+=_0-9\\|\[\])(*&^%%$#@!~`<>,?'";:]/;
+const regex = /[{}+=_0-9\\|\[\])(*&^%$#@!~`<>,?'";:]/;
 
 const Schema = mongoose.Schema
 
@@ -22,11 +22,6 @@ const wishSchema = new Schema(
     details: String,
     sponsor: {
       name: { type: String,
-        validate: [
-          function(name){
-            return (!regex.test(name));
-          }, 'Name must contain only letters of the alphabet'
-        ],
         required: [true, 'Sponsor\'s name required']
         },
       logo: String,

@@ -207,7 +207,7 @@ describe('Wish route', () => {
 
     it('should return 404 if record not found', async () => {
       const delResponse = await request(app).delete('/wishes/123')
-      expect(delResponse.status).toBe(500)
+      expect(delResponse.status).toBe(404)
     })
   })
 
