@@ -12,7 +12,7 @@ const wishSchema = new Schema(
             return (!regex.test(name));
           }, 'Name must contain only letters of the alphabet'
         ],
-        required: [true, 'Name required']
+        required: [true, 'Child\'s name required']
         },
       hometown: String,
       illness: String,
@@ -27,7 +27,7 @@ const wishSchema = new Schema(
             return (!regex.test(name));
           }, 'Name must contain only letters of the alphabet'
         ],
-        required: [true, 'Name required']
+        required: [true, 'Sponsor\'s name required']
         },
       logo: String,
       links: [String]

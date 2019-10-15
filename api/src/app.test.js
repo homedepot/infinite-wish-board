@@ -73,7 +73,20 @@ describe('auth', () => {
 describe('a wish', () => {
   it('should be added and retrieved', async () => {
     const wishType = 'go'
-    const wish = new Wish()
+    const wish = new Wish({
+      child: {
+        name: 'patrick',
+        hometown: 'marietta',
+        illness: 'crecent',
+        age: '12'
+      },
+      details: 'i want to be a real star',
+      sponsor: {
+        name: 'krabs',
+        logo: 'K',
+        links: []
+      }
+    })
     wish.type = wishType
     await wish.save()
 
@@ -81,5 +94,75 @@ describe('a wish', () => {
 
     expect(wishList.length).toBe(1)
     expect(wishList[0].type).toBe(wishType)
+  })
+
+  it('should return 422 and error message for nameValidation \'Child\'s name required\'', async () => {
+    const response = await request(app)
+      .post('/wishes')
+      .send({
+        child: {
+          name: '',
+          hometown: 'marietta',
+          illness: 'crecent',
+          age: '12'
+        },
+        type: 'go',
+        details: 'i want to be a real star',
+        sponsor: {
+          name: 'krabs',
+          logo: 'K',
+          links: []
+        }
+      })
+
+    expect(response.status).toBe(422)
+    expect(response.body.errors['child.name'].message).toBe('Child\'s name required')
+  })
+
+  it('should return 422 and error message for nameValidation \'Sponsor\'s name required\'', async () => {
+    const response = await request(app)
+      .post('/wishes')
+      .send({
+        child: {
+          name: 'patrick',
+          hometown: 'marietta',
+          illness: 'crecent',
+          age: '12'
+        },
+        type: 'go',
+        details: 'i want to be a real star',
+        sponsor: {
+          name: '',
+          logo: 'K',
+          links: []
+        }
+      })
+
+    expect(response.status).toBe(422)
+    expect(response.body.errors['sponsor.name'].message).toBe('Sponsor\'s name required')
+  })
+
+  it('should return 422 and error message for nameValidation \'Name must contain only letters of the alphabet\'', async () => {
+    const response = await request(app)
+      .post('/wishes')
+      .send({
+        child: {
+          name: 'patrick5',
+          hometown: 'marietta',
+          illness: 'crecent',
+          age: '12'
+        },
+        type: 'go',
+        details: 'i want to be a real star',
+        sponsor: {
+          name: 'krabs5',
+          logo: 'K',
+          links: []
+        }
+      })
+
+    expect(response.status).toBe(422)
+    expect(response.body.errors['sponsor.name'].message).toBe('Name must contain only letters of the alphabet')
+    expect(response.body.errors['child.name'].message).toBe('Name must contain only letters of the alphabet')
   })
 })

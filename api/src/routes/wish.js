@@ -129,7 +129,7 @@ wishRouter
       req.body,
       { new: true },
       (err, wish) => {
-        if (err) return res.status(500).send(err)
+        if (err) return res.status(409).send(err)
         return res.status(200).send(wish)
       }
     )
