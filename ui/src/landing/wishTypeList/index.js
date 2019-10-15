@@ -21,32 +21,28 @@ export const WishTypeList = ({ selectWishType, validFields, age }) => {
             <WishTypeCard
               altText="Rocket"
               imgSrc={Rocket}
-              title={GO}
-              subtitle="Somewhere!"
+              title={`To Go`}
             />
           </li>
           <li data-test="wishcard-alien" onClick={() => selectWishType(MEET)}>
             <WishTypeCard
               altText="Alien"
               imgSrc={Alien}
-              title={MEET}
-              subtitle="Someone!"
+              title={`To Meet`}
             />
           </li>
           <li data-test="wishcard-astronaut" onClick={() => selectWishType(BE)}>
             <WishTypeCard
               altText="Astronaut"
               imgSrc={Astronaut}
-              title={BE}
-              subtitle="Someone!"
+              title={`To Be`}
             />
           </li>
           <li data-test="wishcard-telescope" onClick={() => selectWishType(HAVE)}>
             <WishTypeCard
               altText="Telescope"
               imgSrc={Telescope}
-              title={HAVE}
-              subtitle="Something!"
+              title={`To Have`}
             />
           </li>
         </ul>
