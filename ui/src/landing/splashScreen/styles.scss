@@ -4,9 +4,9 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: $light-blue;
-  color: $dark-blue;
-  font-family: 'Arial Rounded MT Bold', sans-serif;
+  background-image: url('../../assets/images/MAW_StarrySpace_Background.svg');
+  color: $white;
+  font-family: 'Lato', sans-serif;
   padding: 2.5em;
   box-sizing: border-box;
 
@@ -18,6 +18,7 @@
 
   h1 {
     font-size: 3.5em;
+    color: $white;
   }
 
   .header-title {
@@ -30,10 +31,10 @@
   }
 
   @font-face {
-    font-family: 'Arial Rounded MT Bold';
+    font-family: 'Lato';
     font-style: normal;
     font-weight: normal;
-    src: local('Arial Rounded MT Bold'), url('../../assets/fonts/ARLRDBD_0.woff') format('woff');
+    src: local('Lato'), url('../../assets/fonts/Lato-Bold.ttf') format('ttf');
 }
   
   img.header-galaxy-logo {

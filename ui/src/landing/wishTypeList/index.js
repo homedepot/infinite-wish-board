@@ -7,12 +7,6 @@ import Telescope from '../../assets/images/newStyle/icon_HAVE_100x100.svg'
 import { WishTypeCard } from '../wishTypeCard'
 import './styles.scss'
 
-const styles = {
-  text:{
-    color: '#000000'
-  }
-}
-
 export const WishTypeList = ({ selectWishType, validFields, age }) => {
   const { GO, MEET, BE, HAVE } = WishType
 
@@ -21,9 +15,9 @@ export const WishTypeList = ({ selectWishType, validFields, age }) => {
   if (validAge) {
     return (
       <Fragment>
-        <h1 style={styles.text}>I wish to:</h1>
-        <ul id="WishTypeList" className="wish-type-select" style={styles.text}>
-          <li data-test="wishcard-rocket" style={styles.text} onClick={() => selectWishType(GO)}>
+        <h1>I wish to:</h1>
+        <ul id="WishTypeList" className="wish-type-select">
+          <li data-test="wishcard-rocket" onClick={() => selectWishType(GO)}>
             <WishTypeCard
               altText="Rocket"
               imgSrc={Rocket}
@@ -62,7 +56,7 @@ export const WishTypeList = ({ selectWishType, validFields, age }) => {
     return (
       <div className="fields-not-valid">
         <ul>
-          <li style={styles.text}>Oops! You have to be at least 2 years old, and under 18 to make a wish.</li>
+          <li>Oops! You have to be at least 2 years old, and under 18 to make a wish.</li>
         </ul>
       </div>);
   }
