@@ -10,6 +10,12 @@
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
+    
+    span {
+      color: #fdec6e;
+      text-shadow:0px 0px 30px #fdec6e;
+      transition: all 0.2s ease-in;
+    }
   }
 
   .wish-card-image {
@@ -21,10 +27,5 @@
     font-size: 2.5em;
     margin: .25em 0;
     font-weight: bold;
-  }
-
-  .card-subtitle {
-    font-weight: bold;
-    font-size: 1.8em;
   }
 }
