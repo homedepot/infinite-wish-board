@@ -19,7 +19,6 @@
     "express": "~4.15.5",
     "mongoose": "^5.5.13",
     "morgan": "~1.9.0",
-    "nodemon": "1.19.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1"
@@ -28,6 +27,7 @@
     "@shelf/jest-mongodb": "^1.0.1",
     "jest": "^24.8.0",
     "moxios": "^0.4.0",
+    "nodemon": "^1.19.3",
     "prettier": "1.18.2",
     "supertest": "^4.0.2"
   },
