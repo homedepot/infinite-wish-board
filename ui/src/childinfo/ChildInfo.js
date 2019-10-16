@@ -24,6 +24,23 @@ export default class ChildInfo extends Component {
     this.soundEffect.src = rocketSound
   }
 
+  componentDidMount() {
+    document.addEventListener('keypress', this.enter);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keypress', this.enter);
+  }
+
+  /**
+   * @desc if 'Enter' is pressed, execute code
+   * @param event
+   */
+  enter = (event) => {
+    if (event.charCode === 13) {
+      this.nextStep();
+    }
+  }
+
   stepMapFunction = () => {
     let { name } = this.props
     return {
@@ -112,6 +129,10 @@ export default class ChildInfo extends Component {
     }
   }
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+  }
+
   rocketBlastOff = () => {
     this.setState({
       launchRocket: true
@@ -137,7 +158,7 @@ export default class ChildInfo extends Component {
             </p>
             <p className="text-name">{this.getTextField()}</p>
             {step ? ( //first step should not have any input
-              <form>
+              <form onSubmit={this.handleFormSubmit}>
                 <input
                   className="input-value"
                   type="text"
