@@ -1,6 +1,6 @@
 import React from 'react'
 import ChildInfo from './ChildInfo'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 
 jest.mock('../services/WishDetailsService', () => ({
   makeAWish: jest.fn(() => {
@@ -50,6 +50,51 @@ describe('Initial Render', () => {
     expect(childInfo.instance().props.name).toEqual(testName);
     expect(childInfo.instance().state.illness).toEqual('');
   })
+
+  describe('event listener for "Enter"', () => {
+    let remover;
+    beforeEach(() => {
+      childInfo = mount(<ChildInfo name={testName} age={age} />);
+      remover = jest
+          .spyOn(global, 'removeEventListener')
+          .mockImplementation(() => {});
+    });
+
+    it('Should remove event listener', () => {
+      childInfo.unmount();
+      expect(remover).toHaveBeenCalled();
+    })
+  });
+
+  describe('enter function', () => {
+    let event = {
+      charCode: 0
+    };
+
+    it('Should update "step" in state on "Enter"', () => {
+      event.charCode = 13;
+      expect(childInfo.instance().state.step).toEqual(0);
+      childInfo.instance().enter(event);
+      expect(childInfo.instance().state.step).toEqual(1);
+      childInfo.instance().enter(event);
+      expect(childInfo.instance().state.step).toEqual(2);
+    })
+  });
+
+  describe('form submit', () => {
+    let event = {
+      preventDefault: () => {}
+    };
+
+    beforeEach(() => {
+      jest.spyOn(event, 'preventDefault');
+    });
+
+    it('Should stop page refresh', () => {
+      childInfo.instance().handleFormSubmit(event);
+      expect(event.preventDefault).toHaveBeenCalled();
+    })
+  });
 
   describe('step updates and progress', () => {
 
