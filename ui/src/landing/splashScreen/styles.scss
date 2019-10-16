@@ -10,6 +10,12 @@
   padding: 2.5em;
   box-sizing: border-box;
 
+  .fields-not-valid {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
   h1 {
     font-size: 3.5em;
   }
@@ -41,7 +47,7 @@
     margin: 2em 0;
 
     input {
-      border: 2px solid $medium-blue;
+      border: 2px solid #000000;
       border-radius: 3px;
       padding: .8em;
       font-size: .9em;
