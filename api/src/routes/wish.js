@@ -80,7 +80,6 @@ wishRouter
         }
         return prevYear === year && prevMonth === month
       }
-
       rs.forEach(wish => {
         const year = new Date(wish.updatedAt).getFullYear()
         const month = new Date(wish.updatedAt).getMonth() + 1
@@ -103,7 +102,7 @@ wishRouter
         month: prevMonth,
         wishes: currentGroup
       })
-      res.send(groupedWishes)
+      res.send(currentGroup)
     } else {
       res.send(rs)
     }
