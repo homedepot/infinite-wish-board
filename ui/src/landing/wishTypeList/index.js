@@ -13,12 +13,12 @@ const styles = {
   }
 }
 
-export const WishTypeList = ({ selectWishType, validFields, age }) => {
+export const WishTypeList = ({ selectWishType, validFields, age, name }) => {
   const { GO, MEET, BE, HAVE } = WishType
 
-  const {validAge} = validFields(age);
+  const {validAge, validName, ageTouched, nameTouched} = validFields(age, name);
   
-  if (validAge) {
+  if (validAge && validName) {
     return (
       <Fragment>
         <h1 style={styles.text}>I wish to:</h1>
@@ -61,8 +61,9 @@ export const WishTypeList = ({ selectWishType, validFields, age }) => {
   } else {
     return (
       <div className="fields-not-valid">
-        <ul>
-          <li style={styles.text}>Oops! You have to be at least 2 years old, and under 18 to make a wish.</li>
+        <ul style={styles.text}>
+          { !ageTouched || validAge || <li>Oops! You have to be at least 2 years old, and under 18 to make a wish.</li> }
+          { !nameTouched || validName || <li>Oops! You have to enter a name to make a wish.</li> }
         </ul>
       </div>);
   }
