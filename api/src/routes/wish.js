@@ -109,8 +109,10 @@ wishRouter
   })
   .post((req, res) => {
     let wish = new Wish(req.body)
-    wish.save()
+    wish.save(function (err, wish) {
+    if (err) return res.status(422).send(err);
     return res.status(201).send(wish)
+    });
   })
 
 wishRouter
@@ -133,7 +135,8 @@ wishRouter
   })
   .delete((req, res) => {
     Wish.findByIdAndRemove(req.params.id, (err, wish) => {
-      if (err) return res.status(500).send(err)
+      if (err) return res.status(404).send(err)
+      console.log('err: ', err);
       const response = {
         message: 'Wish successfully deleted',
         id: wish._id
