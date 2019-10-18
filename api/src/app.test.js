@@ -144,28 +144,34 @@ describe('a wish', () => {
     expect(response.body.errors['child.name'].message).toBe('Child\'s name required')
   })
 
-  it('should return 422 and error message for nameValidation \'Sponsor\'s name required\'', async () => {
-    const response = await request(app)
-      .post('/wishes')
-      .send({
-        child: {
-          name: 'patrick',
-          hometown: 'marietta',
-          illness: 'crecent',
-          age: '12'
-        },
-        type: 'go',
-        details: 'i want to be a real star',
-        sponsor: {
-          name: '',
-          logo: 'K',
-          links: []
-        }
-      })
-
-    expect(response.status).toBe(422)
-    expect(response.body.errors['sponsor.name'].message).toBe('Sponsor\'s name required')
-  })
+  /*
+   * Commented out on 10/18/2019 by Winston R. Milling
+   * To be reinstated when sponsor name becomes required. 
+   * As of this comment there is no input for sponsor name in the submission workflow, 
+   * only in the maintenance/admin workflow
+   */
+  //it('should return 422 and error message for nameValidation \'Sponsor\'s name required\'', async () => {
+  //  const response = await request(app)
+  //  .post('/wishes')
+  //  .send({
+  //    child: {
+  //      name: 'patrick',
+  //      hometown: 'marietta',
+  //      illness: 'crecent',
+  //      age: '12'
+  //    },
+  //    type: 'go',
+  //    details: 'i want to be a real star',
+  //    sponsor: {
+  //      name: '',
+  //      logo: 'K',
+  //      links: []
+  //    }
+  //  })
+  //
+  //  expect(response.status).toBe(422)
+  //  expect(response.body.errors['sponsor.name'].message).toBe('Sponsor\'s name required')
+  //})
 
   it('should return 422 and error message for child\'s nameValidation \'Name must contain only letters of the alphabet\'', async () => {
     const response = await request(app)
