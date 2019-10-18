@@ -36,6 +36,24 @@ export default class WishDetails extends Component {
     }
   }
 
+  updateHometownField(hometown) {
+    this.setState(prevState => ({
+      ...prevState,
+      wishDetails: {
+        ...prevState.wishDetails,
+        child: {
+          ...prevState.wishDetails.child,
+          hometown: hometown
+        }
+      }
+    }));
+  }
+  // () => this.updateHometown({child: wishDetails.child, type: wishDetails.type, details: wishDetails.details}
+  updateHometown = async (wish) => {
+    const { id } = this.props.match.params
+    return await WishDetailsService.editAWish(id, wish);
+  }
+
   async componentDidMount() {
     const { id } = this.props.match.params
     const wishDetails = await WishDetailsService.getWishDetails(id)
@@ -69,8 +87,14 @@ export default class WishDetails extends Component {
   }
 
   render() {
-    const { child, details, sponsor } = this.state.wishDetails
+    const { child, details, sponsor, type } = this.state.wishDetails
     const { name, age, hometown } = child
+
+    const wish = {
+      child: child,
+      type: type,
+      details: details
+    }
 
     return (
       <div className="wish-details-page">
@@ -95,7 +119,7 @@ export default class WishDetails extends Component {
             </div>
             <div>
               <label>Hometown: </label>
-              <span>{hometown}</span>
+              <input data-test="hometown-input" placeholder="enter your hometown" type="text" onBlur={() => this.updateHometown(wish)} onChange={(e) => this.updateHometownField(e.target.value)} value={hometown}/>
             </div>
             <h3>Illness Summary</h3>
             <textarea readOnly value={child.illness}></textarea>
