@@ -1,6 +1,5 @@
 header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
 
   .header-item {
     display: flex;
@@ -8,12 +7,8 @@ header {
     align-items: center;
   }
 
-  .header-galaxy-logo {
-    max-height: 6em;
-  }
-
   .header-make-a-wish-logo {
-    max-height: 6em;
+    transform: scale(2.0, 2.0);
   }
 
   .logo-container, .galaxy-logo-container {
