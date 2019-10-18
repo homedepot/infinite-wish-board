@@ -96,6 +96,31 @@ describe('a wish', () => {
     expect(wishList[0].type).toBe(wishType)
   })
 
+  it('should accept diacritics in child\'s name', async () => {
+    const response = await request(app)
+      .post('/wishes')
+      .send({
+        child: {
+          name: 'Sørina José Françios Zoë Mary-Jo Jokūbas Siân Kšthe Fañch',
+          hometown: 'marietta',
+          illness: 'crecent',
+          age: '12'
+        },
+        type: 'go',
+        details: 'i want to be a real star',
+        sponsor: {
+          name: 'krabs',
+          logo: 'K',
+          links: []
+        }
+      })
+
+    const wishList = await Wish.find({})
+
+    expect(response.status).toBe(201)
+    expect(wishList[0].child.name).toBe('Sørina José Françios Zoë Mary-Jo Jokūbas Siân Kšthe Fañch')
+  })
+
   it('should return 422 and error message for nameValidation \'Child\'s name required\'', async () => {
     const response = await request(app)
       .post('/wishes')
