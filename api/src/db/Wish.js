@@ -22,7 +22,7 @@ const wishSchema = new Schema(
     details: String,
     sponsor: {
       name: { type: String,
-        required: [true, 'Sponsor\'s name required']
+        required: [false, 'Sponsor\'s name required']
         },
       logo: String,
       links: [String]
