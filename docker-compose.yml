@@ -1,5 +1,8 @@
+#App version
 version: '3'
+#Services
 services:
+  #API Service
   api:
     build:
       context: ./api
@@ -9,11 +12,13 @@ services:
     volumes:
       - ./api:/api
       - /api/node_modules
+  #Database Service
   db:
     container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
+  #UI Service
   ui:
     build:
       context: ./ui
