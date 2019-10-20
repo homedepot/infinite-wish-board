@@ -132,7 +132,8 @@ describe('ValidatedSignInForm', () => {
 
   it('should redirect user to landing page when user enters valid credentials', async () => {
     const historyMock = { push: jest.fn() }
-    const wrapper = shallow(<ValidatedSignInForm history={historyMock} />)
+    const setSignedInUserMock = jest.fn()
+    const wrapper = shallow(<ValidatedSignInForm history={historyMock} setSignedInUser={setSignedInUserMock}/>)
     const values = {
       username: 'aswin',
       password: 'password123'
@@ -149,6 +150,7 @@ describe('ValidatedSignInForm', () => {
     await wrapper.instance().onSubmit(values, bag)
 
     expect(response.status).toEqual(200)
+    expect(setSignedInUserMock).toHaveBeenCalled()
     expect(historyMock.push).toHaveBeenCalled()
     expect(historyMock.push.mock.calls[0]).toEqual(['/landing'])
   })

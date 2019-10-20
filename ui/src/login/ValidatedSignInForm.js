@@ -41,7 +41,10 @@ export default class ValidatedSignInForm extends Component {
           password
         }
       )
-      if (response.status === 200) this.props.history.push('/landing')
+      if (response.status === 200) {
+        this.props.setSignedInUser(username)
+        this.props.history.push('/landing')
+      }
       else {
         this.setState({
           invalidFormErrorMsg: 'Incorrect username/password. Please try again.',

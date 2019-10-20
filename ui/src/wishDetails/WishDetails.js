@@ -74,7 +74,7 @@ export default class WishDetails extends Component {
 
     return (
       <div className="wish-details-page">
-        <WishHeader />
+        <WishHeader username = {this.props.username}/>
         <div className="back-to-summary-link-container">
           <Link to="/wish-summary">Back to Summary</Link>
         </div>
