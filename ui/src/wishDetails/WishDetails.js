@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import WishDetailsService from '../services/WishDetailsService'
 import Rocket from '../assets/images/icn_To_Go_Rocket_White_Inside_130x130.png'
 import Alien from '../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
@@ -9,6 +8,13 @@ import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import WishHeader from '../wishList/wishHeader'
+
+const styles = {
+  link:{
+    color: '#000000',
+    textDecoration: 'underline'
+  }
+}
 
 export default class WishDetails extends Component {
   constructor(props) {
@@ -86,6 +92,10 @@ export default class WishDetails extends Component {
     return image
   }
 
+  goToWishSummary(wish) {
+    this.updateHometown(wish).then(() => this.props.history.push('/wish-summary'))
+  }
+
   render() {
     const { child, details, sponsor, type } = this.state.wishDetails
     const { name, age, hometown } = child
@@ -100,7 +110,7 @@ export default class WishDetails extends Component {
       <div className="wish-details-page">
         <WishHeader />
         <div className="back-to-summary-link-container">
-          <Link to="/wish-summary">Back to Summary</Link>
+          <a style={styles.link} data-test="go-to-summary-link" onClick={() => this.goToWishSummary(wish)} to="">Back to Summary</a>
         </div>
         <div className="wishDetails containerHorizontal evenSpacing">
           <div>

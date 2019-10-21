@@ -86,6 +86,7 @@ describe('Initial Render', () => {
     const hometownInput = wishInfo.find('[data-test="hometown-input"]')
     const instance = wishInfo.instance();
     const updateHometownSpy = jest.spyOn(instance, 'updateHometown')
+    const goToWishSummarySpy = jest.spyOn(instance, 'goToWishSummary')
 
     let event = {
       target: {
@@ -104,6 +105,10 @@ describe('Initial Render', () => {
     hometownInput.simulate('blur', event)
     axios.put = jest.fn(() => Promise.resolve({ data: wish }));
     expect(updateHometownSpy).toHaveBeenCalled()
+
+    const goToSummaryLink = wishInfo.find('[data-test="go-to-summary-link"]')
+    goToSummaryLink.simulate('click', event)
+    expect(goToWishSummarySpy).toHaveBeenCalled()
   })
 
   describe('Getting image for wish type', () => {
