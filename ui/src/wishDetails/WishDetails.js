@@ -110,7 +110,7 @@ export default class WishDetails extends Component {
       <div className="wish-details-page">
         <WishHeader />
         <div className="back-to-summary-link-container">
-          <a style={styles.link} data-test="go-to-summary-link" onClick={() => this.goToWishSummary(wish)} to="">Back to Summary</a>
+          <span style={styles.link} data-test="go-to-summary-link" onClick={() => this.goToWishSummary(wish)} to="">Back to Summary</span>
         </div>
         <div className="wishDetails containerHorizontal evenSpacing">
           <div>
