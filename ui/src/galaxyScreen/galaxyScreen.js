@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './styles.scss'
 import { getWishes } from '../services/WishDetailsService'
-import backgroundGif from '../assets/gifs/MAW_BG.gif'
-import rocketGif from '../assets/gifs/MAW_Rocket.gif'
-import toBeGif from '../assets/gifs/MAW_To_Be.gif'
-import toMeetGif from '../assets/gifs/MAW_To_Meet.gif'
+import backgroundWebm from '../assets/gifs/MAW_BG.webm'
+import rocketWebm from '../assets/gifs/MAW_Rocket.webm'
+import toBeWebM from '../assets/gifs/MAW_To_Be.webm'
+import toMeetWebM from '../assets/gifs/MAW_To_Meet.webm'
 
 export default class GalaxyScreen extends Component {
 
@@ -18,7 +18,7 @@ export default class GalaxyScreen extends Component {
 
     componentDidMount() {
         this.setState({
-            currentGif: backgroundGif
+            currentGif: backgroundWebm
         },
         () => {
             setInterval(() => {
@@ -39,44 +39,44 @@ export default class GalaxyScreen extends Component {
 
                 if (difference[0].type === 'go') {
                     this.setState({
-                        currentGif: rocketGif // 13 seconds
+                        currentGif: rocketWebm // 13 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: backgroundGif
+                                currentGif: backgroundWebm
                             })
                         },
                         13000)
                     })
                 } else if (difference[0].type === 'meet') {
                     this.setState({
-                        currentGif: toMeetGif // 11 seconds
+                        currentGif: toMeetWebM // 11 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: backgroundGif
+                                currentGif: backgroundWebm
                             })
                         },
                         11000)
                     })
                 } else if (difference[0].type === 'be') {
                     this.setState({
-                        currentGif: toBeGif // 11 seconds
+                        currentGif: toBeWebM // 11 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: backgroundGif
+                                currentGif: backgroundWebm
                             })
                         },
                         11000)
                     })
                 } else {
                     this.setState({
-                        currentGif: rocketGif // 13 seconds
+                        currentGif: backgroundWebm // 13 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: backgroundGif
+                                currentGif: backgroundWebm
                             })
                         },
                         13000)
@@ -84,7 +84,7 @@ export default class GalaxyScreen extends Component {
                 }
             } else {
                 this.setState({
-                    currentGif: backgroundGif
+                    currentGif: backgroundWebm
                 })
             }
 
@@ -96,8 +96,10 @@ export default class GalaxyScreen extends Component {
 
     render() {
         return (
-            <div id="GalaxyScreen">
-                <img className='galaxy-image' src={this.state.currentGif} alt="loading..." />
+            <div className="fullscreen-bg">
+                <video loop muted autoPlay className="fullscreen-bg__video">
+                    <source src={this.state.currentGif} type="video/webm" />
+                </video>
             </div>
         )
     }
