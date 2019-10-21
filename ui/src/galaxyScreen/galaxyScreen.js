@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import './styles.scss'
 import { getWishes } from '../services/WishDetailsService'
-import defaultGif from '../assets/gifs/giphy.gif'
+import backgroundGif from '../assets/gifs/MAW_BG.gif'
+import rocketGif from '../assets/gifs/MAW_Rocket.gif'
+import toBeGif from '../assets/gifs/MAW_To_Be.gif'
+import toMeetGif from '../assets/gifs/MAW_To_Meet.gif'
 
 export default class GalaxyScreen extends Component {
 
@@ -15,7 +18,7 @@ export default class GalaxyScreen extends Component {
 
     componentDidMount() {
         this.setState({
-            // currentGif: defaultGif
+            currentGif: backgroundGif
         },
         () => {
             setInterval(() => {
@@ -32,14 +35,58 @@ export default class GalaxyScreen extends Component {
 
             // console.log(this.state.previousWishList)
             // console.log(difference)
-            if (difference && difference.length > 0) {
+            if (difference && difference.length > 0 && this.state.previousWishList.length > 0) {
                 console.log(difference[0].type)
 
-                if (difference[0].type === 'be') {
+                if (difference[0].type === 'go') {
                     this.setState({
-                        currentGif: defaultGif
+                        currentGif: rocketGif // 13 seconds
+                    }, () => {
+                        setTimeout(() => {
+                            this.setState({
+                                currentGif: backgroundGif
+                            })
+                        },
+                        13000)
+                    })
+                } else if (difference[0].type === 'meet') {
+                    this.setState({
+                        currentGif: toMeetGif // 11 seconds
+                    }, () => {
+                        setTimeout(() => {
+                            this.setState({
+                                currentGif: backgroundGif
+                            })
+                        },
+                        11000)
+                    })
+                } else if (difference[0].type === 'be') {
+                    this.setState({
+                        currentGif: toBeGif // 11 seconds
+                    }, () => {
+                        setTimeout(() => {
+                            this.setState({
+                                currentGif: backgroundGif
+                            })
+                        },
+                        11000)
+                    })
+                } else {
+                    this.setState({
+                        currentGif: rocketGif // 13 seconds
+                    }, () => {
+                        setTimeout(() => {
+                            this.setState({
+                                currentGif: backgroundGif
+                            })
+                        },
+                        13000)
                     })
                 }
+            } else {
+                this.setState({
+                    currentGif: backgroundGif
+                })
             }
 
             this.setState({
@@ -51,7 +98,7 @@ export default class GalaxyScreen extends Component {
     render() {
         return (
             <div id="GalaxyScreen">
-                <img src={this.state.currentGif} alt="loading..." />
+                <img className='galaxy-image' src={this.state.currentGif} alt="loading..." />
             </div>
         )
     }
