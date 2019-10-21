@@ -36,7 +36,6 @@ export default class GalaxyScreen extends Component {
             // console.log(this.state.previousWishList)
             // console.log(difference)
             if (difference && difference.length > 0 && this.state.previousWishList.length > 0) {
-                console.log(difference[0].type)
 
                 if (difference[0].type === 'go') {
                     this.setState({
