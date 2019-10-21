@@ -46,19 +46,55 @@ describe('Wish route', () => {
   }
   const thirdWishType = wishRouter.MEET
   const thirdWish = {
+    child: {
+      name: 'sandy',
+      hometown: 'marietta',
+      illness: 'mutated to have super powers',
+      age: '12'
+    },
     type: thirdWishType,
+    details: 'I\'ll be there faster than a jackrabbit on a hot day in August!',
+    sponsor: {
+      name: 'krabs',
+      logo: 'K',
+      links: []
+    },
     createdAt: '2019-05-14T18:08:56.374Z',
     updatedAt: '2019-05-14T18:08:56.374Z'
   }
   const fourthWishType = wishRouter.BE
   const fourthWish = {
+    child: {
+      name: 'squidward',
+      hometown: 'marietta',
+      illness: 'can\'t stop knitting',
+      age: '12'
+    },
     type: fourthWishType,
+    details: 'Oh, my aching tentacles',
+    sponsor: {
+      name: 'krabs',
+      logo: 'K',
+      links: []
+    },
     createdAt: '2018-08-14T18:08:56.374Z',
     updatedAt: '2018-08-14T18:08:56.374Z'
   }
   const fifthWishType = wishRouter.MEET
   const fifthWish = {
+    child: {
+      name: 'plankton',
+      hometown: 'marietta',
+      illness: 'hiccups',
+      age: '12'
+    },
     type: fifthWishType,
+    details: 'the formula for the krabby patty',
+    sponsor: {
+      name: 'krabs',
+      logo: 'K',
+      links: []
+    },
     createdAt: '2018-07-12T18:08:56.374Z',
     updatedAt: '2018-07-12T18:08:56.374Z'
   }
@@ -171,7 +207,7 @@ describe('Wish route', () => {
 
     it('should return 404 if record not found', async () => {
       const delResponse = await request(app).delete('/wishes/123')
-      expect(delResponse.status).toBe(500)
+      expect(delResponse.status).toBe(404)
     })
   })
 
