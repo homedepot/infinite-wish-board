@@ -7,7 +7,7 @@ import WatchAuth from '../auth/WatchAuth'
 import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
 import WishDetails from '../wishDetails/WishDetails';
-import GalaxyScreen from '../galaxyScreen/GalaxyScreen'
+import GalaxyScreen from '../galaxyScreen/galaxyScreen'
 
 function App() {
   return (
