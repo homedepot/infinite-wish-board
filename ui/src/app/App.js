@@ -7,6 +7,7 @@ import WatchAuth from '../auth/WatchAuth'
 import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
 import WishDetails from '../wishDetails/WishDetails';
+import GalaxyScreen from '../galaxyScreen/galaxyScreen'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/wish-summary/:id" component={WishDetails} />
           <Route exact path="/logout" component={Login} />
           <Route exact path="/" component={Login} />
+          <Route exact path="/galaxy" component={GalaxyScreen} />
         </Switch>
       </WatchAuth>
     </Router>
