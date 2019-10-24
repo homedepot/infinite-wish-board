@@ -7,6 +7,7 @@ import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
 import WishList from '../wishList'
 import WishDetails from '../wishDetails/WishDetails';
+import GalaxyScreen from '../galaxyScreen/galaxyScreen'
 
 describe('Default routing behavior', () => {
   it('renders the login page by default', () => {
@@ -15,10 +16,25 @@ describe('Default routing behavior', () => {
     let landingRoute = wrapper
       .find(PrivateRoute)
       .at(0)
-      .props()
-
+    
     expect(landingRoute.path).toEqual('/')
     expect(landingRoute.component).toEqual(CreateWish)
+    
+    const galaxyRoute = wrapper
+      .find(Route)
+      .at(6)
+      .props()
+
+    expect(galaxyRoute.path).toEqual('/galaxy')
+    expect(galaxyRoute.component).toEqual(GalaxyScreen)
+
+    const logoutRoute = wrapper
+      .find(PrivateRoute)
+      .at(4)
+      .props()
+
+    expect(logoutRoute.path).toEqual('/logout')
+    expect(logoutRoute.component).toEqual(Login)
 
     let childInfoRoute = wrapper
       .find(PrivateRoute)
@@ -43,7 +59,6 @@ describe('Default routing behavior', () => {
 
     expect(wishDetailsRoute.path).toEqual('/wish-summary/:id')
     expect(wishDetailsRoute.component).toEqual(WishDetails)
-
 
     let loginRoute = wrapper
       .find(TemporaryRoute)

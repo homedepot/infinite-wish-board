@@ -8,6 +8,7 @@ import WishList from '../wishList'
 import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
 import WishDetails from '../wishDetails/WishDetails';
+import GalaxyScreen from '../galaxyScreen/galaxyScreen'
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <PrivateRoute path="/child-info" component={ChildInfo} />
           <PrivateRoute path="/wish-summary" component={WishList} />
           <PrivateRoute path="/wish-summary/:id" component={WishDetails} />
+          <PrivateRoute exact path="/logout" component={Login} />
+          <Route exact path="/galaxy" component={GalaxyScreen} />
           <TemporaryRoute path="/login" component={Login} />
         </Switch>
       {/* </WatchAuth> */}

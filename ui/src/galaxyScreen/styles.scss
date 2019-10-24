@@ -1,0 +1,16 @@
+@import "../styles/colors";
+
+#GalaxyScreen {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: $light-blue;
+  color: $dark-blue;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  box-sizing: border-box;
+
+  .galaxy-image {
+    height: 100vh;
+    width: 100vw;
+  }
+}
