@@ -21,38 +21,34 @@ export const WishTypeList = ({ selectWishType, validFields, age, name }) => {
   if (validAge && validName) {
     return (
       <Fragment>
-        <h1 style={styles.text}>I wish to:</h1>
-        <ul id="WishTypeList" className="wish-type-select" style={styles.text}>
-          <li data-test="wishcard-rocket" style={styles.text} onClick={() => selectWishType(GO)}>
+        <h1>I wish to:</h1>
+        <ul id="WishTypeList" className="wish-type-select">
+          <li data-test="wishcard-rocket" onClick={() => selectWishType(GO)}>
             <WishTypeCard
               altText="Rocket"
               imgSrc={Rocket}
-              title={GO}
-              subtitle="Somewhere!"
+              title={`To Go`}
             />
           </li>
           <li data-test="wishcard-alien" onClick={() => selectWishType(MEET)}>
             <WishTypeCard
               altText="Alien"
               imgSrc={Alien}
-              title={MEET}
-              subtitle="Someone!"
+              title={`To Meet`}
             />
           </li>
           <li data-test="wishcard-astronaut" onClick={() => selectWishType(BE)}>
             <WishTypeCard
               altText="Astronaut"
               imgSrc={Astronaut}
-              title={BE}
-              subtitle="Someone!"
+              title={`To Be`}
             />
           </li>
           <li data-test="wishcard-telescope" onClick={() => selectWishType(HAVE)}>
             <WishTypeCard
               altText="Telescope"
               imgSrc={Telescope}
-              title={HAVE}
-              subtitle="Something!"
+              title={`To Have`}
             />
           </li>
         </ul>
