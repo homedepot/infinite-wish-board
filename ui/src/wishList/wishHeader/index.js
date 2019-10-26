@@ -1,13 +1,11 @@
 import React from 'react'
 import makeAWishLogo from '../../assets/images/Logo_MakeWish.png'
-import galaxyLogo from '../../assets/images/Logo_Galaxy.png'
 import './styles.scss'
 
 const WishHeader = (props) => (
   <div id="wishHeader">
     <div className="logo-container">
       <img src={makeAWishLogo} className="makeAWishLogo" alt="make a wish logo" />
-      <img src={galaxyLogo} className="galaxyLogo" alt="galaxy logo" />
     </div>
     <div className="user-details">
       <span>{props.username}</span> |

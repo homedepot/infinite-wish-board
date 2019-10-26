@@ -1,4 +1,5 @@
 header {
+  padding-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 
@@ -8,11 +9,17 @@ header {
     align-items: center;
   }
 
-  .header-galaxy-logo {
+  .header-rocket-logo {
+    transform: scale(2.0, 2.0);
     max-height: 6em;
   }
 
-  .logo-container, .galaxy-logo-container {
+  .header-make-a-wish-logo {
+    transform: scale(2.0,2.0);
+    max-height: 6em;
+  }
+
+  .logo-container, .rocket-logo-container {
     display: flex;
     justify-content: space-between;
     align-items: center;

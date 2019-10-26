@@ -7,6 +7,7 @@ import WatchAuth from '../auth/WatchAuth'
 import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
 import WishDetails from '../wishDetails/WishDetails';
+import GalaxyScreen from '../galaxyScreen/galaxyScreen'
 
 export default class App extends Component {
   constructor(props) {
@@ -21,7 +22,6 @@ export default class App extends Component {
   setSignedInUser(username) {
     this.setState({username})
   }
-
 
   render() {
     return (
@@ -46,6 +46,7 @@ export default class App extends Component {
               exact path="/"
               render={(props) => <Login setSignedInUser = {this.setSignedInUser} {...props} />}
             />
+            <Route exact path="/galaxy" component={GalaxyScreen} />
           </Switch>
         </WatchAuth>
       </Router>

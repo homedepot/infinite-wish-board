@@ -7,10 +7,19 @@ import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
 import WishList from '../wishList'
 import WishDetails from '../wishDetails/WishDetails';
+import GalaxyScreen from '../galaxyScreen/galaxyScreen'
 
 describe('Default routing behavior', () => {
   it('renders the login page by default', () => {
     const wrapper = shallow(<App />)
+
+    const galaxyRoute = wrapper
+      .find(Route)
+      .at(6)
+      .props()
+
+    expect(galaxyRoute.path).toEqual('/galaxy')
+    expect(galaxyRoute.component).toEqual(GalaxyScreen)
 
     const loginRoute = wrapper
       .find(Route)
