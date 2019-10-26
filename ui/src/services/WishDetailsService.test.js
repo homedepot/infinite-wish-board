@@ -1,11 +1,7 @@
 import axios from 'axios';
 import WishDetailsService from './WishDetailsService.js';
 
-jest.mock('axios', () => ({
-  get: jest.fn(() => {
-    return 'Mock response'
-  })
-}));
+jest.mock('axios')
 
 describe('Wish details service', () => {
   const expressDomain = process.env.REACT_APP_expressDomain || 'http://localhost:3002'
@@ -26,10 +22,19 @@ describe('Wish details service', () => {
     "details": "to disneyland",
     "__v": 0
   }
-  beforeEach(() => {
-    axios.get = jest.fn(() => Promise.resolve({ data: responseObject }));
-  });
+  const responseArray = [responseObject]
 
+  axios.get.mockImplementation((url) => {
+    switch (url) {
+      case `${expressDomain}/wishes/${wishId}`:
+        return Promise.resolve({data: responseObject})
+      case `${expressDomain}/wishes`:
+      case `${expressDomain}/wishes?types=go,meet`:
+        return Promise.resolve({data: responseArray})
+      default:
+        return Promise.reject(new Error('invalid endpoint'))
+    }
+  })
   it('should return wish details given an id', async () => {
     await WishDetailsService.getWishDetails(wishId);
     expect(axios.get).toHaveBeenCalledWith(`${expressDomain}/wishes/${wishId}`);
