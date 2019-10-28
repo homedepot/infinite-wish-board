@@ -136,7 +136,7 @@ describe('Initial Render', () => {
     })
   })
 
-  describe('When user on confirmation page and click blast off the rocket', () => {
+  describe('When user on confirmation page, blast off the rocket', () => {
     const play = jest.fn()
     const pause = jest.fn()
     const push = jest.fn()
