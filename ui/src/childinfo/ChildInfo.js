@@ -182,13 +182,6 @@ export default class ChildInfo extends Component {
               src={rocketImage}
               alt={rocketImage}
             />
-            <button
-              className="rocket-blast-off-button"
-              onClick={this.rocketBlastOff}
-              disabled={this.state.launchRocket}
-            >
-              Fulfill my wish
-            </button>
           </div>
         )}
       </>
