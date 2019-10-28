@@ -20,7 +20,7 @@ function App() {
           <PrivateRoute path="/wish-summary" component={WishList} />
           <PrivateRoute path="/wish-summary/:id" component={WishDetails} />
           <PrivateRoute exact path="/logout" component={Login} />
-          <Route exact path="/galaxy" component={GalaxyScreen} />
+          <PrivateRoute exact path="/galaxy" component={GalaxyScreen} />
           <TemporaryRoute path="/login" component={Login} />
         </Switch>
       {/* </WatchAuth> */}

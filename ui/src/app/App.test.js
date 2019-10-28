@@ -9,33 +9,43 @@ import WishList from '../wishList'
 import WishDetails from '../wishDetails/WishDetails';
 import GalaxyScreen from '../galaxyScreen/galaxyScreen'
 
-describe('Default routing behavior', () => {
-  it('renders the login page by default', () => {
-    const wrapper = shallow(<App />)
+describe('routing behavior', () => {
+  const wrapper = shallow(<App />)
+
+  it('renders the landing page', () => {
+    console.log(wrapper.find(PrivateRoute))
+    console.log(wrapper.find(TemporaryRoute))
 
     let landingRoute = wrapper
       .find(PrivateRoute)
       .at(0)
+      .props()
     
     expect(landingRoute.path).toEqual('/')
     expect(landingRoute.component).toEqual(CreateWish)
-    
-    const galaxyRoute = wrapper
-      .find(Route)
-      .at(6)
+  })
+
+  it('renders the galaxy screen', () => {
+    let galaxyRoute = wrapper
+      .find(PrivateRoute)
+      .at(5)
       .props()
 
     expect(galaxyRoute.path).toEqual('/galaxy')
     expect(galaxyRoute.component).toEqual(GalaxyScreen)
+  })
 
-    const logoutRoute = wrapper
+  it('renders the login screen when you logout', () => {
+    let logoutRoute = wrapper
       .find(PrivateRoute)
       .at(4)
       .props()
 
     expect(logoutRoute.path).toEqual('/logout')
     expect(logoutRoute.component).toEqual(Login)
+  })
 
+  it('renders the child-info screen', () => {
     let childInfoRoute = wrapper
       .find(PrivateRoute)
       .at(1)
@@ -43,7 +53,9 @@ describe('Default routing behavior', () => {
 
     expect(childInfoRoute.path).toEqual('/child-info')
     expect(childInfoRoute.component).toEqual(ChildInfo)
+  })
 
+  it('renders the wish-summary screen', () => {
     let wishCurationRoute = wrapper
       .find(PrivateRoute)
       .at(2)
@@ -51,7 +63,9 @@ describe('Default routing behavior', () => {
 
     expect(wishCurationRoute.path).toEqual('/wish-summary')
     expect(wishCurationRoute.component).toEqual(WishList)
+  })
 
+  it('renders the wish details page', () => {
     let wishDetailsRoute = wrapper
       .find(PrivateRoute)
       .at(3)
@@ -59,7 +73,9 @@ describe('Default routing behavior', () => {
 
     expect(wishDetailsRoute.path).toEqual('/wish-summary/:id')
     expect(wishDetailsRoute.component).toEqual(WishDetails)
+  })
 
+  it('renders the login page by default', () => {
     let loginRoute = wrapper
       .find(TemporaryRoute)
       .at(0)
@@ -67,6 +83,5 @@ describe('Default routing behavior', () => {
 
     expect(loginRoute.path).toEqual('/login')
     expect(loginRoute.component).toEqual(Login)
-
   })
 })
