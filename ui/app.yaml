@@ -6,20 +6,26 @@ automatic_scaling:
 
 handlers:
 - url: /static/js/(.*)
+  secure: always
   static_files: build/static/js/\1
   upload: build/static/js/(.*)
 - url: /static/css/(.*)
+  secure: always
   static_files: build/static/css/\1
   upload: build/static/css/(.*)
 - url: /static/media/(.*)
+  secure: always
   static_files: build/static/media/\1
   upload: build/static/media/(.*)
 - url: /(.*\.(json|ico))$
+  secure: always
   static_files: build/\1
   upload: build/.*\.(json|ico)$
 - url: /
+  secure: always
   static_files: build/index.html
   upload: build/index.html
 - url: /.*
+  secure: always
   static_files: build/index.html
   upload: build/index.html
