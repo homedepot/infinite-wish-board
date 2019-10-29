@@ -31,7 +31,7 @@ class Login extends Component {
 
     return (
       <div className="login-page">
-        <Header />
+        <Header logout={false} />
         <main className="main-section">
           {showSignIn ? (
             <section className="form-wrapper">

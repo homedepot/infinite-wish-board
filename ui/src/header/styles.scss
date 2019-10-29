@@ -1,4 +1,25 @@
-header {
+.header {
+  display: flex;
+  flex-direction: column;
+
+  .toolbar {
+    display: flex;
+    height: 30px;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+  }
+
+  a {
+    color: white;
+  }
+  
+  a:visited {
+    color: white;
+  }
+}
+
+.header header {
   padding-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
