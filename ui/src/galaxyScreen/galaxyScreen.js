@@ -5,6 +5,7 @@ import backgroundWebm from '../assets/gifs/MAW_BG.webm'
 import rocketWebm from '../assets/gifs/MAW_To_Go.webm'
 import toBeWebm from '../assets/gifs/MAW_To_Be.webm'
 import toMeetWebm from '../assets/gifs/MAW_To_Meet.webm'
+import toHaveWebm from '../assets/gifs/MAW_To_Have.webm'
 
 export default class GalaxyScreen extends Component {
 
@@ -24,7 +25,8 @@ export default class GalaxyScreen extends Component {
               'MAW_BG.webm': backgroundWebm,
               'MAW_To_Go.webm': rocketWebm,
               'MAW_To_Be.webm': toBeWebm,
-              'MAW_To_Meet.webm': toMeetWebm
+              'MAW_To_Meet.webm': toMeetWebm,
+              'MAW_To_Have.webm': toHaveWebm,
             }
         },
         () => {
@@ -46,6 +48,7 @@ export default class GalaxyScreen extends Component {
                     this.setState({
                         currentWebm: 'MAW_To_Go.webm' // 13 seconds
                     }, () => {
+                        this.playVideo()
                         setTimeout(() => {
                             this.setState({
                                 currentWebm: 'MAW_BG.webm'
@@ -57,6 +60,7 @@ export default class GalaxyScreen extends Component {
                     this.setState({
                         currentWebm: 'MAW_To_Meet.webm' // 11 seconds
                     }, () => {
+                        this.playVideo();
                         setTimeout(() => {
                             this.setState({
                                 currentWebm: 'MAW_BG.webm'
@@ -68,6 +72,7 @@ export default class GalaxyScreen extends Component {
                     this.setState({
                         currentWebm: 'MAW_To_Be.webm' // 11 seconds
                     }, () => {
+                        this.playVideo();
                         setTimeout(() => {
                             this.setState({
                                 currentWebm: 'MAW_BG.webm'
@@ -77,8 +82,9 @@ export default class GalaxyScreen extends Component {
                     })
                 } else {
                     this.setState({
-                        currentWebm: 'MAW_To_Go.webm' // 13 seconds
+                        currentWebm: 'MAW_To_Have.webm' // 13 seconds
                     }, () => {
+                        this.playVideo();
                         setTimeout(() => {
                             this.setState({
                                 currentWebm: 'MAW_BG.webm'
@@ -90,11 +96,15 @@ export default class GalaxyScreen extends Component {
             } else {
                 this.setState({
                     currentWebm: 'MAW_BG.webm'
+                }, () => {
+                    this.playVideo();
                 })
             }
 
             this.setState({
                 previousWishList: wishes
+            }, () => {
+                this.playVideo();
             })
         }
     }
@@ -106,10 +116,15 @@ export default class GalaxyScreen extends Component {
         return this.state.gifLookup[this.state.currentWebm]
     }
 
+    playVideo = () => {
+        this.refs.video.load();
+        this.refs.video.play();
+    }
+
     render() {
         return (
             <div className="fullscreen-bg">
-                <video loop muted autoPlay className="fullscreen-bg__video">
+                <video loop muted autoPlay ref="video" className="fullscreen-bg__video">
                     <source src={this.getSourceURL()} type="video/webm" />
                 </video>
             </div>
