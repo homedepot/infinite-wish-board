@@ -8734,6 +8734,11 @@ react@^16.8.6:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
 
+reactjs-videobg@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/reactjs-videobg/-/reactjs-videobg-1.2.3.tgz#91bf39aa8afe19c6fcae38df22ddda15315db567"
+  integrity sha512-vxQ+cQhUVKdTdKlmIzKwDukK1jYgoLrh2C71Lkemc0+FIjESVk6w81QF4q0bgrWJLa6MY+3o76qPN652ePaDDQ==
+
 read-pkg-up@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-1.0.1.tgz#9d63c13276c065918d57f002a57f40a1b643fb02"

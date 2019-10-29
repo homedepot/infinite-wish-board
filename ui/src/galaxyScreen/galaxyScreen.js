@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './styles.scss'
 import { getWishes } from '../services/WishDetailsService'
-import backgroundGif from '../assets/gifs/MAW_BG.gif'
-import rocketGif from '../assets/gifs/MAW_Rocket.gif'
-import toBeGif from '../assets/gifs/MAW_To_Be.gif'
-import toMeetGif from '../assets/gifs/MAW_To_Meet.gif'
+import backgroundWebm from '../assets/gifs/MAW_BG.webm'
+import rocketWebm from '../assets/gifs/MAW_Rocket.webm'
+import toBeWebM from '../assets/gifs/MAW_To_Be.webm'
+import toMeetWebM from '../assets/gifs/MAW_To_Meet.webm'
 
 export default class GalaxyScreen extends Component {
 
@@ -19,12 +19,12 @@ export default class GalaxyScreen extends Component {
 
     componentDidMount() {
         this.setState({
-            currentGif: 'MAW_BG.gif',
+            currentGif: 'MAW_BG.webm',
             gifLookup: {
-              'MAW_BG.gif': backgroundGif,
-              'MAW_Rocket.gif': rocketGif,
-              'MAW_To_Be.gif': toBeGif,
-              'MAW_To_Meet.gif': toMeetGif
+              'MAW_BG.webm': backgroundGif,
+              'MAW_Rocket.webm': rocketGif,
+              'MAW_To_Be.webm': toBeGif,
+              'MAW_To_Meet.webm': toMeetGif
             }
         },
         () => {
@@ -44,44 +44,44 @@ export default class GalaxyScreen extends Component {
 
                 if (difference[0].type === 'go') {
                     this.setState({
-                        currentGif: 'MAW_Rocket.gif' // 13 seconds
+                        currentGif: 'MAW_Rocket.webm' // 13 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: 'MAW_BG.gif'
+                                currentGif: 'MAW_BG.webm'
                             })
                         },
                         13000)
                     })
                 } else if (difference[0].type === 'meet') {
                     this.setState({
-                        currentGif: 'MAW_To_Meet.gif' // 11 seconds
+                        currentGif: 'MAW_To_Meet.webm' // 11 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: 'MAW_BG.gif'
+                                currentGif: 'MAW_BG.webm'
                             })
                         },
                         11000)
                     })
                 } else if (difference[0].type === 'be') {
                     this.setState({
-                        currentGif: 'MAW_To_Be.gif' // 11 seconds
+                        currentGif: 'MAW_To_Be.webm' // 11 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: 'MAW_BG.gif'
+                                currentGif: 'MAW_BG.webm'
                             })
                         },
                         11000)
                     })
                 } else {
                     this.setState({
-                        currentGif: 'MAW_Rocket.gif' // 13 seconds
+                        currentGif: 'MAW_Rocket.webm' // 13 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: 'MAW_BG.gif'
+                                currentGif: 'MAW_BG.webm'
                             })
                         },
                         13000)
@@ -89,7 +89,7 @@ export default class GalaxyScreen extends Component {
                 }
             } else {
                 this.setState({
-                    currentGif: 'MAW_BG.gif'
+                    currentGif: 'MAW_BG.webm'
                 })
             }
 
@@ -108,8 +108,10 @@ export default class GalaxyScreen extends Component {
 
     render() {
         return (
-            <div id="GalaxyScreen">
-                <img className='galaxy-image' src={this.getSourceURL()} alt="loading..." />
+            <div className="fullscreen-bg">
+                <video loop muted autoPlay className="fullscreen-bg__video">
+                    <source src={this.state.currentGif} type="video/webm" />
+                </video>
             </div>
         )
     }
