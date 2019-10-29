@@ -18,7 +18,7 @@ export default class GalaxyScreen extends Component {
 
     componentDidMount() {
         this.setState({
-            currentGif: backgroundGif
+            currentGif: 'MAW_BG.gif'
         },
         () => {
             setInterval(() => {
@@ -33,50 +33,48 @@ export default class GalaxyScreen extends Component {
         if (JSON.stringify(this.state.previousWishList) !== JSON.stringify(wishes)) {
             const difference = wishes.filter(wish => !this.state.previousWishList.some(prevWish => wish._id === prevWish._id));
 
-            // console.log(this.state.previousWishList)
-            // console.log(difference)
             if (difference && difference.length > 0 && this.state.previousWishList.length > 0) {
 
                 if (difference[0].type === 'go') {
                     this.setState({
-                        currentGif: rocketGif // 13 seconds
+                        currentGif: 'MAW_Rocket.gif' // 13 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: backgroundGif
+                                currentGif: 'MAW_BG.gif'
                             })
                         },
                         13000)
                     })
                 } else if (difference[0].type === 'meet') {
                     this.setState({
-                        currentGif: toMeetGif // 11 seconds
+                        currentGif: 'MAW_To_Meet.gif' // 11 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: backgroundGif
+                                currentGif: 'MAW_BG.gif'
                             })
                         },
                         11000)
                     })
                 } else if (difference[0].type === 'be') {
                     this.setState({
-                        currentGif: toBeGif // 11 seconds
+                        currentGif: 'MAW_To_Be.gif' // 11 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: backgroundGif
+                                currentGif: 'MAW_BG.gif'
                             })
                         },
                         11000)
                     })
                 } else {
                     this.setState({
-                        currentGif: rocketGif // 13 seconds
+                        currentGif: 'MAW_Rocket.gif' // 13 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
-                                currentGif: backgroundGif
+                                currentGif: 'MAW_BG.gif'
                             })
                         },
                         13000)
@@ -84,7 +82,7 @@ export default class GalaxyScreen extends Component {
                 }
             } else {
                 this.setState({
-                    currentGif: backgroundGif
+                    currentGif: 'MAW_BG.gif'
                 })
             }
 
@@ -94,10 +92,17 @@ export default class GalaxyScreen extends Component {
         }
     }
 
+    getSourceURL = () => {
+        if(process.env.REACT_APP_IMAGE_URL) {
+            return process.env.REACT_APP_IMAGE_URL + this.state.currentGif
+        }
+        return `../assets/gifs/${this.state.currentGif}`
+    }
+
     render() {
         return (
             <div id="GalaxyScreen">
-                <img className='galaxy-image' src={this.state.currentGif} alt="loading..." />
+                <img className='galaxy-image' src={this.getSourceURL()} alt="loading..." />
             </div>
         )
     }
