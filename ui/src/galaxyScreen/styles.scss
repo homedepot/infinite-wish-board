@@ -1,12 +1,10 @@
 @import "../styles/colors";
 
-<<<<<<< HEAD
 html {
   overflow: hidden;
 }
 
 #GalaxyScreen {
-=======
 .fullscreen-bg {
   position: fixed;
   top: 0;
@@ -18,7 +16,6 @@ html {
 }
 
 .fullscreen-bg__video {
->>>>>>> convert-to-webm
   position: absolute;
   top: 0;
   left: 0;
@@ -38,4 +35,5 @@ html {
     width: auto;
     height: 100%;
   }
+}
 }
