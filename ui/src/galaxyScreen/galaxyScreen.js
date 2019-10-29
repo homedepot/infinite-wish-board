@@ -110,7 +110,7 @@ export default class GalaxyScreen extends Component {
         return (
             <div className="fullscreen-bg">
                 <video loop muted autoPlay className="fullscreen-bg__video">
-                    <source src={this.state.currentWebm} type="video/webm" />
+                    <source src={this.getSourceURL()} type="video/webm" />
                 </video>
             </div>
         )
