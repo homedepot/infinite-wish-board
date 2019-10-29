@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './styles.scss'
 import { getWishes } from '../services/WishDetailsService'
 import backgroundWebm from '../assets/gifs/MAW_BG.webm'
-import rocketWebm from '../assets/gifs/MAW_Rocket.webm'
+import rocketWebm from '../assets/gifs/MAW_To_Go.webm'
 import toBeWebm from '../assets/gifs/MAW_To_Be.webm'
 import toMeetWebm from '../assets/gifs/MAW_To_Meet.webm'
 
@@ -22,7 +22,7 @@ export default class GalaxyScreen extends Component {
             currentWebm: 'MAW_BG.webm',
             gifLookup: {
               'MAW_BG.webm': backgroundWebm,
-              'MAW_Rocket.webm': rocketWebm,
+              'MAW_To_Go.webm': rocketWebm,
               'MAW_To_Be.webm': toBeWebm,
               'MAW_To_Meet.webm': toMeetWebm
             }
@@ -44,7 +44,7 @@ export default class GalaxyScreen extends Component {
 
                 if (difference[0].type === 'go') {
                     this.setState({
-                        currentWebm: 'MAW_Rocket.webm' // 13 seconds
+                        currentWebm: 'MAW_To_Go.webm' // 13 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
@@ -77,7 +77,7 @@ export default class GalaxyScreen extends Component {
                     })
                 } else {
                     this.setState({
-                        currentWebm: 'MAW_Rocket.webm' // 13 seconds
+                        currentWebm: 'MAW_To_Go.webm' // 13 seconds
                     }, () => {
                         setTimeout(() => {
                             this.setState({
