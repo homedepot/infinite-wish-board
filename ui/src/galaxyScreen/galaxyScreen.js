@@ -12,13 +12,20 @@ export default class GalaxyScreen extends Component {
         super(props)
         this.state = {
             currentGif: null,
-            previousWishList: []
+            previousWishList: [],
+            gifLookup: {}
         }
     }
 
     componentDidMount() {
         this.setState({
-            currentGif: 'MAW_BG.gif'
+            currentGif: 'MAW_BG.gif',
+            gifLookup: {
+              'MAW_BG.gif': backgroundGif,
+              'MAW_Rocket.gif': rocketGif,
+              'MAW_To_Be.gif': toBeGif,
+              'MAW_To_Meet.gif': toMeetGif
+            }
         },
         () => {
             setInterval(() => {
@@ -93,10 +100,10 @@ export default class GalaxyScreen extends Component {
     }
 
     getSourceURL = () => {
-        if(process.env.REACT_APP_IMAGE_URL) {
-            return process.env.REACT_APP_IMAGE_URL + this.state.currentGif
+        if(process.env.REACT_APP_imageUrl) {
+            return process.env.REACT_APP_imageUrl + this.state.currentGif
         }
-        return `../assets/gifs/${this.state.currentGif}`
+        return this.state.gifLookup[this.state.currentGif]
     }
 
     render() {

@@ -1,5 +1,9 @@
 @import "../styles/colors";
 
+html {
+  overflow: hidden;
+}
+
 #GalaxyScreen {
   position: absolute;
   height: 100%;
