@@ -52,6 +52,8 @@ export default class GalaxyScreen extends Component {
                         setTimeout(() => {
                             this.setState({
                                 currentWebm: 'MAW_BG.webm'
+                            }, () => {
+                                this.playVideo()
                             })
                         },
                         13000)
@@ -64,6 +66,8 @@ export default class GalaxyScreen extends Component {
                         setTimeout(() => {
                             this.setState({
                                 currentWebm: 'MAW_BG.webm'
+                            }, () => {
+                                this.playVideo()
                             })
                         },
                         11000)
@@ -76,6 +80,8 @@ export default class GalaxyScreen extends Component {
                         setTimeout(() => {
                             this.setState({
                                 currentWebm: 'MAW_BG.webm'
+                            }, () => {
+                                this.playVideo()
                             })
                         },
                         11000)
@@ -88,6 +94,8 @@ export default class GalaxyScreen extends Component {
                         setTimeout(() => {
                             this.setState({
                                 currentWebm: 'MAW_BG.webm'
+                            }, () => {
+                                this.playVideo()
                             })
                         },
                         13000)
