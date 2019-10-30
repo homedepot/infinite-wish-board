@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './styles.scss'
 import { getWishes } from '../services/WishDetailsService'
 import backgroundWebm from '../assets/gifs/MAW_BG.webm'
-import rocketWebm from '../assets/gifs/MAW_To_Go.webm'
+import toGoWebm from '../assets/gifs/MAW_To_Go.webm'
 import toBeWebm from '../assets/gifs/MAW_To_Be.webm'
 import toMeetWebm from '../assets/gifs/MAW_To_Meet.webm'
 import toHaveWebm from '../assets/gifs/MAW_To_Have.webm'
@@ -23,7 +23,7 @@ export default class GalaxyScreen extends Component {
             currentWebm: 'MAW_BG.webm',
             gifLookup: {
               'MAW_BG.webm': backgroundWebm,
-              'MAW_To_Go.webm': rocketWebm,
+              'MAW_To_Go.webm': toGoWebm,
               'MAW_To_Be.webm': toBeWebm,
               'MAW_To_Meet.webm': toMeetWebm,
               'MAW_To_Have.webm': toHaveWebm,
