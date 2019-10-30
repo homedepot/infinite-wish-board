@@ -14,14 +14,14 @@ export default class GalaxyScreen extends Component {
         this.state = {
             currentWebm: null,
             previousWishList: [],
-            gifLookup: {}
+            webmLookup: {}
         }
     }
 
     componentDidMount() {
         this.setState({
             currentWebm: 'MAW_BG.webm',
-            gifLookup: {
+            webmLookup: {
               'MAW_BG.webm': backgroundWebm,
               'MAW_To_Go.webm': toGoWebm,
               'MAW_To_Be.webm': toBeWebm,
@@ -43,63 +43,14 @@ export default class GalaxyScreen extends Component {
             const difference = wishes.filter(wish => !this.state.previousWishList.some(prevWish => wish._id === prevWish._id));
 
             if (difference && difference.length > 0 && this.state.previousWishList.length > 0) {
-
-                if (difference[0].type === 'go') {
-                    this.setState({
-                        currentWebm: 'MAW_To_Go.webm' // 13 seconds
-                    }, () => {
-                        this.playVideo()
-                        setTimeout(() => {
-                            this.setState({
-                                currentWebm: 'MAW_BG.webm'
-                            }, () => {
-                                this.playVideo()
-                            })
-                        },
-                        13000)
-                    })
+                if (difference[0].type === 'have') {
+                    this.triggerWishVideo('MAW_To_Have.webm', 13000)   
                 } else if (difference[0].type === 'meet') {
-                    this.setState({
-                        currentWebm: 'MAW_To_Meet.webm' // 11 seconds
-                    }, () => {
-                        this.playVideo();
-                        setTimeout(() => {
-                            this.setState({
-                                currentWebm: 'MAW_BG.webm'
-                            }, () => {
-                                this.playVideo()
-                            })
-                        },
-                        11000)
-                    })
+                    this.triggerWishVideo('MAW_To_Meet.webm', 11000)   
                 } else if (difference[0].type === 'be') {
-                    this.setState({
-                        currentWebm: 'MAW_To_Be.webm' // 11 seconds
-                    }, () => {
-                        this.playVideo();
-                        setTimeout(() => {
-                            this.setState({
-                                currentWebm: 'MAW_BG.webm'
-                            }, () => {
-                                this.playVideo()
-                            })
-                        },
-                        11000)
-                    })
+                    this.triggerWishVideo('MAW_To_Be.webm', 11000)
                 } else {
-                    this.setState({
-                        currentWebm: 'MAW_To_Have.webm' // 13 seconds
-                    }, () => {
-                        this.playVideo();
-                        setTimeout(() => {
-                            this.setState({
-                                currentWebm: 'MAW_BG.webm'
-                            }, () => {
-                                this.playVideo()
-                            })
-                        },
-                        13000)
-                    })
+                    this.triggerWishVideo('MAW_To_Go.webm',13000)    
                 }
             } else {
                 this.setState({
@@ -111,17 +62,31 @@ export default class GalaxyScreen extends Component {
 
             this.setState({
                 previousWishList: wishes
-            }, () => {
-                this.playVideo();
             })
         }
+    }
+
+    triggerWishVideo = (newWebm, timeout) => {
+        this.setState({
+            currentWebm: newWebm 
+        }, () => {
+            this.playVideo();
+            setTimeout(() => {
+                this.setState({
+                    currentWebm: 'MAW_BG.webm'
+                }, () => {
+                    this.playVideo()
+                })
+              }, timeout
+            )
+        })
     }
 
     getSourceURL = () => {
         if(process.env.REACT_APP_imageUrl) {
             return process.env.REACT_APP_imageUrl + this.state.currentWebm
         }
-        return this.state.gifLookup[this.state.currentWebm]
+        return this.state.webmLookup[this.state.currentWebm]
     }
 
     playVideo = () => {
