@@ -2,9 +2,11 @@ import React from 'react'
 import GalaxyScreen from './galaxyScreen'
 import { shallow } from 'enzyme'
 import { getWishes } from '../services/WishDetailsService'
-import rocketGif from '../assets/gifs/MAW_Rocket.gif'
-import toBeGif from '../assets/gifs/MAW_To_Be.gif'
-import toMeetGif from '../assets/gifs/MAW_To_Meet.gif'
+import backgroundWebm from '../assets/gifs/MAW_BG.webm'
+import toGoWebm from '../assets/gifs/MAW_To_Go.webm'
+import toBeWebm from '../assets/gifs/MAW_To_Be.webm'
+import toMeetWebm from '../assets/gifs/MAW_To_Meet.webm'
+import toHaveWebm from '../assets/gifs/MAW_To_Have.webm'
 
 jest.mock('../services/WishDetailsService', () => ({
     getWishes: jest.fn(() => {
@@ -27,32 +29,54 @@ describe('GalaxyScreen component', () => {
         <GalaxyScreen />
     )
 
+    beforeEach(() => {
+       component.instance().refs = {
+            video: {
+                load: () => {},
+                play: () => {}
+            }
+        }
+        component.setState({
+            previousWishList: [
+                {
+                    _id: '1',
+                    type: 'go'
+                },
+                {
+                    _id: '2',
+                    type: 'be'
+                }
+            ]
+        })
+    })
+
+
     it('should render a GalaxyScreen component', () => {
         expect(component.length).toEqual(1)
     })
 
-    it('should render a galaxy image', () => {
-        expect(component.find('.galaxy-image').length).toEqual(1)
-    })
-
-    describe('When handleCurrentGif is called', () => {
-
+    describe('when image URL is defined', () => {
         beforeEach(() => {
-            component.setState({
-                previousWishList: [
-                    {
-                        _id: '1',
-                        type: 'go'
-                    },
-                    {
-                        _id: '2',
-                        type: 'be'
-                    }
-                ]
-            })
+            process.env.REACT_APP_imageUrl = 'testing'
         })
 
-        it('should always show `rocket` GIF after receiving `go` wish type', async () => {
+        afterEach(() => {
+            process.env.REACT_APP_imageUrl = undefined
+        })
+
+        it('should return a source url from imageUrl when defined', () => {
+            expect(component.instance().getSourceURL()).toEqual('testingMAW_BG.webm')
+        })
+    })
+    describe('on page load', () => {
+        it('should render the background video', async () => {
+            await component.instance().handleCurrentWebm()
+            expect(component.state().currentWebm).toEqual(backgroundWebm)
+        })
+    })
+
+    describe('When handleCurrentWebm is called', () => {
+        it('should always show `to go` webm after receiving `go` wish type', async () => {
             const wishes = [
                 {
                     _id: '1',
@@ -72,12 +96,12 @@ describe('GalaxyScreen component', () => {
                 return wishes
             })          
 
-            await component.instance().handleCurrentGif()
-            expect(component.state().currentGif).toEqual(rocketGif)
+            await component.instance().handleCurrentWebm()
+            expect(component.state().currentWebm).toEqual(toGoWebm)
             expect(component.state().previousWishList).toEqual(wishes)
         })
 
-        it('should always show `to meet` GIF after receiving `meet` wish type', async () => {
+        it('should always show `to meet` webm after receiving `meet` wish type', async () => {
             const wishes = [
                 {
                     _id: '1',
@@ -97,12 +121,12 @@ describe('GalaxyScreen component', () => {
                 return wishes
             })          
 
-            await component.instance().handleCurrentGif()
-            expect(component.state().currentGif).toEqual(toMeetGif)
+            await component.instance().handleCurrentWebm()
+            expect(component.state().currentWebm).toEqual(toMeetWebm)
             expect(component.state().previousWishList).toEqual(wishes)
         })
 
-        it('should always show `to be` GIF after receiving `be` wish type', async () => {
+        it('should always show `to be` webm after receiving `be` wish type', async () => {
             const wishes = [
                 {
                     _id: '1',
@@ -122,12 +146,37 @@ describe('GalaxyScreen component', () => {
                 return wishes
             })          
 
-            await component.instance().handleCurrentGif()
-            expect(component.state().currentGif).toEqual(toBeGif)
+            await component.instance().handleCurrentWebm()
+            expect(component.state().currentWebm).toEqual(toBeWebm)
             expect(component.state().previousWishList).toEqual(wishes)
         })
 
-        it('should always show `rocket` GIF after receiving any unmatched wish type', async () => {
+        it('should always show `to have` webm after receiving `have` wish type', async () => {
+            const wishes = [
+                {
+                    _id: '1',
+                    type: 'go'
+                },
+                {
+                    _id: '2',
+                    type: 'be'
+                },
+                {
+                    _id: '3',
+                    type: 'have'
+                }
+            ]
+
+            getWishes.mockImplementation(() => {
+                return wishes
+            })          
+
+            await component.instance().handleCurrentWebm()
+            expect(component.state().currentWebm).toEqual(toHaveWebm)
+            expect(component.state().previousWishList).toEqual(wishes)
+        })
+
+        it('should always show `to go` webm after receiving any unmatched wish type', async () => {
             const wishes = [
                 {
                     _id: '1',
@@ -147,8 +196,8 @@ describe('GalaxyScreen component', () => {
                 return wishes
             })          
 
-            await component.instance().handleCurrentGif()
-            expect(component.state().currentGif).toEqual(rocketGif)
+            await component.instance().handleCurrentWebm()
+            expect(component.state().currentWebm).toEqual(toGoWebm)
             expect(component.state().previousWishList).toEqual(wishes)
         })
     })
