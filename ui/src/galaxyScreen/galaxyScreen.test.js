@@ -29,33 +29,53 @@ describe('GalaxyScreen component', () => {
         <GalaxyScreen />
     )
 
+    beforeEach(() => {
+       component.instance().refs = {
+            video: {
+                load: () => {},
+                play: () => {}
+            }
+        }
+        component.setState({
+            previousWishList: [
+                {
+                    _id: '1',
+                    type: 'go'
+                },
+                {
+                    _id: '2',
+                    type: 'be'
+                }
+            ]
+        })
+    })
+
+
     it('should render a GalaxyScreen component', () => {
         expect(component.length).toEqual(1)
     })
 
-    describe('When handleCurrentWebm is called', () => {
-
+    describe('when image URL is defined', () => {
         beforeEach(() => {
-            component.instance().refs = {
-                video: {
-                    load: () => {},
-                    play: () => {}
-                }
-            }
-            component.setState({
-                previousWishList: [
-                    {
-                        _id: '1',
-                        type: 'go'
-                    },
-                    {
-                        _id: '2',
-                        type: 'be'
-                    }
-                ]
-            })
+            process.env.REACT_APP_imageUrl = 'testing'
         })
 
+        afterEach(() => {
+            process.env.REACT_APP_imageUrl = undefined
+        })
+
+        it('should return a source url from imageUrl when defined', () => {
+            expect(component.instance().getSourceURL()).toEqual('testingMAW_BG.webm')
+        })
+    })
+    describe('on page load', () => {
+        it('should render the background video', async () => {
+            await component.instance().handleCurrentWebm()
+            expect(component.state().currentWebm).toEqual(backgroundWebm)
+        })
+    })
+
+    describe('When handleCurrentWebm is called', () => {
         it('should always show `to go` webm after receiving `go` wish type', async () => {
             const wishes = [
                 {
