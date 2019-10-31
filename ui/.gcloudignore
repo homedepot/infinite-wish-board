@@ -20,3 +20,6 @@ __pycache__/
 
 src/
 node_modules/
+
+# Large gif doesn't like to be deployed
+build/static/media/MAW_*.gif
