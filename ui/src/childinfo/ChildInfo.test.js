@@ -162,7 +162,7 @@ describe('Initial Render', () => {
       push.mockClear()
     })
 
-    it('Should play and pause sound effect, and push to next url', async (done) => {      
+    it('Should play and pause sound effect, and push to next url', async () => {      
       let nextButton = childInfo.find('.next-button');
       await nextButton.simulate('click');
       await nextButton.simulate('click');
