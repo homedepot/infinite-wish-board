@@ -166,14 +166,13 @@ describe('Initial Render', () => {
       push.mockClear()
     })
 
-    it('Should play and pause sound effect, and push to next url', (done) => {      
+    it('Should play and pause sound effect, and push to next url', () => {      
       childInfo.find('.rocket-blast-off-button').simulate('click')
       setTimeout(() => {
         expect(play.mock.calls.length).toEqual(1)
         expect(pause.mock.calls.length).toEqual(1)
         expect(push.mock.calls.length).toEqual(1)
-        done()
-      }, 4000);
+      }, 5000);
     })
   });
 });
