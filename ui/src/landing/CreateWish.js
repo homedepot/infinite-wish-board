@@ -46,6 +46,9 @@ export default class CreateWish extends Component {
 
   changeStateBack = () => {
     this.setState({
+      name: '',
+      age: '',
+      wishType: '',
       showChildInfo: false
     })
   }
