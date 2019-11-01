@@ -162,7 +162,7 @@ describe('Initial Render', () => {
       push.mockClear()
     })
 
-    it('Should play and pause sound effect, and push to next url', async (done) => {      
+    it('Should play and pause sound effect, and push to next url', async () => {      
       let nextButton = childInfo.find('.next-button');
       await nextButton.simulate('click');
       await nextButton.simulate('click');
@@ -171,8 +171,7 @@ describe('Initial Render', () => {
         expect(play.mock.calls.length).toEqual(1)
         expect(pause.mock.calls.length).toEqual(1)
         expect(push.mock.calls.length).toEqual(1)
-        done()
-      }, 4000);
+      }, 5000);
     })
   });
 });

@@ -142,8 +142,7 @@ export default class ChildInfo extends Component {
     this.soundEffect.play()
     setTimeout(() => {
       this.soundEffect.pause()
-      const url = `/wish-summary/${this.state.childId}`
-      this.props.history.push(url)
+      this.props.changeStateBack()
     }, 3000)
   }
 
