@@ -65,7 +65,7 @@ describe('GalaxyScreen component', () => {
         })
 
         it('should return a source url from imageUrl when defined', () => {
-            expect(component.instance().getSourceURL()).toEqual('testingMAW_BG.webm')
+            expect(component.instance().getSourceURL('MAW_BG.webm')).toEqual('testingMAW_BG.webm')
         })
     })
     describe('on page load', () => {
