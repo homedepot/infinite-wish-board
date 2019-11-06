@@ -16,7 +16,7 @@ const WishHeader = props => {
       </div>
       <div className="user-details">
         <span>Mary</span> |
-        <a href="/logout">Sign Out</a>
+        <button onClick={onLogout}>Sign Out</button>
       </div>
     </div>
   )
