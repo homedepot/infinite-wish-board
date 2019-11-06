@@ -82,11 +82,11 @@ export default class GalaxyScreen extends Component {
         })
     }
 
-    getSourceURL = () => {
+    getSourceURL = (webmName) => {
         if(process.env.REACT_APP_imageUrl) {
-            return process.env.REACT_APP_imageUrl + this.state.currentWebm
+            return process.env.REACT_APP_imageUrl + webmName
         }
-        return this.state.webmLookup[this.state.currentWebm]
+        return this.state.webmLookup[webmName]
     }
 
     playVideo = () => {
@@ -97,8 +97,13 @@ export default class GalaxyScreen extends Component {
     render() {
         return (
             <>
+                <link rel="preload" as="video" href={this.getSourceURL('MAW_To_Meet.webm')} />
+                <link rel="preload" as="video" href={this.getSourceURL('MAW_To_Be.webm')} />
+                <link rel="preload" as="video" href={this.getSourceURL('MAW_To_Go.webm')} />
+                <link rel="preload" as="video" href={this.getSourceURL('MAW_To_Have.webm')} />
+
                 <video loop muted autoPlay ref="video" className="fullscreen-bg__video">
-                    <source src={this.getSourceURL()} type="video/webm" />
+                    <source src={this.getSourceURL(this.state.currentWebm)} type="video/webm" />
                 </video>
             </>
         )
