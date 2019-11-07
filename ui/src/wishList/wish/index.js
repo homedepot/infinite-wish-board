@@ -2,7 +2,7 @@ import React from 'react'
 import './styles.scss'
 import ImgPlaceholder from '../imgPlaceholder'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {faChevronRight, faExclamationCircle} from '@fortawesome/free-solid-svg-icons'
 import Rocket from '../../assets/images/icn_To_Go_Rocket_130x130.png'
 import Alien from '../../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
 import Astronaut from '../../assets/images/icn_To_Be_Astronaut_130x130.png'
@@ -52,31 +52,33 @@ const Wish = ({wish, history}) => {
         }
     }
 
+    let dateClasses = isToday(wish.createdAt) ? 'date-now' : 'date';
+    let childImageSpace = child.image ? <img src={child.image} alt="child"/> : <ImgPlaceholder text="Add Image"/>
+    let sponsorLogoSpace = sponsor.logo ? <img src={sponsor.logo} alt="Sponsor" className="sponsor"/> : <p>Add Sponsor</p>
+
+
     return (
-        <li className="wish" onClick={() => handleWishClick(wish._id)}>
-<div className={isToday(wish.createdAt) ? "date-now" : "date"}>{new Date(wish.createdAt).getDate()}</div>
-    {child.image ? (
-        <img src={child.image} alt="child"/>
-    ) : (
-    <ImgPlaceholder text="Add Image"/>
-    )}
-<div>
-    <p>
-    <strong>{child.name}</strong> - Age {child.age} from {child.hometown}
-    </p>
-    <span className="summary">{details}</span>
-        </div>
-    {sponsor.logo ? (
-        <img src={sponsor.logo} alt="Sponsor" className="sponsor"/>
-    ) : (
-    <p>Add Sponsor</p>
-    )}
-<div className="wish-type-container">
-        <img src={getImageSource(wish)} alt={wish.type}/>
-    <span>{getWishType(wish)}</span>
-    </div>
-    <FontAwesomeIcon icon={faChevronRight} className="wish-chevron"/>
-        </li>
+      <li className="wish" onClick={() => handleWishClick(wish._id)}>
+          <div>
+              <div hidden={!wish.isIncomplete}>
+                  <FontAwesomeIcon icon={faExclamationCircle} color="red" transform="right-25 down-10" size="2x"/>
+              </div>
+              <div className={dateClasses}>{new Date(wish.createdAt).getDate()}</div>
+          </div>
+          {childImageSpace}
+          <div>
+              <p>
+                  <strong>{child.name}</strong> - Age {child.age} from {child.hometown}
+              </p>
+              <span className="summary">{details}</span>
+          </div>
+          {sponsorLogoSpace}
+          <div className="wish-type-container">
+              <img src={getImageSource(wish)} alt={wish.type}/>
+              <span>{getWishType(wish)}</span>
+          </div>
+          <FontAwesomeIcon icon={faChevronRight} className="wish-chevron"/>
+      </li>
 )
 }
 
