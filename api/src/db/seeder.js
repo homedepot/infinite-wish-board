@@ -1,11 +1,15 @@
-const mongoose = require('mongoose');
-const Account = require('./Account');
-const chance = require('chance').Chance();
+const mongoose = require('mongoose')
+const Account = require('./Account')
+const Wish = require('./Wish')
+const chance = require('chance').Chance()
+const wishRouter = require('../routes/wish')
+var _ = require('lodash');
+
 
 process.env.mongoUrl = process.env.mongoUrl || 'mongodb://localhost:27017/my_database'
 require('./bootstrap-mongoose')
 
-async function createAccounts() {
+createAccounts = async () => {
 
   await Account.find({}).remove(async function() {
 
@@ -30,8 +34,40 @@ async function createAccounts() {
       await Account.authenticate()(username, 'Password123');
       i++
     }
-    mongoose.connection.close()
+    //mongoose.connection.close()
   }) 
 }
 
-createAccounts().catch(error => console.error(error.stack));
+createWishes = async () => {
+  Wish.collection.drop()
+  await Wish.find({}).remove(async function() {
+    let i = 0
+    let count = 10
+    let wishTypes = [wishRouter.GO, wishRouter.MEET, wishRouter.HAVE, wishRouter.BE]
+    while (i < count) {
+      const wish = new Wish({
+        child: {
+          name: chance.first(),
+          hometown: chance.city(),
+          illness: chance.word(),
+          age: chance.age({ type: 'child' })
+        },
+        type: _.sample(wishTypes),
+        details: chance.sentence({ words: 5 }),
+        sponsor: {
+          name: chance.first(),
+          logo: 'K',
+          links: []
+        },
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      });
+      await wish.save();
+      i++
+    }
+  }) 
+}
+
+createAccounts().catch(error => console.error(error.stack))
+createWishes().catch(error => console.error(error.stack))
+
