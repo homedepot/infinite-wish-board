@@ -11,6 +11,10 @@ router.post('/register', function(req, res, next) {
     req.body.password,
     function(err) {
       if (err) {
+        let acc = await Account.findOne({ username: username }, function(err, account) {});
+        if(acc) {
+          res.status(500).send("Username already exist")
+        }
         return next(err)
       }
 

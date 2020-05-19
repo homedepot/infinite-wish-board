@@ -97,15 +97,15 @@ describe('ValidatedSignUpForm', () => {
       resetForm: jest.fn()
     }
     const response = {
-      message: 'username not available'
+      data: 'Username already exist'
     }
     axios.post.mockImplementationOnce(() => Promise.resolve(response))
     await wrapper.instance().onSubmit(values, bag)
 
-    expect(response.message).toEqual('username not available')
+    expect(response.data).toEqual('Username already exist')
     expect(wrapper.state('isFormInvalid')).toEqual(true)
     expect(wrapper.state('invalidFormErrorMsg')).toEqual(
-      'username not available'
+      'Username already exist'
     )
   })
 
