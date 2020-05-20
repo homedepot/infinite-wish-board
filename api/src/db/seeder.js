@@ -4,7 +4,8 @@ const Wish = require('./Wish')
 const chance = require('chance').Chance()
 const wishRouter = require('../routes/wish')
 var _ = require('lodash');
-
+var async = require('async');
+var calls = [];
 
 process.env.mongoUrl = process.env.mongoUrl || 'mongodb://localhost:27017/my_database'
 require('./bootstrap-mongoose')
@@ -12,39 +13,39 @@ require('./bootstrap-mongoose')
 createAccounts = async () => {
 
   await Account.find({}).remove(async function() {
-
     const userAdmin = new Account({username: 'Admin', role: 'admin'});
     await userAdmin.setPassword('Password321');
     await userAdmin.save();
-    await Account.authenticate()('Admin', 'Password321');
 
-    let i = 0
-    let count = 10
-    while (i < count) {
-      let username = chance.email();
-      const user = new Account({
-        provider: 'local',
-        username: username,
-        firstName: chance.first(),
-        lastName: chance.last(),
-        password: 'Password123'
-      });
-      await user.setPassword('Password123');
-      await user.save();
-      await Account.authenticate()(username, 'Password123');
-      i++
-    }
-    //mongoose.connection.close()
+    [...Array(10)].forEach( async (_, i) => {
+      calls.push(async function() {
+        let username = chance.email();
+        const user = new Account({
+          provider: 'local',
+          username: username,
+          firstName: chance.first(),
+          lastName: chance.last(),
+          password: 'Password123'
+        });
+        await user.setPassword('Password123');
+        await user.save();
+      })
+    })
+    async.parallel(calls, async function(err, result) {
+      if (err)
+          return console.log(err);
+      console.log("Seed task is completed!")
+      mongoose.connection.close()
+    })
   }) 
 }
 
 createWishes = async () => {
   Wish.collection.drop()
   await Wish.find({}).remove(async function() {
-    let i = 0
-    let count = 10
-    let wishTypes = [wishRouter.GO, wishRouter.MEET, wishRouter.HAVE, wishRouter.BE]
-    while (i < count) {
+    let wishTypes = [wishRouter.GO, wishRouter.MEET, wishRouter.HAVE, wishRouter.BE];
+
+    [...Array(20)].forEach( async (wishTypes, i) => {
       const wish = new Wish({
         child: {
           name: chance.first(),
@@ -63,8 +64,7 @@ createWishes = async () => {
         updatedAt: Date.now()
       });
       await wish.save();
-      i++
-    }
+    })
   }) 
 }
 
