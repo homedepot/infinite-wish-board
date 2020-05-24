@@ -43,9 +43,9 @@ createAccounts = async () => {
 createWishes = async () => {
   Wish.collection.drop()
   await Wish.find({}).remove(async function() {
-    let wishTypes = [wishRouter.GO, wishRouter.MEET, wishRouter.HAVE, wishRouter.BE];
-
+  
     [...Array(20)].forEach( async (wishTypes, i) => {
+      wishTypes = [wishRouter.GO, wishRouter.MEET, wishRouter.HAVE, wishRouter.BE];
       const wish = new Wish({
         child: {
           name: chance.first(),
@@ -70,4 +70,3 @@ createWishes = async () => {
 
 createAccounts().catch(error => console.error(error.stack))
 createWishes().catch(error => console.error(error.stack))
-
