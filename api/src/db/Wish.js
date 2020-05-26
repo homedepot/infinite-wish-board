@@ -16,7 +16,8 @@ const wishSchema = new Schema(
         },
       hometown: String,
       illness: String,
-      age: Number
+      age: Number,
+      image: String
     },
     type: { type: String, enum: ['go', 'meet', 'be', 'have'] },
     details: String,

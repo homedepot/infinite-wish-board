@@ -51,7 +51,8 @@ createWishes = async () => {
           name: chance.first(),
           hometown: chance.city(),
           illness: chance.word(),
-          age: chance.age({ type: 'child' })
+          age: chance.age({ type: 'child' }),
+          image: "https://www.hepl.lib.in.us/wp-content/uploads/2015/03/kids_picks.jpg"
         },
         type: _.sample(wishTypes),
         details: chance.sentence({ words: 5 }),
