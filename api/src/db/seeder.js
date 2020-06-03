@@ -58,7 +58,7 @@ createWishes = async () => {
         details: chance.sentence({ words: 5 }),
         sponsor: {
           name: chance.first(),
-          logo: 'K',
+          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/TheHomeDepot.svg/500px-TheHomeDepot.svg.png',
           links: []
         },
         createdAt: Date.now(),
