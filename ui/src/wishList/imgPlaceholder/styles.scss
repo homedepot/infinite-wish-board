@@ -4,9 +4,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+    width: 79px;
+    padding: 32px 17.5px 16px;
+    float: left;
 
-.camera-icon {
-    color: $light-gray;
-    font-size: 4em;
+    a {
+        padding-top: 16px;
+        color: #0071be;
+        font-size: 11px;
+    }
+
+    img {
+        width: 31.5px;
+    }
 }

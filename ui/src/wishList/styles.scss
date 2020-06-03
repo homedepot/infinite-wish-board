@@ -1,8 +1,50 @@
 @import '../styles/colors.scss';
 
 #WishList {
-  padding: 1em;
+  padding: 16px 46px;
   background-color: $lighter-gray;
   display: block;
   min-height: 1500px;
+
+  ul {
+    padding-left: 0;
+    margin-top: 0;
+  }
+
+  .month-header {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 4px;
+    box-shadow: 0 2px 3px #b6b6b6;
+    border-top: 1px solid #ededed;
+  }
+
+  .month-name {
+    width: 95px;
+    background-color: #909090;
+    color: $white;
+    float: left;
+    border-bottom: 3.5px solid #4a4a4a;
+    padding: 20px 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .month-dates {
+    float: left;
+    width: calc(100% - 233px);
+    padding: 21.75px 19px;
+  }
+
+  .month-chevron {
+    color: $medium-blue;
+    font-size: 1.2em;
+    padding: 21px 31px;
+  }
+
+  .monthWishes.hide {
+    li {
+      display: none
+    }
+  }
 }

@@ -2,22 +2,33 @@
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
-    padding: 0.8em;
+    padding: 0.8em 0;
 
     .logo-container {
         display: flex;
         align-items: center;
 
         .galaxyLogo {
-            height: 5em;
+            width: 280px;
         }
         
         .makeAWishLogo {
             height: 2em;
+            margin-right: 23.5px;
         }
     }
 
     .user-details {
         display: flex;
+        font-size: 12px;
+
+        span {
+            margin-right: 18px;
+        }
+
+        a {
+            margin-left: 18px;
+            font-weight: bold;
+        }
     }
 }

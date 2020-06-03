@@ -12,10 +12,14 @@ const makeAWish = async(wish) => {
   return response.data;
 }
 
-export const getWishes = async (types) => {
-  let typeParams = types && types.length ? `?types=${types.toString()}` : '';
-  // TODO query param options
-  const { data } = await axios.get(`${expressDomain}/wishes${typeParams}`)
+export const getWishes = async (types, beginDate, endDate, sort) => {
+  let typeParams = types && types.length ? `types=${types.toString()}` : '';
+  beginDate = beginDate ? `&beginDate=${beginDate.toString()}` : '';
+  endDate = endDate ? `&endDate=${endDate.toString()}` : '';
+  sort = sort ? `&sort=${sort}` : '&sort=desc';
+  let params = typeParams + beginDate + endDate + sort;
+
+  const { data } = await axios.get(`${expressDomain}/wishes?${params}`)
   return data
 }
 
