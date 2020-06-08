@@ -311,7 +311,7 @@ describe('Wish route', () => {
     )
 
     expect(dateRange.length).toBe(2)
-    expect(dateRange[0]).toBe('2019-01-01T00:00:00Z')
+    expect(dateRange[0]).toBe('2017-01-01T00:00:00Z')
     expect(dateRange[1]).toBe('2019-12-31T23:59:59Z')
   })
 
@@ -321,7 +321,7 @@ describe('Wish route', () => {
     )
 
     expect(dateRange.length).toBe(2)
-    expect(dateRange[0]).toBe('2020-01-01T00:00:00Z')
+    expect(dateRange[0]).toBe('2017-01-01T00:00:00Z')
     expect(dateRange[1]).toBe('2020-12-31T23:59:59Z')
   })
 
@@ -331,7 +331,7 @@ describe('Wish route', () => {
     )
 
     expect(dateRange.length).toBe(2)
-    expect(dateRange[0]).toBe('2018-01-01T00:00:00Z')
+    expect(dateRange[0]).toBe('2017-01-01T00:00:00Z')
     expect(dateRange[1]).toBe('2018-12-31T23:59:59Z')
   })
 
@@ -360,6 +360,22 @@ describe('Wish route', () => {
     }
 
     await util.retry(action, 5, 500)
+  })
+
+  it('should return today date', () => {
+
+    jest
+      .spyOn(wishRouter, 'today')
+      .mockImplementation(() => new Date())
+
+    const date = wishRouter.today()
+    console.log(date)
+    const today = new Date()
+    console.log(today)
+
+    expect(date.getMonth()).toBe(today.getMonth())
+    expect(date.getDate()).toBe(today.getDate())
+    expect(date.getFullYear()).toBe(today.getFullYear())
   })
 
   it('should be able to select wish type "have"', async () => {
@@ -522,20 +538,20 @@ describe('Wish route', () => {
       // ]
 
       expect(getResponse.body[0].year).toBe(2018)
-      expect(getResponse.body[0].month).toBe(7)
+      expect(getResponse.body[0].month).toBe("July")
       expect(getResponse.body[0].wishes[0].type).toBe(wishRouter.HAVE)
       expect(getResponse.body[0].wishes[1].type).toBe(wishRouter.MEET)
 
       expect(getResponse.body[1].year).toBe(2018)
-      expect(getResponse.body[1].month).toBe(8)
+      expect(getResponse.body[1].month).toBe("August")
       expect(getResponse.body[1].wishes[0].type).toBe(wishRouter.BE)
 
       expect(getResponse.body[2].year).toBe(2019)
-      expect(getResponse.body[2].month).toBe(5)
+      expect(getResponse.body[2].month).toBe("May")
       expect(getResponse.body[2].wishes[0].type).toBe(wishRouter.MEET)
 
       expect(getResponse.body[3].year).toBe(2019)
-      expect(getResponse.body[3].month).toBe(6)
+      expect(getResponse.body[3].month).toBe("June")
       expect(getResponse.body[3].wishes[0].type).toBe(wishRouter.GO)
     }
 
@@ -582,23 +598,27 @@ describe('Wish route', () => {
       // ]
 
       expect(getResponse.body[0].year).toBe(2019)
-      expect(getResponse.body[0].month).toBe(6)
+      expect(getResponse.body[0].month).toBe("June")
       expect(getResponse.body[0].wishes[0].type).toBe(wishRouter.GO)
 
       expect(getResponse.body[1].year).toBe(2019)
-      expect(getResponse.body[1].month).toBe(5)
+      expect(getResponse.body[1].month).toBe("May")
       expect(getResponse.body[1].wishes[0].type).toBe(wishRouter.MEET)
 
       expect(getResponse.body[2].year).toBe(2018)
-      expect(getResponse.body[2].month).toBe(8)
+      expect(getResponse.body[2].month).toBe("August")
       expect(getResponse.body[2].wishes[0].type).toBe(wishRouter.BE)
 
       expect(getResponse.body[3].year).toBe(2018)
-      expect(getResponse.body[3].month).toBe(7)
+      expect(getResponse.body[3].month).toBe("July")
       expect(getResponse.body[3].wishes[0].type).toBe(wishRouter.MEET)
       expect(getResponse.body[3].wishes[1].type).toBe(wishRouter.HAVE)
     }
 
     await util.retry(action, 5, 500)
   })
+
+  
+
+
 })

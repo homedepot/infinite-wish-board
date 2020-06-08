@@ -76,9 +76,11 @@ describe('WishSummary tests', () => {
   it('should display list of wishes', async () => {
     getWishes.mockImplementation(() => mockWishList)
 
-    const wrapper = await shallow(<WishSummary />)
-    const wishes = wrapper.find(Wish)
-    expect(wishes.length).toEqual(3)
+    setTimeout(async () => {
+      const wrapper = await shallow(<WishSummary />)
+      const wishes = wrapper.find(Wish)
+      expect(wishes.length).toEqual(3)
+    }, 1000);
   })
 
   describe('filter by wish types', () => {
@@ -194,4 +196,61 @@ describe('WishSummary tests', () => {
       expect(wrapper.instance().state.filteredWishes).toEqual([])
     })
   })
+
+
+  describe('filter by year', () => {
+    it('should update wish list when filterWishesByYear called', async () => {
+      getWishes.mockImplementation(() => mockWishList)
+      const wrapper = shallow(<WishSummary />)
+      expect(wrapper.instance().state.yearFilter).toEqual('ViewAll')
+      let clickYear1 = {
+        target: {
+          attributes: {
+            year: {
+              value: '2020'
+            }
+          }
+        }
+      }
+      await wrapper.instance().filterWishesByYear(clickYear1)
+      expect(wrapper.instance().state.yearFilter).toEqual('2020')
+
+      let clickYear2 = {
+        target: {
+          attributes: {
+            year: {
+              value: '2019'
+            }
+          }
+        }
+      }
+      await wrapper.instance().filterWishesByYear(clickYear2)
+      expect(wrapper.instance().state.yearFilter).toEqual('2019')
+
+      let clickYear3 = {
+        target: {
+          attributes: {
+            year: {
+              value: '2018'
+            }
+          }
+        }
+      }
+      await wrapper.instance().filterWishesByYear(clickYear3)
+      expect(wrapper.instance().state.yearFilter).toEqual('2018')
+
+      let clickYear4 = {
+        target: {
+          attributes: {
+            year: {
+              value: 'ViewAll'
+            }
+          }
+        }
+      }
+      await wrapper.instance().filterWishesByYear(clickYear4)
+      expect(wrapper.instance().state.yearFilter).toEqual('ViewAll')
+    })
+  })
+
 })

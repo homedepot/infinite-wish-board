@@ -11,11 +11,11 @@ import Telescope from '../../assets/images/icn_To_See_Telescope_White_Inside_130
 const Wish = ({wish, history}) => {
     const {child, sponsor, details} = wish
 
-    const isToday = date => {
-        let paramDate = new Date(date);
-        let today = new Date();
-        return paramDate.getDate() === today.getDate() && paramDate.getMonth() === today.getMonth() && paramDate.getFullYear() === today.getFullYear();
-    }
+    // const isToday = date => {
+    //     let paramDate = new Date(date);
+    //     let today = new Date();
+    //     return paramDate.getDate() === today.getDate() && paramDate.getMonth() === today.getMonth() && paramDate.getFullYear() === today.getFullYear();
+    // }
 
     const handleWishClick = id => {
         const url = `/wish-summary/${id}`
