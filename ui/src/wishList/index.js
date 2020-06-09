@@ -90,37 +90,35 @@ export default class WishList extends Component {
   }
 
   toggleMonthWishes = (e) => {
-    console.log(e.currentTarget)
     e.currentTarget.parentNode.classList.toggle("hide")
   }
 
   render() {
     const { filteredWishes } = this.state
     let newList
+    console.log("Wishes: ")
+    console.log(filteredWishes)
     const wishList = filteredWishes.map((monthWishes, i) => {
-      if(monthWishes.wishes){
-        newList = monthWishes.wishes.map(wish => {
-          return <Wish key={wish._id} wish={wish} history={this.props.history} />
-        })
-        let date = new Date(monthWishes.wishes[0].createdAt)
-        let firstDay = new Date(monthWishes.year, date.getMonth(), 1).getDate();
-        let lastDay = new Date(monthWishes.year, date.getMonth() + 1, 0).getDate();
-  
-        let header = (
-          <div key={i} className="month-header" onClick={this.toggleMonthWishes}>
-            <div className="month-name">{monthWishes.month}</div>
-            <div className="month-dates">{monthWishes.month} {firstDay} - {monthWishes.month} {lastDay}, {monthWishes.year}</div>
-            <FontAwesomeIcon icon={faChevronDown} className="month-chevron"/>
-          </div>
-        )
-        newList.unshift(header) 
-        return (
-          <div key={i.toString() + "monthWishes"} className="monthWishes">
-            {newList}
-          </div>
-        )
-      }
-      
+      if (!monthWishes.wishes) return null;
+      newList = monthWishes.wishes.map(wish => 
+        <Wish key={wish._id} wish={wish} history={this.props.history} />)
+      let date = new Date(monthWishes.wishes[0].createdAt)
+      let firstDay = new Date(monthWishes.year, date.getMonth(), 1).getDate();
+      let lastDay = new Date(monthWishes.year, date.getMonth() + 1, 0).getDate();
+
+      let header = (
+        <div key={i} className="month-header" onClick={this.toggleMonthWishes}>
+          <div className="month-name">{monthWishes.month}</div>
+          <div className="month-dates">{monthWishes.month} {firstDay} - {monthWishes.month} {lastDay}, {monthWishes.year}</div>
+          <FontAwesomeIcon icon={faChevronDown} className="month-chevron"/>
+        </div>
+      )
+      newList.unshift(header) 
+      return (
+        <div key={i.toString() + "monthWishes"} className="monthWishes">
+          {newList}
+        </div>
+      )
     })
 
     return (
