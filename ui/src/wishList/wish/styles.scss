@@ -1,14 +1,53 @@
 @import '../../styles/colors.scss';
 
+html {
+  overflow: auto !important;
+}
+
 .wish {
-  padding: 1em;
-  border-radius: .25em;
-  border: 1px solid $light-gray;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 8px 6px -6px $light-gray;
-  margin-bottom: 0.6em;
+  border-radius: 2px;
+  border-top: 1px solid #ededed;
+  display: inline-block;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 4px;
+
+  .date-first-container {
+    background-color: #ebebeb;
+    width: 115px;
+    height: 115px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+
+    .date-second-container {
+      border-radius: 5px;
+      background-color: #ba008b;
+      width: 48px;
+      height: 53px;
+      border-top: 1px solid #d375bb;
+      border-bottom: 1px solid #d375bb;
+      text-align: center;
+
+      .week-day {
+        font-size: 8px;
+        color: $white;
+        padding: 2px 0;
+      }
+    
+      .date-rose {
+        background-color: $white;
+        color: $new-magenta;
+        width: 39px;
+        border-radius: 5px;
+        display: inline-block;
+        padding: 7.5px 0;
+        font-size: 17px;
+        font-weight: bold;
+      }
+    }
+  }
 
   .date, .date-now {
     width: 2.5em;
@@ -38,29 +77,71 @@
     100% { border-color: $red; }
   }
 
+  .child-image {
+    padding: 15px 16px;
+    float: left;
+
+    img {
+      width: 82px;
+      border-radius: 41px;
+    }
+  }
+  
+  .wish-details {
+    width: calc(100% - 614px);
+    padding: 21px 21px 21px 0;
+    float: left;
+  }
+
   .summary {
     font-size: .7em;
+    padding-top: 10px;
   }
 
   .sponsor {
+    text-align: center;
+    width: 148px;
+    float: left;
+  }
+
+  .sponsor-logo-image {
     border-right: 1px solid $light-gray;
     border-left: 1px solid $light-gray;
-    padding: 2em;
+    padding: 3px 55px 20.5px;
+    max-width: 36.5px;
+    max-height: 36.5px;
+    margin-top: 19.5px;
+  }
+
+  .sponsor-name, .wish-type {
+    padding-bottom: 14.5px;
+  }
+
+  .add-sponsor {
+    text-decoration: underline;
+    color: #0071be;
+    padding: 21px 0;
+    margin: 27.5px 0;
+    border-right: 1px solid $light-gray;
+    border-left: 1px solid $light-gray;
+    cursor: pointer;
+    font-size: 11px;
+  }
+
+  .wish-type-container {
+    text-align: center;
+    padding: 17.5px 38px 2px;
+    float: left;
+
+    img {
+      width: 60px;
+    }
   }
 
   .wish-chevron {
     color: $medium-blue;
     font-size: 1.2em;
-  }
-
-  .wish-type-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-
-    img {
-      width: 60px;
-    }
+    padding: 48px 34px;
+    float: left;
   }
 }

@@ -19,7 +19,7 @@ wishRouter.getDefaultDateRange = date => {
     }
   })()
 
-  return [`${year}-01-01T00:00:00Z`, `${year}-12-31T23:59:59Z`]
+  return [`2017-01-01T00:00:00Z`, `${year}-12-31T23:59:59Z`]
 }
 
 wishRouter
@@ -83,7 +83,7 @@ wishRouter
 
       rs.forEach(wish => {
         const year = new Date(wish.updatedAt).getFullYear()
-        const month = new Date(wish.updatedAt).getMonth() + 1
+        const month = new Intl.DateTimeFormat('en-US', { month: 'long'}).format(new Date(wish.updatedAt))
         if (!yearMonthMatch(year, month)) {
           if (currentGroup) {
             groupedWishes.push({

@@ -11,11 +11,11 @@ import Telescope from '../../assets/images/icn_To_See_Telescope_White_Inside_130
 const Wish = ({wish, history}) => {
     const {child, sponsor, details} = wish
 
-    const isToday = date => {
-        let paramDate = new Date(date);
-        let today = new Date();
-        return paramDate.getDate() === today.getDate() && paramDate.getMonth() === today.getMonth() && paramDate.getFullYear() === today.getFullYear();
-    }
+    // const isToday = date => {
+    //     let paramDate = new Date(date);
+    //     let today = new Date();
+    //     return paramDate.getDate() === today.getDate() && paramDate.getMonth() === today.getMonth() && paramDate.getFullYear() === today.getFullYear();
+    // }
 
     const handleWishClick = id => {
         const url = `/wish-summary/${id}`
@@ -54,28 +54,38 @@ const Wish = ({wish, history}) => {
 
     return (
         <li className="wish" onClick={() => handleWishClick(wish._id)}>
-<div className={isToday(wish.createdAt) ? "date-now" : "date"}>{new Date(wish.createdAt).getDate()}</div>
-    {child.image ? (
-        <img src={child.image} alt="child"/>
-    ) : (
-    <ImgPlaceholder text="Add Image"/>
-    )}
-<div>
-    <p>
-    <strong>{child.name}</strong> - Age {child.age} from {child.hometown}
-    </p>
-    <span className="summary">{details}</span>
-        </div>
-    {sponsor.logo ? (
-        <img src={sponsor.logo} alt="Sponsor" className="sponsor"/>
-    ) : (
-    <p>Add Sponsor</p>
-    )}
-<div className="wish-type-container">
-        <img src={getImageSource(wish)} alt={wish.type}/>
-    <span>{getWishType(wish)}</span>
-    </div>
-    <FontAwesomeIcon icon={faChevronRight} className="wish-chevron"/>
+            <div className="date-first-container">
+                <div className="date-second-container">
+                    <div className="week-day">
+                        {new Intl.DateTimeFormat('en-US', { weekday: 'long'}).format(new Date(wish.createdAt))}
+                    </div>
+                    <div className="date-rose">
+                            {new Date(wish.createdAt).getDate()}    
+                        </div>
+                </div>             
+            </div>
+            {child.image ? (
+                <div className="child-image"><img src={child.image} alt="child"/></div>
+            ) : (
+            <ImgPlaceholder text="Add Image"/>
+            )}
+            <div className="wish-details">
+                <div><strong>{child.name}</strong> - Age {child.age} from {child.hometown}</div>
+                <div className="summary">{details}</div>
+            </div>
+            {sponsor.logo ? (
+                <div className="sponsor">
+                    <img src={sponsor.logo} alt="Sponsor" className="sponsor-logo-image"/>
+                    <div className="sponsor-name">{sponsor.name}</div>
+                </div>
+            ) : (
+            <div className="sponsor"><div className="add-sponsor" onClick={() => handleWishClick(wish._id)}>Add Sponsor</div></div>
+            )}
+            <div className="wish-type-container">
+                <img src={getImageSource(wish)} alt={wish.type}/>
+                <div className="wish-type">{getWishType(wish)}</div>
+            </div>
+            <FontAwesomeIcon icon={faChevronRight} className="wish-chevron"/>
         </li>
 )
 }

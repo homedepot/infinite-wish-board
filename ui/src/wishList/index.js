@@ -4,6 +4,8 @@ import WishHeader from './wishHeader'
 import WishFilter from './wishFilter'
 import './styles.scss'
 import { getWishes } from '../services/WishDetailsService'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 
 export default class WishList extends Component {
 
@@ -13,7 +15,8 @@ export default class WishList extends Component {
     this.state = {
       wishes: [],
       typeFilters: [],
-      filteredWishes: []
+      filteredWishes: [],
+      yearFilter: 'ViewAll'
     }
   }
 
@@ -24,13 +27,24 @@ export default class WishList extends Component {
 
   filterWishesByType = async (e) => {
     let { typeFilters } = this.state
+    let yearFilter = this.state.yearFilter
+
     if(e.target.checked) {
       typeFilters.push(e.target.id)
     }
     else {
       typeFilters = typeFilters.filter(type => type !== e.target.id)
     }
-    let filteredWishes = await getWishes(typeFilters);
+
+    let beginDate = ''
+    let endDate = ''
+    if(yearFilter !== "ViewAll") {
+      beginDate = `${yearFilter}-01-01T00:00:00Z`
+      endDate = `${yearFilter}-12-31T23:59:59Z`
+    }
+    let sort = 'desc'
+
+    let filteredWishes = await getWishes(typeFilters, beginDate, endDate, sort);
     this.setState({
       filteredWishes,
       typeFilters
@@ -55,16 +69,62 @@ export default class WishList extends Component {
     })
   }
 
+  filterWishesByYear = async (e) => {
+    let { yearFilter } = this.state
+    let types = this.state.typeFilters
+    yearFilter = e.target.attributes.year.value
+
+    let beginDate = ''
+    let endDate = ''
+    if(yearFilter !== "ViewAll") {
+      beginDate = `${yearFilter}-01-01T00:00:00Z`
+      endDate = `${yearFilter}-12-31T23:59:59Z`
+    }
+    let sort = 'desc'
+    let filteredWishes = await getWishes(types, beginDate, endDate, sort);
+
+    this.setState({
+      filteredWishes,
+      yearFilter
+    })
+  }
+
+  toggleMonthWishes = (e) => {
+    e.currentTarget.parentNode.classList.toggle("hide")
+  }
+
   render() {
     const { filteredWishes } = this.state
-    const wishList = filteredWishes.map(wish => {
-      return <Wish key={wish._id} wish={wish} history={this.props.history} />
+    let newList
+    console.log("Wishes: ")
+    console.log(filteredWishes)
+    const wishList = filteredWishes.map((monthWishes, i) => {
+      if (!monthWishes.wishes) return null;
+      newList = monthWishes.wishes.map(wish => 
+        <Wish key={wish._id} wish={wish} history={this.props.history} />)
+      let date = new Date(monthWishes.wishes[0].createdAt)
+      let firstDay = new Date(monthWishes.year, date.getMonth(), 1).getDate();
+      let lastDay = new Date(monthWishes.year, date.getMonth() + 1, 0).getDate();
+
+      let header = (
+        <div key={i} className="month-header" onClick={this.toggleMonthWishes}>
+          <div className="month-name">{monthWishes.month}</div>
+          <div className="month-dates">{monthWishes.month} {firstDay} - {monthWishes.month} {lastDay}, {monthWishes.year}</div>
+          <FontAwesomeIcon icon={faChevronDown} className="month-chevron"/>
+        </div>
+      )
+      newList.unshift(header) 
+      return (
+        <div key={i.toString() + "monthWishes"} className="monthWishes">
+          {newList}
+        </div>
+      )
     })
 
     return (
       <div id="WishList">
         <WishHeader />
-        <WishFilter handleFilterSearch={this.filterWishes} handleCheckboxChange={this.filterWishesByType} />
+        <WishFilter yearSelected={this.state.yearFilter} handleFilterSearch={this.filterWishes} handleCheckboxChange={this.filterWishesByType} handleYearFilter={this.filterWishesByYear} />
         <ul>
           {wishList}
         </ul>
