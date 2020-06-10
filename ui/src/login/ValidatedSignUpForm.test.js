@@ -97,12 +97,14 @@ describe('ValidatedSignUpForm', () => {
       resetForm: jest.fn()
     }
     const response = {
-      message: 'username not available'
+      response: {
+        data: 'username not available'
+      }
     }
     axios.post.mockImplementationOnce(() => Promise.resolve(response))
     await wrapper.instance().onSubmit(values, bag)
 
-    expect(response.message).toEqual('username not available')
+    expect(response.response.data).toEqual('username not available')
     expect(wrapper.state('isFormInvalid')).toEqual(true)
     expect(wrapper.state('invalidFormErrorMsg')).toEqual(
       'username not available'
