@@ -54,6 +54,14 @@ describe('CreateWish tests', () => {
       expect(nameTouched).toEqual(true);
       expect(ageTouched).toEqual(true);
     })
+    
+    it('Should reset entire state when calling changeStateBack', () => {
+      wrapper.instance().changeStateBack()
+      expect(wrapper.state().name).toEqual('')
+      expect(wrapper.state().age).toEqual('')
+      expect(wrapper.state().wishType).toEqual('')
+      expect(wrapper.state().showChildInfo).toEqual(false)
+    })
   })
 
   describe('When the age is invalid', () => {
