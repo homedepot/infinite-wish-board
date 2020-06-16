@@ -53,6 +53,25 @@ describe('Wish details service', () => {
     expect(axios.post).toHaveBeenCalledWith(`${expressDomain}/wishes`, wish);
   })
 
+  it('should edit a wish when required', async () => {
+    const wish = {
+      "child": {
+        "firstName": "test2",
+        "lastName": "test2",
+        "age": "4",
+        "hometown": "Not Atlanta",
+        "illness": "sick"
+      },
+      "type": "go",
+      "details": "to disneyland"
+    }
+
+    axios.put = jest.fn(() => Promise.resolve({ data: wish }));
+    const response = await WishDetailsService.editAWish(wishId, wish);
+    expect(axios.put).toHaveBeenCalledWith(`${expressDomain}/wishes/${wishId}`, wish);
+    expect(response.child.hometown).toEqual('Not Atlanta')
+  });
+
   it('should get wishes', async () => {
     await WishDetailsService.getWishes();
     expect(axios.get).toHaveBeenCalledWith(`${expressDomain}/wishes`);

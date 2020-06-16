@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import WishDetailsService from '../services/WishDetailsService'
 import Rocket from '../assets/images/icn_To_Go_Rocket_White_Inside_130x130.png'
 import Alien from '../assets/images/icn_To_Meet_Alien_White_Inside_130x130.png'
@@ -9,6 +8,13 @@ import './styles.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import WishHeader from '../wishList/wishHeader'
+
+const styles = {
+  link:{
+    color: '#000000',
+    textDecoration: 'underline'
+  }
+}
 
 export default class WishDetails extends Component {
   constructor(props) {
@@ -34,6 +40,24 @@ export default class WishDetails extends Component {
         updatedAt: ''
       }
     }
+  }
+
+  updateHometownField(hometown) {
+    this.setState(prevState => ({
+      ...prevState,
+      wishDetails: {
+        ...prevState.wishDetails,
+        child: {
+          ...prevState.wishDetails.child,
+          hometown: hometown
+        }
+      }
+    }));
+  }
+  // () => this.updateHometown({child: wishDetails.child, type: wishDetails.type, details: wishDetails.details}
+  updateHometown = async (wish) => {
+    const { id } = this.props.match.params
+    return await WishDetailsService.editAWish(id, wish);
   }
 
   async componentDidMount() {
@@ -68,15 +92,25 @@ export default class WishDetails extends Component {
     return image
   }
 
+  goToWishSummary(wish) {
+    this.updateHometown(wish).then(() => this.props.history.push('/wish-summary'))
+  }
+
   render() {
-    const { child, details, sponsor } = this.state.wishDetails
+    const { child, details, sponsor, type } = this.state.wishDetails
     const { name, age, hometown } = child
+
+    const wish = {
+      child: child,
+      type: type,
+      details: details
+    }
 
     return (
       <div className="wish-details-page">
         <WishHeader />
         <div className="back-to-summary-link-container">
-          <Link to="/wish-summary">Back to Summary</Link>
+          <span style={styles.link} data-test="go-to-summary-link" onClick={() => this.goToWishSummary(wish)} to="">Back to Summary</span>
         </div>
         <div className="wishDetails containerHorizontal evenSpacing">
           <div>
@@ -95,7 +129,7 @@ export default class WishDetails extends Component {
             </div>
             <div>
               <label>Hometown: </label>
-              <span>{hometown}</span>
+              <input data-test="hometown-input" placeholder="enter your hometown" type="text" onBlur={() => this.updateHometown(wish)} onChange={(e) => this.updateHometownField(e.target.value)} value={hometown}/>
             </div>
             <h3>Illness Summary</h3>
             <textarea readOnly value={child.illness}></textarea>
