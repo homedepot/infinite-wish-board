@@ -12,6 +12,11 @@ const makeAWish = async(wish) => {
   return response.data;
 }
 
+const editAWish = async(id, wish) => {
+  let response = await axios.put(`${expressDomain}/wishes/${id}`, wish);
+  return response.data;
+}
+
 export const getWishes = async (types) => {
   let typeParams = types && types.length ? `?types=${types.toString()}` : '';
   // TODO query param options
@@ -22,5 +27,6 @@ export const getWishes = async (types) => {
 export default {
   getWishDetails,
   makeAWish,
+  editAWish,
   getWishes
 }
