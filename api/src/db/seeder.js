@@ -18,7 +18,7 @@ createAccounts = async () => {
     await userAdmin.save();
 
     [...Array(10)].forEach( async (_, i) => {
-      calls.push(async function() {
+      calls.push(async () => {
         let username = chance.email();
         const user = new Account({
           provider: 'local',
@@ -31,7 +31,7 @@ createAccounts = async () => {
         await user.save();
       })
     })
-    async.parallel(calls, async function(err, result) {
+    async.parallel(calls, async (err, result) => {
       if (err)
           return console.log(err);
       console.log("Seed task is completed!")
@@ -42,7 +42,7 @@ createAccounts = async () => {
 
 createWishes = async () => {
   Wish.collection.drop()
-  await Wish.find({}).remove(async function() {
+  await Wish.find({}).remove(async () => {
   
     [...Array(20)].forEach( async (wishTypes, i) => {
       wishTypes = [wishRouter.GO, wishRouter.MEET, wishRouter.HAVE, wishRouter.BE];
