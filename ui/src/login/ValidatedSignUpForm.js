@@ -48,7 +48,7 @@ export default class ValidatedSignUpForm extends Component {
       if (response.data === 'OK') this.props.history.push('/landing')
       else {
         this.setState({
-          invalidFormErrorMsg: response.message,
+          invalidFormErrorMsg: response.response.data,
           isFormInvalid: true
         })
         resetForm({
