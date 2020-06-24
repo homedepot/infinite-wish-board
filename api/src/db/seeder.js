@@ -12,7 +12,7 @@ require('./bootstrap-mongoose')
 
 createAccounts = async () => {
 
-  await Account.find({}).remove(async function() {
+  await Account.find({}).remove(async () => {
     const userAdmin = new Account({username: 'Admin', role: 'admin'});
     await userAdmin.setPassword('Password321');
     await userAdmin.save();
