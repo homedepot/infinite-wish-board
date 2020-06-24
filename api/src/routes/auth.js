@@ -9,9 +9,9 @@ router.post('/register', function(req, res, next) {
   Account.register(
     new Account({ username, firstName, lastName }),
     req.body.password,
-    async function(err) {
+    async (err) => {
       if (err) {
-        let acc = await Account.findOne({ username: username }, function(err, account) {});
+        let acc = await Account.findOne({ username: username }, (err, account) => {});
         if(acc) {
           res.status(500).send("Username already exist")
         }
