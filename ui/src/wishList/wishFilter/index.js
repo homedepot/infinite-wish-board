@@ -1,9 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarAlt, faDownload } from '@fortawesome/free-solid-svg-icons'
 import './styles.scss'
 
-const WishFilter = ({ handleFilterSearch, handleCheckboxChange }) => (
+const WishFilter = ({ handleFilterSearch, handleCheckboxChange, handleExport }) => (
   <div className="wish-filter">
     <div className="wish-search-container">
       <input
@@ -44,6 +44,10 @@ const WishFilter = ({ handleFilterSearch, handleCheckboxChange }) => (
       />
       <label htmlFor="toHave">To Have</label>
     </div>
+    <button onClick={handleExport}>
+    <FontAwesomeIcon className="download-icon" icon={faDownload} />
+       CSV
+    </button>
   </div>
 )
 

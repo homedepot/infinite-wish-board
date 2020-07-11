@@ -54,6 +54,27 @@ export default class WishList extends Component {
       filteredWishes
     })
   }
+  handleExport = () => {
+      const { filteredWishes} = this.state;
+      //Generate the header first by flattening the filteredWishes object, and then append the values
+      let csvContent = "data:text/csv;charset=utf-8,"  +
+        Object.keys(filteredWishes[0]).map((item) => {
+          if (['child', 'sponsor'].includes(item)) {
+              return Object.keys(filteredWishes[0][item]).toString()
+          }
+          return item;
+        })
+      .join(',') + '\n' + filteredWishes.map(key => {
+            return Object.values(key).map((item) => {
+              if (typeof item === 'object') {
+                  return Object.values(item).toString()
+              }
+              return item;
+            });
+          }).join('\n')
+      const encodedUri = encodeURI(csvContent);
+      window.open(encodedUri);
+  }
 
   render() {
     const { filteredWishes } = this.state
@@ -64,7 +85,7 @@ export default class WishList extends Component {
     return (
       <div id="WishList">
         <WishHeader />
-        <WishFilter handleFilterSearch={this.filterWishes} handleCheckboxChange={this.filterWishesByType} />
+        <WishFilter handleFilterSearch={this.filterWishes} handleCheckboxChange={this.filterWishesByType} handleExport={this.handleExport}/>
         <ul>
           {wishList}
         </ul>
