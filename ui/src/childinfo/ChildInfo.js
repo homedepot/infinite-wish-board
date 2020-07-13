@@ -151,7 +151,7 @@ export default class ChildInfo extends Component {
     let { showConfirmation, step } = this.state
     return (
       <>
-        <Header />
+        <Header logout={true} />
         {!showConfirmation ? (
           <div className="childInfo containerVertical spotlight">
             <p className="progress">
