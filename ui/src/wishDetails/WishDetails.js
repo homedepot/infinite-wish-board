@@ -108,7 +108,7 @@ export default class WishDetails extends Component {
 
     return (
       <div className="wish-details-page">
-        <WishHeader />
+        <WishHeader username = {this.props.username}/>
         <div className="back-to-summary-link-container">
           <span style={styles.link} data-test="go-to-summary-link" onClick={() => this.goToWishSummary(wish)} to="">Back to Summary</span>
         </div>

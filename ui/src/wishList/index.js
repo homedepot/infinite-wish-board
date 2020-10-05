@@ -63,7 +63,7 @@ export default class WishList extends Component {
 
     return (
       <div id="WishList">
-        <WishHeader />
+        <WishHeader username={this.props.username}/>
         <WishFilter handleFilterSearch={this.filterWishes} handleCheckboxChange={this.filterWishesByType} />
         <ul>
           {wishList}

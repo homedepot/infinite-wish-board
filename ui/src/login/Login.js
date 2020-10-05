@@ -36,7 +36,7 @@ class Login extends Component {
           {showSignIn ? (
             <section className="form-wrapper">
               <h2 className="signin-title">{SIGN_IN}</h2>
-              <ValidatedSignInForm history={history} />
+              <ValidatedSignInForm history={history} setSignedInUser={this.props.setSignedInUser}/>
               <section className="signup-section">
                 <span className="divider-text">{NEW_USER}</span>
                 <button

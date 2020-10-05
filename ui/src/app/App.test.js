@@ -27,7 +27,8 @@ describe('Default routing behavior', () => {
       .props()
 
     expect(loginRoute.path).toEqual('/')
-    expect(loginRoute.component).toEqual(Login)
+    expect(typeof loginRoute.render).toEqual('function')
+    expect(loginRoute.render().type).toEqual(Login)
 
     const logoutRoute = wrapper
       .find(Route)
@@ -35,7 +36,8 @@ describe('Default routing behavior', () => {
       .props()
 
     expect(logoutRoute.path).toEqual('/logout')
-    expect(logoutRoute.component).toEqual(Login)
+    expect(typeof logoutRoute.render).toEqual('function')
+    expect(logoutRoute.render().type).toEqual(Login);
 
     const wishDetailsRoute = wrapper
       .find(Route)
@@ -43,7 +45,8 @@ describe('Default routing behavior', () => {
       .props()
 
     expect(wishDetailsRoute.path).toEqual('/wish-summary/:id')
-    expect(wishDetailsRoute.component).toEqual(WishDetails)
+    expect(typeof wishDetailsRoute.render).toEqual('function')
+    expect(wishDetailsRoute.render().type).toEqual(WishDetails)
 
     const wishCurationRoute = wrapper
       .find(Route)
@@ -51,7 +54,8 @@ describe('Default routing behavior', () => {
       .props()
 
     expect(wishCurationRoute.path).toEqual('/wish-summary')
-    expect(wishCurationRoute.component).toEqual(WishList)
+    expect(typeof wishCurationRoute.render).toEqual('function')
+    expect(wishCurationRoute.render().type).toEqual(WishList)
 
     const landingRoute = wrapper
       .find(Route)
@@ -68,5 +72,14 @@ describe('Default routing behavior', () => {
 
     expect(childInfoRoute.path).toEqual('/child-info')
     expect(childInfoRoute.component).toEqual(ChildInfo)
+  })
+
+  describe('App state', () => {
+    it('should set username', () => {
+      const wrapper = shallow(<App />)
+      const username = 'username1'
+      wrapper.instance().setSignedInUser(username)
+      expect(wrapper.instance().state.username).toEqual(username)
+    })
   })
 })
