@@ -1,90 +1,62 @@
 import React, { Component } from 'react'
 import './styles.scss'
 import { getWishes } from '../services/WishDetailsService'
-import backgroundGif from '../assets/gifs/MAW_BG.gif'
-import rocketGif from '../assets/gifs/MAW_Rocket.gif'
-import toBeGif from '../assets/gifs/MAW_To_Be.gif'
-import toMeetGif from '../assets/gifs/MAW_To_Meet.gif'
+import backgroundWebm from '../assets/gifs/MAW_BG.webm'
+import toGoWebm from '../assets/gifs/MAW_To_Go.webm'
+import toBeWebm from '../assets/gifs/MAW_To_Be.webm'
+import toMeetWebm from '../assets/gifs/MAW_To_Meet.webm'
+import toHaveWebm from '../assets/gifs/MAW_To_Have.webm'
 
 export default class GalaxyScreen extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            currentGif: null,
-            previousWishList: []
+            currentWebm: null,
+            previousWishList: [],
+            webmLookup: {}
         }
     }
 
     componentDidMount() {
         this.setState({
-            currentGif: backgroundGif
+            currentWebm: 'MAW_BG.webm',
+            webmLookup: {
+              'MAW_BG.webm': backgroundWebm,
+              'MAW_To_Go.webm': toGoWebm,
+              'MAW_To_Be.webm': toBeWebm,
+              'MAW_To_Meet.webm': toMeetWebm,
+              'MAW_To_Have.webm': toHaveWebm,
+            }
         },
         () => {
             setInterval(() => {
-                this.handleCurrentGif()
+                this.handleCurrentWebm()
             },
             3000)
         })
     }
 
-    handleCurrentGif = async () => {
+    handleCurrentWebm = async () => {
         const wishes = await getWishes()
         if (JSON.stringify(this.state.previousWishList) !== JSON.stringify(wishes)) {
             const difference = wishes.filter(wish => !this.state.previousWishList.some(prevWish => wish._id === prevWish._id));
 
-            // console.log(this.state.previousWishList)
-            // console.log(difference)
             if (difference && difference.length > 0 && this.state.previousWishList.length > 0) {
-
-                if (difference[0].type === 'go') {
-                    this.setState({
-                        currentGif: rocketGif // 13 seconds
-                    }, () => {
-                        setTimeout(() => {
-                            this.setState({
-                                currentGif: backgroundGif
-                            })
-                        },
-                        13000)
-                    })
+                if (difference[0].type === 'have') {
+                    this.triggerWishVideo('MAW_To_Have.webm', 13000)   
                 } else if (difference[0].type === 'meet') {
-                    this.setState({
-                        currentGif: toMeetGif // 11 seconds
-                    }, () => {
-                        setTimeout(() => {
-                            this.setState({
-                                currentGif: backgroundGif
-                            })
-                        },
-                        11000)
-                    })
+                    this.triggerWishVideo('MAW_To_Meet.webm', 11000)   
                 } else if (difference[0].type === 'be') {
-                    this.setState({
-                        currentGif: toBeGif // 11 seconds
-                    }, () => {
-                        setTimeout(() => {
-                            this.setState({
-                                currentGif: backgroundGif
-                            })
-                        },
-                        11000)
-                    })
+                    this.triggerWishVideo('MAW_To_Be.webm', 11000)
                 } else {
-                    this.setState({
-                        currentGif: rocketGif // 13 seconds
-                    }, () => {
-                        setTimeout(() => {
-                            this.setState({
-                                currentGif: backgroundGif
-                            })
-                        },
-                        13000)
-                    })
+                    this.triggerWishVideo('MAW_To_Go.webm',13000)    
                 }
             } else {
                 this.setState({
-                    currentGif: backgroundGif
+                    currentWebm: 'MAW_BG.webm'
+                }, () => {
+                    this.playVideo();
                 })
             }
 
@@ -94,11 +66,46 @@ export default class GalaxyScreen extends Component {
         }
     }
 
+    triggerWishVideo = (newWebm, timeout) => {
+        this.setState({
+            currentWebm: newWebm 
+        }, () => {
+            this.playVideo();
+            setTimeout(() => {
+                this.setState({
+                    currentWebm: 'MAW_BG.webm'
+                }, () => {
+                    this.playVideo()
+                })
+              }, timeout
+            )
+        })
+    }
+
+    getSourceURL = (webmName) => {
+        if(process.env.REACT_APP_imageUrl) {
+            return process.env.REACT_APP_imageUrl + webmName
+        }
+        return this.state.webmLookup[webmName]
+    }
+
+    playVideo = () => {
+        this.refs.video.load();
+        this.refs.video.play();
+    }
+
     render() {
         return (
-            <div id="GalaxyScreen">
-                <img className='galaxy-image' src={this.state.currentGif} alt="loading..." />
-            </div>
+            <>
+                <link rel="preload" as="video" href={this.getSourceURL('MAW_To_Meet.webm')} />
+                <link rel="preload" as="video" href={this.getSourceURL('MAW_To_Be.webm')} />
+                <link rel="preload" as="video" href={this.getSourceURL('MAW_To_Go.webm')} />
+                <link rel="preload" as="video" href={this.getSourceURL('MAW_To_Have.webm')} />
+
+                <video loop muted autoPlay ref="video" className="fullscreen-bg__video">
+                    <source src={this.getSourceURL(this.state.currentWebm)} type="video/webm" />
+                </video>
+            </>
         )
     }
 

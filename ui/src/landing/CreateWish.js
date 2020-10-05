@@ -44,6 +44,15 @@ export default class CreateWish extends Component {
     }
   }
 
+  changeStateBack = () => {
+    this.setState({
+      name: '',
+      age: '',
+      wishType: '',
+      showChildInfo: false
+    })
+  }
+
   render() {
     const { name, age, wishType, showChildInfo } = this.state
 
@@ -61,6 +70,7 @@ export default class CreateWish extends Component {
         age={age}
         type={wishType}
         history={this.props.history}
+        changeStateBack = {this.changeStateBack}
       />
     )
   }

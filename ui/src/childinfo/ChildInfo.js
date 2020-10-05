@@ -98,6 +98,8 @@ export default class ChildInfo extends Component {
         showConfirmation: true,
         childId: response._id
       })
+
+      this.rocketBlastOff();
     }
   }
 
@@ -140,8 +142,7 @@ export default class ChildInfo extends Component {
     this.soundEffect.play()
     setTimeout(() => {
       this.soundEffect.pause()
-      const url = `/wish-summary/${this.state.childId}`
-      this.props.history.push(url)
+      this.props.changeStateBack()
     }, 3000)
   }
 
@@ -180,13 +181,6 @@ export default class ChildInfo extends Component {
               src={rocketImage}
               alt={rocketImage}
             />
-            <button
-              className="rocket-blast-off-button"
-              onClick={this.rocketBlastOff}
-              disabled={this.state.launchRocket}
-            >
-              Fulfill my wish
-            </button>
           </div>
         )}
       </>

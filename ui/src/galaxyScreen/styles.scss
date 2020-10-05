@@ -1,16 +1,27 @@
-@import "../styles/colors";
+@import '../styles/colors';
 
-#GalaxyScreen {
+html {
+  overflow: hidden;
+}
+
+.fullscreen-bg__video {
   position: absolute;
-  height: 100%;
-  width: 100%;
-  background-color: $light-blue;
-  color: $dark-blue;
-  font-family: 'Arial Rounded MT Bold', sans-serif;
-  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
 
-  .galaxy-image {
-    height: 100vh;
-    width: 100vw;
+@media (min-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    width: auto;
+    height: 100%;
   }
 }
