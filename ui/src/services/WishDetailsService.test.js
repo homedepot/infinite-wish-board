@@ -74,11 +74,11 @@ describe('Wish details service', () => {
 
   it('should get wishes', async () => {
     await WishDetailsService.getWishes();
-    expect(axios.get).toHaveBeenCalledWith(`${expressDomain}/wishes`);
+    expect(axios.get).toHaveBeenCalledWith(`${expressDomain}/wishes?sort=desc`);
   })
 
   it('should make request with filter if required', async () => {
     await WishDetailsService.getWishes(['go', 'meet']);
-    expect(axios.get).toHaveBeenCalledWith(`${expressDomain}/wishes?types=go,meet`);
+    expect(axios.get).toHaveBeenCalledWith(`${expressDomain}/wishes?types=go,meet&sort=desc`);
   })
 })

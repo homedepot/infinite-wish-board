@@ -18,7 +18,7 @@ const editAWish = async(id, wish) => {
 }
 
 export const getWishes = async (types) => {
-  let typeParams = types && types.length ? `?types=${types.toString()}` : '';
+  let typeParams = types && types.length ? `?types=${types.toString()}&sort=desc` : '?sort=desc';
   // TODO query param options
   const { data } = await axios.get(`${expressDomain}/wishes${typeParams}`)
   return data
