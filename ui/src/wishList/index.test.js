@@ -61,8 +61,8 @@ describe('WishSummary tests', () => {
       _id: '5d070ba5db7b540028dea1c5',
       type: 'go',
       details: 'dfehjhgjhgjdf',
-      createdAt: '2019-06-17T03:40:21.782Z',
-      updatedAt: '2019-06-17T03:40:21.782Z',
+      createdAt: '2019-07-18T03:40:21.782Z',
+      updatedAt: '2019-07-18T03:40:21.782Z',
       __v: 0
     }
   ]
@@ -192,6 +192,25 @@ describe('WishSummary tests', () => {
 
       wrapper.instance().filterWishes(clickEvt)
       expect(wrapper.instance().state.filteredWishes).toEqual([])
+    })
+  })
+
+  describe('when filterWishes func called by date month', () => {
+    let wrapper
+    beforeEach(() => {
+      getWishes.mockImplementation(() => mockWishList)
+      wrapper = shallow(<WishSummary />)
+    })
+
+    it('should update filterWishes by date month', async () => {
+      let clickEvt = {
+        target: {
+          value: 'july'
+        }
+      }
+
+      wrapper.instance().filterWishes(clickEvt)
+      expect(wrapper.instance().state.filteredWishes).toEqual([mockWishList[2]])
     })
   })
 })

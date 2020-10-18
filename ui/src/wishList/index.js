@@ -45,15 +45,21 @@ export default class WishList extends Component {
       const childName = `${wish && wish.child && wish.child.name ? wish.child.name.toLowerCase() : ''}`;
       const childHometown = `${wish && wish.child && wish.child.hometown ? wish.child.hometown.toLowerCase() : ''}`;
       const sponsorName = `${wish && wish.sponsor && wish.sponsor.name ? wish.sponsor.name.toLowerCase() : ''}`;
-
-      const wishItem = `${childName} ${sponsorName} ${childHometown}`
+      let dateMonth = '';
+      let dateDay = '';
+      if (wish && wish.createdAt) {
+        const date = new Date(wish.createdAt);
+        dateMonth = date.toLocaleString('default', { month: 'long' }).toLowerCase();
+        dateDay = date.getDate();
+      }
+      const wishItem = `${childName} ${sponsorName} ${childHometown} ${dateMonth} ${dateDay}`;
       return wishItem.indexOf(
         wishFilter.toLowerCase()) !== -1
-    })
+    });
     this.setState({
       filteredWishes
     })
-  }
+  };
 
   render() {
     const { filteredWishes } = this.state
