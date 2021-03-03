@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import App from './App'
-import { Route } from 'react-router-dom'
+import { PrivateRoute, TemporaryRoute } from './Routing'
 import Login from '../login/Login'
 import ChildInfo from '../childinfo/ChildInfo'
 import CreateWish from '../landing/CreateWish'
@@ -9,64 +9,79 @@ import WishList from '../wishList'
 import WishDetails from '../wishDetails/WishDetails';
 import GalaxyScreen from '../galaxyScreen/galaxyScreen'
 
-describe('Default routing behavior', () => {
-  it('renders the login page by default', () => {
-    const wrapper = shallow(<App />)
+describe('routing behavior', () => {
+  const wrapper = shallow(<App />)
 
-    const galaxyRoute = wrapper
-      .find(Route)
-      .at(6)
+  it('renders the landing page', () => {
+    console.log(wrapper.find(PrivateRoute))
+    console.log(wrapper.find(TemporaryRoute))
+
+    let landingRoute = wrapper
+      .find(PrivateRoute)
+      .at(0)
+      .props()
+    
+    expect(landingRoute.path).toEqual('/')
+    expect(landingRoute.component).toEqual(CreateWish)
+  })
+
+  it('renders the galaxy screen', () => {
+    let galaxyRoute = wrapper
+      .find(PrivateRoute)
+      .at(5)
       .props()
 
     expect(galaxyRoute.path).toEqual('/galaxy')
     expect(galaxyRoute.component).toEqual(GalaxyScreen)
+  })
 
-    const loginRoute = wrapper
-      .find(Route)
-      .at(5)
-      .props()
-
-    expect(loginRoute.path).toEqual('/')
-    expect(loginRoute.component).toEqual(Login)
-
-    const logoutRoute = wrapper
-      .find(Route)
+  it('renders the login screen when you logout', () => {
+    let logoutRoute = wrapper
+      .find(PrivateRoute)
       .at(4)
       .props()
 
     expect(logoutRoute.path).toEqual('/logout')
     expect(logoutRoute.component).toEqual(Login)
+  })
 
-    const wishDetailsRoute = wrapper
-      .find(Route)
-      .at(3)
+  it('renders the child-info screen', () => {
+    let childInfoRoute = wrapper
+      .find(PrivateRoute)
+      .at(1)
       .props()
 
-    expect(wishDetailsRoute.path).toEqual('/wish-summary/:id')
-    expect(wishDetailsRoute.component).toEqual(WishDetails)
+    expect(childInfoRoute.path).toEqual('/child-info')
+    expect(childInfoRoute.component).toEqual(ChildInfo)
+  })
 
-    const wishCurationRoute = wrapper
-      .find(Route)
+  it('renders the wish-summary screen', () => {
+    let wishCurationRoute = wrapper
+      .find(PrivateRoute)
       .at(2)
       .props()
 
     expect(wishCurationRoute.path).toEqual('/wish-summary')
     expect(wishCurationRoute.component).toEqual(WishList)
+  })
 
-    const landingRoute = wrapper
-      .find(Route)
-      .at(1)
+  it('renders the wish details page', () => {
+    let wishDetailsRoute = wrapper
+      .find(PrivateRoute)
+      .at(3)
       .props()
 
-    expect(landingRoute.path).toEqual('/landing')
-    expect(landingRoute.component).toEqual(CreateWish)
+    expect(wishDetailsRoute.path).toEqual('/wish-summary/:id')
+    expect(wishDetailsRoute.component).toEqual(WishDetails)
+  })
 
-    const childInfoRoute = wrapper
-      .find(Route)
+  it('renders the login page by default', () => {
+    let loginRoute = wrapper
+      .find(TemporaryRoute)
       .at(0)
       .props()
 
-    expect(childInfoRoute.path).toEqual('/child-info')
-    expect(childInfoRoute.component).toEqual(ChildInfo)
+    expect(loginRoute.path).toEqual('/login')
+    expect(loginRoute.component).toEqual(Login)
   })
 })
