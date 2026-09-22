@@ -8,7 +8,7 @@ const WishHeader = () => (
       <img src={makeAWishLogo} className="makeAWishLogo" alt="make a wish logo" />
     </div>
     <div className="user-details">
-      <span>Mary</span> |
+      <span>{localStorage.getItem('firstName')}</span> |
       <a href="/logout">Sign Out</a>
     </div>
   </div>
